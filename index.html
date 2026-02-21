@@ -2,32 +2,47 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Balaji Sri | Software QA Engineer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Balaji Sri | Software QA Engineer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --card: #f3f4f6;
+}
+
+.dark {
+  --bg: #0f172a;
+  --text: #f8fafc;
+  --card: #1e293b;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #0f172a, #020617);
-  color: #f8fafc;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 900px;
   margin: auto;
-  padding: 60px 20px;
+  padding: 80px 20px;
 }
 
 .hero {
   text-align: center;
-  padding: 100px 20px;
+  padding: 100px 20px 60px;
 }
 
 .hero h1 {
@@ -35,16 +50,11 @@ body {
   font-weight: 700;
 }
 
-.hero span {
-  background: linear-gradient(90deg, #38bdf8, #6366f1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.hero p {
+.typing {
+  font-size: 22px;
   margin-top: 20px;
-  font-size: 20px;
-  color: #cbd5e1;
+  color: #3b82f6;
+  min-height: 30px;
 }
 
 .section {
@@ -60,126 +70,172 @@ body {
 }
 
 h2 {
+  font-size: 26px;
   margin-bottom: 20px;
-  font-size: 28px;
-  border-left: 4px solid #38bdf8;
-  padding-left: 10px;
 }
 
 .card {
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
+  background: var(--card);
   padding: 25px;
-  border-radius: 15px;
+  border-radius: 12px;
   margin-top: 20px;
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  background: rgba(255,255,255,0.08);
+  transform: translateY(-6px);
 }
 
 .btn {
   display: inline-block;
-  margin-top: 25px;
-  padding: 12px 25px;
+  margin-top: 20px;
+  padding: 12px 24px;
   border-radius: 8px;
-  background: linear-gradient(90deg, #38bdf8, #6366f1);
+  background: #3b82f6;
   color: white;
   text-decoration: none;
   font-weight: 600;
-  transition: transform 0.3s ease;
 }
 
-.btn:hover {
-  transform: scale(1.05);
+.socials {
+  margin-top: 20px;
+}
+
+.socials a {
+  margin: 0 10px;
+  font-size: 20px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: #3b82f6;
+  color: white;
 }
 
 footer {
   text-align: center;
-  padding: 40px;
-  margin-top: 60px;
-  color: #94a3b8;
+  margin-top: 80px;
+  padding-bottom: 40px;
   font-size: 14px;
+  opacity: 0.6;
 }
 </style>
 </head>
 
 <body>
 
+<div class="toggle" onclick="toggleMode()">Toggle Mode</div>
+
 <div class="hero">
-  <h1>Hi, I'm <span>Balaji</span></h1>
-  <p>Software QA Engineer | Automation Enthusiast | Quality-Driven Professional</p>
-  <a href="#contact" class="btn">Connect With Me</a>
+  <h1>Balaji Sri</h1>
+  <div class="typing" id="typing"></div>
 </div>
 
 <div class="container">
 
   <div class="section">
-    <h2>About Me</h2>
+    <h2>About</h2>
     <div class="card">
-      <p>
-        Passionate Software QA Engineer focused on delivering robust,
-        high-quality applications through strategic testing, automation,
-        and continuous improvement. I specialize in ensuring reliability
-        and performance across modern web systems.
-      </p>
+      Quality-driven Software QA Engineer focused on automation,
+      reliability, and scalable test systems.
     </div>
   </div>
 
   <div class="section">
-    <h2>Core Expertise</h2>
+    <h2>Work</h2>
     <div class="card">
-      ✔ Manual & Automation Testing<br><br>
-      ✔ Selenium / API Testing<br><br>
-      ✔ Test Strategy & Quality Assurance<br><br>
-      ✔ CI/CD & Agile Environments
+      Built automation frameworks improving regression efficiency.
+    </div>
+    <div class="card">
+      Designed API validation suites for backend stability.
     </div>
   </div>
 
   <div class="section">
-    <h2>Highlighted Work</h2>
+    <h2>Resume</h2>
     <div class="card">
-      <strong>Automation Framework</strong><br>
-      Designed scalable automation framework improving regression efficiency.
-    </div>
-    <div class="card">
-      <strong>API Validation Suite</strong><br>
-      Built API validation workflows ensuring backend reliability.
+      <a href="resume.pdf" class="btn" download>Download Resume</a>
     </div>
   </div>
 
-  <div class="section" id="contact">
-    <h2>Contact</h2>
+  <div class="section">
+    <h2>Connect</h2>
     <div class="card">
-      Email: yourname@email.com<br><br>
-      <a class="btn" href="https://github.com/balaji16s" target="_blank">View GitHub</a>
+      <div class="socials">
+        <a href="https://github.com/balaji16s" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/balaji16s" target="_blank">LinkedIn</a>
+      </div>
     </div>
   </div>
 
 </div>
 
 <footer>
-  © 2026 Balaji Sri. Premium Personal Brand.
+© 2026 Balaji Sri
 </footer>
 
 <script>
+// Typing Effect
+const roles = [
+  "Software QA Engineer",
+  "Automation Enthusiast",
+  "Quality Advocate"
+];
+
+let roleIndex = 0;
+let charIndex = 0;
+const typingElement = document.getElementById("typing");
+
+function type() {
+  if (charIndex < roles[roleIndex].length) {
+    typingElement.innerHTML += roles[roleIndex].charAt(charIndex);
+    charIndex++;
+    setTimeout(type, 70);
+  } else {
+    setTimeout(erase, 1500);
+  }
+}
+
+function erase() {
+  if (charIndex > 0) {
+    typingElement.innerHTML = roles[roleIndex].substring(0, charIndex - 1);
+    charIndex--;
+    setTimeout(erase, 40);
+  } else {
+    roleIndex = (roleIndex + 1) % roles.length;
+    setTimeout(type, 500);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(type, 500);
+});
+
+// Scroll animation
 const sections = document.querySelectorAll('.section');
-
-const revealOnScroll = () => {
+function reveal() {
   const trigger = window.innerHeight * 0.85;
-
   sections.forEach(section => {
-    const sectionTop = section.getBoundingClientRect().top;
-    if(sectionTop < trigger){
+    if(section.getBoundingClientRect().top < trigger){
       section.classList.add('visible');
     }
   });
-};
+}
+window.addEventListener('scroll', reveal);
+reveal();
 
-window.addEventListener('scroll', revealOnScroll);
-revealOnScroll();
+// Dark mode toggle
+function toggleMode() {
+  document.body.classList.toggle("dark");
+}
 </script>
 
 </body>
