@@ -1,175 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Balaji Sri | Premium Personal Brand</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<style>
-:root {
-  --bg: #050b18;
-  --text: #f8fafc;
-}
-
-/* Liquid Motion Background (More Intense) */
-.liquid {
-  position: fixed;
-  inset: -60%;
-  background: radial-gradient(circle at 50% 50%, #3b82f6, #050b18 65%);
-  animation: liquidMove 18s infinite alternate ease-in-out;
-  opacity: 0.7;
-  filter: blur(100px);
-  z-index: -2;
-}
-
-@keyframes liquidMove {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  25% {
-    transform: translate(120px, -80px) scale(1.08);
-  }
-  50% {
-    transform: translate(-100px, 100px) scale(1.12);
-  }
-  75% {
-    transform: translate(80px, -120px) scale(1.05);
-  }
-  100% {
-    transform: translate(-120px, 80px) scale(1.15);
-  }
-}
-
-/* Glass Card */
-.glass {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(22px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
-  padding: 28px;
-  transition: transform 0.3s ease;
-}
-
-.glass:hover {
-  transform: translateY(-6px);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
-}
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  overflow-x: hidden;
-}
-
-.container {
-  max-width: 960px;
-  margin: auto;
-  padding: 80px 20px;
-  position: relative;
-  z-index: 2;
-}
-
-.hero {
-  text-align: center;
-  padding: 80px 0;
-}
-
-.hero h1 {
-  font-size: 52px;
-  font-weight: 700;
-}
-
-.hero p {
-  margin-top: 16px;
-  font-size: 20px;
-  color: #cbd5e1;
-}
-
-.btn {
-  display: inline-block;
-  margin-top: 24px;
-  padding: 12px 26px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #3b82f6, #6366f1);
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  transition: transform 0.3s ease;
-}
-
-.btn:hover {
-  transform: scale(1.05);
-}
-
-.section {
-  margin-top: 70px;
-}
-
-h2 {
-  font-size: 28px;
-  margin-bottom: 18px;
-}
-
-footer {
-  text-align: center;
-  margin-top: 80px;
-  padding-bottom: 40px;
-  font-size: 14px;
-  color: #94a3b8;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balaji - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-[#f9fafb] text-gray-900 font-sans antialiased selection:bg-gray-300">
+    <nav class="max-w-3xl mx-auto px-6 py-10 flex justify-between items-center">
+        <div class="font-bold text-xl tracking-tight">Balaji</div>
+        <div class="space-x-6 text-sm font-medium text-gray-600">
+            <a href="index.html" class="text-black transition">Home</a>
+            <a href="experience.html" class="hover:text-black transition">Experience</a>
+            <a href="projects.html" class="hover:text-black transition">Projects</a>
+        </div>
+    </nav>
 
-<body>
+    <main class="max-w-3xl mx-auto px-6 mt-12 mb-20">
+        <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 tracking-tight">Hey, I'm Balaji 👋</h1>
+        <h2 class="text-lg text-gray-600 mb-8">Test Engineer & Automation Enthusiast | Transforming Legacy Systems with a Human Touch</h2>
 
-<div class="liquid"></div>
+        <p class="text-gray-700 text-lg leading-relaxed mb-10">
+            I’m a seasoned Test Engineer with over 6 years of experience making sure software actually works the way it’s supposed to. I thrive in Agile teams and love finding clever ways to automate the boring stuff, whether it’s through Tosca or custom Java tools. From leading small QA teams to tackling 140+ legacy applications, I focus on delivering high-quality tech without the headaches.
+        </p>
 
-<div class="container">
+        <h3 class="text-2xl font-bold mt-12 mb-4">Skills</h3>
+        <ul class="list-disc list-outside ml-5 space-y-2 text-gray-700">
+            <li><strong>Automation & Testing:</strong> Tricentis Tosca (AS1, AS2, TDS1, TDS2), Selenium WebDriver, Postman, Rest Assured</li>
+            <li><strong>Languages & Tech:</strong> Java, SQL, Maven</li>
+            <li><strong>Frameworks & Methodology:</strong> Cucumber BDD, TestNG, Agile/SAFe</li>
+            <li><strong>Tools:</strong> Jira, HP ALM, qTest, GitHub Copilot</li>
+        </ul>
 
-  <div class="hero">
-    <h1>Hi, I'm Balaji</h1>
-    <p>Software QA Engineer | Premium Personal Brand</p>
-    <a href="#contact" class="btn">Connect With Me</a>
-  </div>
-
-  <div class="section glass">
-    <h2>About</h2>
-    <p>
-      Quality-driven Software QA Engineer focused on automation,
-      reliability, and premium software experiences.
-      I build and test systems that matter.
-    </p>
-  </div>
-
-  <div class="section glass">
-    <h2>Expertise</h2>
-    <p>
-      ✔ Automation Testing<br>
-      ✔ API Validation<br>
-      ✔ Test Strategy<br>
-      ✔ Quality Engineering
-    </p>
-  </div>
-
-  <div class="section glass" id="contact">
-    <h2>Contact</h2>
-    <p>Email: yourname@email.com</p>
-    <a class="btn" href="resume.pdf" download>Download Resume</a>
-  </div>
-
-</div>
-
-<footer>
-  © 2026 Balaji Sri. Premium Personal Brand.
-</footer>
-
+        <div class="mt-12 flex items-center space-x-4">
+            <a href="mailto:balaah16@gmail.com" class="bg-black text-white text-sm font-medium px-6 py-2.5 rounded-lg hover:bg-gray-800 transition shadow-sm">Send me an email</a>
+            <a href="resume.pdf" target="_blank" class="border border-gray-300 text-black text-sm font-medium px-6 py-2.5 rounded-lg hover:bg-gray-100 transition shadow-sm">Download resume</a>
+        </div>
+        
+        <div class="mt-8 flex space-x-6 text-sm font-medium text-gray-500">
+            <a href="https://linkedin.com/in/balaji16s" target="_blank" class="hover:text-black transition">LinkedIn</a>
+            <a href="#" target="_blank" class="hover:text-black transition">GitHub</a>
+        </div>
+    </main>
 </body>
 </html>
