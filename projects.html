@@ -3,50 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Balaji</title>
+    <title>Projects</title>
+    <link rel="icon" type="image/svg+xml" href="logo-light.svg">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    </script>
 </head>
-<body class="bg-[#f9fafb] text-gray-900 font-sans antialiased selection:bg-gray-300">
+<body class="bg-[#f9fafb] dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans antialiased selection:bg-gray-300 dark:selection:bg-gray-700 transition-colors duration-300">
+    
     <nav class="max-w-3xl mx-auto px-6 py-10 flex justify-between items-center">
-        <div class="font-bold text-xl tracking-tight">Balaji</div>
-        <div class="space-x-6 text-sm font-medium text-gray-600">
-            <a href="index.html" class="hover:text-black transition">Home</a>
-            <a href="experience.html" class="hover:text-black transition">Experience</a>
-            <a href="projects.html" class="text-black transition">Projects</a>
+        <a href="/" class="flex items-center">
+            <img src="logo-light.svg" alt="Balaji" class="h-12 w-auto block dark:hidden">
+            <img src="logo-dark.svg" alt="Balaji" class="h-12 w-auto hidden dark:block">
+        </a>
+        <div class="flex items-center space-x-6 text-sm font-medium text-gray-600 dark:text-gray-400">
+            <a href="/" class="hover:text-black dark:hover:text-white transition">Home</a>
+            <a href="/experience" class="hover:text-black dark:hover:text-white transition">Experience</a>
+            <a href="/projects" class="text-black dark:text-white transition">Projects</a>
+            <button onclick="toggleTheme()" class="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition focus:outline-none">
+                <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                <svg class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            </button>
         </div>
     </nav>
 
     <main class="max-w-3xl mx-auto px-6 mt-12 mb-20">
-        <h1 class="text-4xl font-extrabold mb-10 tracking-tight">Projects</h1>
+        <h1 class="text-4xl font-extrabold mb-10 tracking-tight text-gray-900 dark:text-white">Projects</h1>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="border border-gray-200 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition">
-                <h2 class="text-xl font-bold mb-2">AutoLog Validation Utility</h2>
-                <p class="text-gray-600 text-sm mb-4 leading-relaxed">A tool that pulls errors directly from logs and generates local files to help developers identify issues instantly.</p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md font-mono">Java</span>
-                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md font-mono">GitHub Copilot</span>
-                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md font-mono">IntelliJ</span>
-                </div>
+        <div class="border border-gray-200 dark:border-gray-700 p-6 rounded-xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-md dark:hover:shadow-gray-900 transition">
+            <h2 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Kuralverse</h2>
+            <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 leading-relaxed">A high-end Thirukkural companion app featuring modern glassmorphism UI, custom 3D animations, and a robust clean architecture for a premium daily experience.</p>
+            <div class="flex flex-wrap gap-2">
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded-md font-mono">Flutter</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded-md font-mono">Riverpod</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded-md font-mono">Clean Architecture</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded-md font-mono">Hive</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded-md font-mono">Dart</span>
             </div>
+        </div>
 
-            <div class="border border-gray-200 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition">
-                <h2 class="text-xl font-bold mb-2">AutoMailTrigger</h2>
-                <p class="text-gray-600 text-sm mb-4 leading-relaxed">An automated system that connects to the putty console to trigger error notification emails to specific subscribers.</p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md font-mono">Java</span>
-                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md font-mono">Putty</span>
-                </div>
-            </div>
-
-            <div class="border border-gray-200 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition">
-                <h2 class="text-xl font-bold mb-2">Home Delivery Automation</h2>
-                <p class="text-gray-600 text-sm mb-4 leading-relaxed">Automated the end-to-end testing of placing home delivery orders for a major frozen food company, including complex deal applications.</p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md font-mono">Functional Testing</span>
-                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md font-mono">Automation</span>
-                </div>
-            </div>
         </div>
     </main>
 </body>
