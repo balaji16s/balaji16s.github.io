@@ -4,25 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Balaji</title>
-    <link rel="icon" type="image/svg+xml" href="logo-light.svg">
+    <link rel="icon" type="image/svg+xml" id="favicon">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = { darkMode: 'class' }
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-        function toggleTheme() {
-            document.documentElement.classList.toggle('dark');
-            if (document.documentElement.classList.contains('dark')) {
-                localStorage.setItem('theme', 'dark');
-            } else {
-                localStorage.setItem('theme', 'light');
+        <script>
+            tailwind.config = { darkMode: 'class' }
+        
+            function updateFavicon() {
+                const favicon = document.getElementById('favicon');
+                if (document.documentElement.classList.contains('dark')) {
+                    favicon.href = 'logo-dark.svg';
+                } else {
+                    favicon.href = 'logo-light.svg';
+                }
             }
-        }
-    </script>
+        
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        
+            updateFavicon();
+        
+            function toggleTheme() {
+                document.documentElement.classList.toggle('dark');
+        
+                if (document.documentElement.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+        
+                updateFavicon();
+            }
+        </script>
 </head>
 <body class="bg-[#f9fafb] dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans antialiased selection:bg-gray-300 dark:selection:bg-gray-700 transition-colors duration-300">
     
@@ -46,17 +62,25 @@
 
     <main class="max-w-3xl mx-auto px-6 mt-12 mb-20">
         <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 tracking-tight text-gray-900 dark:text-white">Hey, I'm Balaji 👋</h1>
-        <h2 class="text-lg text-gray-600 dark:text-gray-400 mb-8">Test Engineer & Automation Enthusiast | Transforming Legacy Systems with a Human Touch</h2>
+        <h2 class="text-lg text-gray-600 dark:text-gray-400 mb-8">🤖 QE | AI & Automation Enthusiast | Delivering Value Through Quality</h2>
 
         <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-10">
-            I'm a Software Quality Engineer. I design and automate tests to deliver a reliable, high-quality, and bug-free software experience. With over 7+ years in the field, I thrive in Agile teams and love finding clever ways to automate the boring stuff, whether it’s through test frameworks or custom Java scripts. Whether I'm working with the latest tech stacks or tackling legacy applications, my focus is always on delivering seamless, headache-free releases.
+            I am a Software Quality Engineer. I design and automate tests to deliver reliable, high-quality, and bug-free software experiences. With over 7+ years in the field, I thrive in Agile teams and enjoy finding clever ways to automate repetitive tasks using test frameworks and custom Java scripts. Whether working with modern tech stacks or legacy applications, my focus is always on delivering seamless and headache-free releases.
         </p>
 
         <h3 class="text-2xl font-bold mt-12 mb-4 text-gray-900 dark:text-white">Skills</h3>
         <ul class="list-disc list-outside ml-5 space-y-2 text-gray-700 dark:text-gray-300">
             <li><strong class="dark:text-white">Languages</strong> Java, Node.js</li>
-            <li><strong class="dark:text-white">Automation:</strong> Tricentis Tosca, Selenium, Playwright, RestAssured</li>
-            <li><strong class="dark:text-white">Certifications:</strong> Tricentis Tosca – Automation Specialist 1 & 2, Test Data Specialist 1 & 2; ISTQB Certified Tester Foundation Level (In Progress); AWS Certified Cloud Practitioner (In Progress)</li>
+            <li><strong class="dark:text-white">Automation:</strong> Playwright, Selenium, Tosca, RestAssured</li>
+            <li>
+              <strong class="dark:text-white">Certifications:</strong>
+              <ul>
+                <li>Tricentis Tosca – Automation Specialist 1 & 2</li>
+                <li>Tricentis Tosca – Test Data Specialist 1 & 2</li>
+                <li>ISTQB Certified Tester Foundation Level (In Progress)</li>
+                <li>AWS Certified Cloud Practitioner (In Progress)</li>
+              </ul>
+            </li>
             <li><strong class="dark:text-white">Other skills:</strong> Prompt Engineering, AI-powered test automation, Cloud basics, Agile Practices, CI/CD, SQL (Oracle, MySQL, SQL Server, DynamoDB)</li>
         </ul>
 
@@ -67,7 +91,7 @@
         
         <div class="mt-8 flex space-x-6 text-sm font-medium text-gray-500 dark:text-gray-400">
             <a href="https://linkedin.com/in/balaji16s" target="_blank" class="hover:text-black dark:hover:text-white transition">LinkedIn</a>
-            <a href="#" target="_blank" class="hover:text-black dark:hover:text-white transition">GitHub</a>
+            <a href="https://github.com/balaji16s" target="_blank" class="hover:text-black dark:hover:text-white transition">GitHub</a>
         </div>
     </main>
 </body>
