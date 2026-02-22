@@ -4,49 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Balaji</title>
-    
-    <link rel="icon" type="image/svg+xml" href="bala-logo.svg">
+    <link rel="icon" type="image/svg+xml" href="logo-light.svg">
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    </script>
 </head>
-<body class="bg-[#f9fafb] text-gray-900 font-sans antialiased selection:bg-gray-300">
+<body class="bg-[#f9fafb] dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans antialiased selection:bg-gray-300 dark:selection:bg-gray-700 transition-colors duration-300">
+    
     <nav class="max-w-3xl mx-auto px-6 py-10 flex justify-between items-center">
-        
-        <a href="index.html" class="flex items-center">
-            <img src="bala-logo.svg" alt="Bala Logo" class="h-12 w-auto">
+        <a href="/" class="flex items-center">
+            <img src="logo-light.svg" alt="Balaji" class="h-12 w-auto block dark:hidden">
+            <img src="logo-dark.svg" alt="Balaji" class="h-12 w-auto hidden dark:block">
         </a>
         
-        <div class="space-x-6 text-sm font-medium text-gray-600">
-            <a href="index.html" class="text-black transition">Home</a>
-            <a href="experience.html" class="hover:text-black transition">Experience</a>
-            <a href="projects.html" class="hover:text-black transition">Projects</a>
+        <div class="flex items-center space-x-6 text-sm font-medium text-gray-600 dark:text-gray-400">
+            <a href="/" class="text-black dark:text-white transition">Home</a>
+            <a href="/experience" class="hover:text-black dark:hover:text-white transition">Experience</a>
+            <a href="/projects" class="hover:text-black dark:hover:text-white transition">Projects</a>
+            
+            <button onclick="toggleTheme()" class="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition focus:outline-none" aria-label="Toggle Dark Mode">
+                <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                <svg class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            </button>
         </div>
     </nav>
 
     <main class="max-w-3xl mx-auto px-6 mt-12 mb-20">
-        <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 tracking-tight">Hey, I'm Balaji 👋</h1>
-        <h2 class="text-lg text-gray-600 mb-8">Test Engineer & Automation Enthusiast | Transforming Legacy Systems with a Human Touch</h2>
+        <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 tracking-tight text-gray-900 dark:text-white">Hey, I'm Balaji 👋</h1>
+        <h2 class="text-lg text-gray-600 dark:text-gray-400 mb-8">Test Engineer & Automation Enthusiast | Transforming Legacy Systems with a Human Touch</h2>
 
-        <p class="text-gray-700 text-lg leading-relaxed mb-10">
+        <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-10">
             I’m a seasoned Test Engineer with over 6 years of experience making sure software actually works the way it’s supposed to. I thrive in Agile teams and love finding clever ways to automate the boring stuff, whether it’s through Tosca or custom Java tools. From leading small QA teams to tackling 140+ legacy applications, I focus on delivering high-quality tech without the headaches.
         </p>
 
-        <h3 class="text-2xl font-bold mt-12 mb-4">Skills</h3>
-        <ul class="list-disc list-outside ml-5 space-y-2 text-gray-700">
-            <li><strong>Automation & Testing:</strong> Tricentis Tosca (AS1, AS2, TDS1, TDS2), Selenium WebDriver, Postman, Rest Assured</li>
-            <li><strong>Languages & Tech:</strong> Java, SQL, Maven</li>
-            <li><strong>Frameworks & Methodology:</strong> Cucumber BDD, TestNG, Agile/SAFe</li>
-            <li><strong>Tools:</strong> Jira, HP ALM, qTest, GitHub Copilot</li>
+        <h3 class="text-2xl font-bold mt-12 mb-4 text-gray-900 dark:text-white">Skills</h3>
+        <ul class="list-disc list-outside ml-5 space-y-2 text-gray-700 dark:text-gray-300">
+            <li><strong class="dark:text-white">Automation & Testing:</strong> Tricentis Tosca (AS1, AS2, TDS1, TDS2), Selenium WebDriver, Postman, Rest Assured</li>
+            <li><strong class="dark:text-white">Languages & Tech:</strong> Java, SQL, Maven</li>
+            <li><strong class="dark:text-white">Frameworks & Methodology:</strong> Cucumber BDD, TestNG, Agile/SAFe</li>
+            <li><strong class="dark:text-white">Tools:</strong> Jira, HP ALM, qTest, GitHub Copilot</li>
         </ul>
 
         <div class="mt-12 flex items-center space-x-4">
-            <a href="mailto:balaah16@gmail.com" class="bg-black text-white text-sm font-medium px-6 py-2.5 rounded-lg hover:bg-gray-800 transition shadow-sm">Send me an email</a>
-            <a href="resume.pdf" target="_blank" class="border border-gray-300 text-black text-sm font-medium px-6 py-2.5 rounded-lg hover:bg-gray-100 transition shadow-sm">Download resume</a>
+            <a href="mailto:balaah16@gmail.com" class="bg-black dark:bg-white text-white dark:text-black text-sm font-medium px-6 py-2.5 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition shadow-sm">Send me an email</a>
+            <a href="resume.pdf" target="_blank" class="border border-gray-300 dark:border-gray-600 text-black dark:text-white text-sm font-medium px-6 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition shadow-sm">Download resume</a>
         </div>
         
-        <div class="mt-8 flex space-x-6 text-sm font-medium text-gray-500">
-            <a href="https://linkedin.com/in/balaji16s" target="_blank" class="hover:text-black transition">LinkedIn</a>
-            <a href="#" target="_blank" class="hover:text-black transition">GitHub</a>
+        <div class="mt-8 flex space-x-6 text-sm font-medium text-gray-500 dark:text-gray-400">
+            <a href="https://linkedin.com/in/balaji16s" target="_blank" class="hover:text-black dark:hover:text-white transition">LinkedIn</a>
+            <a href="#" target="_blank" class="hover:text-black dark:hover:text-white transition">GitHub</a>
         </div>
     </main>
 </body>
