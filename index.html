@@ -4,41 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Balaji</title>
-    <link rel="icon" type="image/svg+xml" id="favicon">
+    <link rel="icon" type="image/svg+xml" href="logo-light.svg" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/svg+xml" href="logo-dark.svg" media="(prefers-color-scheme: dark)">
     
     <script src="https://cdn.tailwindcss.com"></script>
-        <script>
-            tailwind.config = { darkMode: 'class' }
-        
-            function updateFavicon() {
-                const favicon = document.getElementById('favicon');
-                if (document.documentElement.classList.contains('dark')) {
-                    favicon.href = 'logo-dark.svg';
-                } else {
-                    favicon.href = 'logo-light.svg';
-                }
-            }
-        
-            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+    
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
             } else {
-                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
             }
-        
-            updateFavicon();
-        
-            function toggleTheme() {
-                document.documentElement.classList.toggle('dark');
-        
-                if (document.documentElement.classList.contains('dark')) {
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    localStorage.setItem('theme', 'light');
-                }
-        
-                updateFavicon();
-            }
-        </script>
+        }
+    </script>
 </head>
 <body class="bg-[#f9fafb] dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans antialiased selection:bg-gray-300 dark:selection:bg-gray-700 transition-colors duration-300">
     
