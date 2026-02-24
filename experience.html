@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
     <link rel="icon" type="image/svg+xml" href="title-logo.svg">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap"
+        rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -44,90 +47,106 @@
     </script>
 </head>
 
-<body class="font-body bg-[#f9fafb] dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased selection:bg-gray-300 dark:selection:bg-gray-700 transition-colors duration-300">
+<body
+    class="font-body bg-[#f9fafb] dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased selection:bg-gray-300 dark:selection:bg-gray-700 transition-colors duration-300">
 
-<nav class="max-w-3xl mx-auto px-6 py-10 flex justify-between items-center">
-    <a href="/" class="flex items-center">
-        <img src="logo-light.svg" alt="Balaji" class="h-12 w-auto block dark:hidden">
-        <img src="logo-dark.svg" alt="Balaji" class="h-12 w-auto hidden dark:block">
-    </a>
-    <div class="flex items-center space-x-6 text-sm font-medium text-gray-600 dark:text-gray-400">
-        <a href="/" class="hover:text-black dark:hover:text-white transition font-extrabold text-lg">Home</a>
-        <a href="/experience" class="text-black dark:text-white transition font-extrabold text-lg">Experience</a>
-        <a href="/projects" class="hover:text-black dark:hover:text-white transition font-extrabold text-lg">Projects</a>
-            <button onclick="toggleTheme()" class="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition focus:outline-none" aria-label="Toggle Dark Mode">
-                <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
-                <svg class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+    <nav class="max-w-3xl mx-auto px-6 py-10 flex justify-between items-center">
+        <a href="/" class="flex items-center">
+            <img src="logo-light.svg" alt="Balaji" class="h-12 w-auto block dark:hidden">
+            <img src="logo-dark.svg" alt="Balaji" class="h-12 w-auto hidden dark:block">
+        </a>
+        <div class="flex items-center space-x-6 text-sm font-medium text-gray-600 dark:text-gray-400">
+            <a href="/" class="hover:text-black dark:hover:text-white transition font-extrabold text-lg">Home</a>
+            <a href="/experience" class="text-black dark:text-white transition font-extrabold text-lg">Experience</a>
+            <a href="/projects"
+                class="hover:text-black dark:hover:text-white transition font-extrabold text-lg">Projects</a>
+            <button onclick="toggleTheme()"
+                class="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition focus:outline-none"
+                aria-label="Toggle Dark Mode">
+                <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z">
+                    </path>
+                </svg>
+                <svg class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                </svg>
             </button>
-    </div>
-</nav>
-
-<main class="max-w-3xl mx-auto px-6 mt-12 mb-20">
-
-    <h1 class="font-system text-section font-extrabold mb-14 text-gray-900 dark:text-white">
-        Experience
-    </h1>
-
-    <div class="relative space-y-16 pl-10">
-
-        <!-- Timeline vertical line -->
-        <div class="absolute left-4 top-2 bottom-2 w-px bg-gray-200 dark:bg-gray-700"></div>
-
-        <!-- Sunlife -->
-        <div class="relative">
-            <div class="absolute -left-8 top-2 w-4 h-4 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
-            <h2 class="font-heading text-xl font-semibold text-gray-900 dark:text-white">Sunlife Global Solutions</h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 mt-1">Analyst Testing • 01/2023 - Current</p>
-            <ul class="list-disc ml-6 space-y-2 text-gray-700 dark:text-gray-300">
-                <li>Contributed as an Agile QA Engineer in a large-scale technology modernization program covering 140+ legacy applications.</li>
-                <li>Designed and automated 400+ reusable test scripts using Tricentis Tosca following AS1/AS2 best practices.</li>
-                <li>Developed Java-based utilities to accelerate log validation and defect identification.</li>
-                <li>Ensured zero critical defect leakage in production releases.</li>
-            </ul>
         </div>
+    </nav>
 
-        <!-- Myclassroom -->
-        <div class="relative">
-            <div class="absolute -left-8 top-2 w-4 h-4 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
-            <h2 class="font-heading text-xl font-semibold text-gray-900 dark:text-white">Myclassroom</h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 mt-1">SDIII Testing • 06/2022 - 12/2023</p>
-            <ul class="list-disc ml-6 space-y-2 text-gray-700 dark:text-gray-300">
-                <li>Performed end-to-end functional and regression testing for web and mobile applications.</li>
-                <li>Automated regression scenarios using Selenium WebDriver with Java and Cucumber BDD.</li>
-                <li>Collaborated with product and development teams for requirement validation.</li>
-            </ul>
+    <main class="max-w-3xl mx-auto px-6 mt-12 mb-20">
+
+        <h1 class="font-system text-4xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-8">
+            Experience
+        </h1>
+
+        <div class="relative space-y-16 pl-10">
+
+            <!-- Timeline vertical line -->
+            <div class="absolute left-4 top-2 bottom-2 w-px bg-gray-200 dark:bg-gray-700"></div>
+
+            <!-- Sunlife -->
+            <div class="relative">
+                <div class="absolute -left-8 top-2 w-4 h-4 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
+                <h2 class="font-heading text-2xl font-semibold text-gray-900 dark:text-white">Sunlife Global Solutions
+                </h2>
+                <p class="text-base text-gray-500 dark:text-gray-400 mb-4 mt-1">Analyst Testing • 01/2023 - Current</p>
+                <ul class="list-disc ml-6 space-y-2 text-lg text-gray-700 dark:text-gray-300">
+                    <li>Contributed as an Agile QA Engineer in a large-scale technology modernization program covering
+                        140+ legacy applications.</li>
+                    <li>Designed and automated 400+ reusable test scripts using Tricentis Tosca following AS1/AS2 best
+                        practices.</li>
+                    <li>Developed Java-based utilities to accelerate log validation and defect identification.</li>
+                    <li>Ensured zero critical defect leakage in production releases.</li>
+                </ul>
+            </div>
+
+            <!-- Myclassroom -->
+            <div class="relative">
+                <div class="absolute -left-8 top-2 w-4 h-4 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
+                <h2 class="font-heading text-2xl font-semibold text-gray-900 dark:text-white">Myclassroom</h2>
+                <p class="text-base text-gray-500 dark:text-gray-400 mb-4 mt-1">SDIII Testing • 06/2022 - 12/2023</p>
+                <ul class="list-disc ml-6 space-y-2 text-lg text-gray-700 dark:text-gray-300">
+                    <li>Performed end-to-end functional and regression testing for web and mobile applications.</li>
+                    <li>Automated regression scenarios using Selenium WebDriver with Java and Cucumber BDD.</li>
+                    <li>Collaborated with product and development teams for requirement validation.</li>
+                </ul>
+            </div>
+
+            <!-- Anthem -->
+            <div class="relative">
+                <div class="absolute -left-8 top-2 w-4 h-4 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
+                <h2 class="font-heading text-2xl font-semibold text-gray-900 dark:text-white">Anthem</h2>
+                <p class="text-base text-gray-500 dark:text-gray-400 mb-4 mt-1">SDIII Testing • 11/2021 - 06/2022</p>
+                <ul class="list-disc ml-6 space-y-2 text-lg text-gray-700 dark:text-gray-300">
+                    <li>Executed functional, smoke, and regression testing for web and mobile healthcare applications.
+                    </li>
+                    <li>Developed Selenium automation scripts for smoke test coverage.</li>
+                    <li>Improved requirement traceability and release validation reporting.</li>
+                </ul>
+            </div>
+
+            <!-- Cognizant -->
+            <div class="relative">
+                <div class="absolute -left-8 top-2 w-4 h-4 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
+                <h2 class="font-heading text-2xl font-semibold text-gray-900 dark:text-white">Cognizant Technology
+                    Solutions</h2>
+                <p class="text-base text-gray-500 dark:text-gray-400 mb-4 mt-1">Associate • 05/2018 - 11/2021</p>
+                <ul class="list-disc ml-6 space-y-2 text-lg text-gray-700 dark:text-gray-300">
+                    <li>Executed functional, regression, and UAT testing in SAFe Agile environments.</li>
+                    <li>Tested iOS mobile and Salesforce web applications ensuring high-quality releases.</li>
+                    <li>Automated key business scenarios using Selenium WebDriver with Java.</li>
+                    <li>Maintained zero defect leakage across multiple release cycles.</li>
+                </ul>
+            </div>
+
+            <!-- Ending dot -->
+            <div class="absolute left-2 bottom-2 w-4 h-4 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
+
         </div>
-
-        <!-- Anthem -->
-        <div class="relative">
-            <div class="absolute -left-8 top-2 w-4 h-4 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
-            <h2 class="font-heading text-xl font-semibold text-gray-900 dark:text-white">Anthem</h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 mt-1">SDIII Testing • 11/2021 - 06/2022</p>
-            <ul class="list-disc ml-6 space-y-2 text-gray-700 dark:text-gray-300">
-                <li>Executed functional, smoke, and regression testing for web and mobile healthcare applications.</li>
-                <li>Developed Selenium automation scripts for smoke test coverage.</li>
-                <li>Improved requirement traceability and release validation reporting.</li>
-            </ul>
-        </div>
-
-        <!-- Cognizant -->
-        <div class="relative">
-            <div class="absolute -left-8 top-2 w-4 h-4 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
-            <h2 class="font-heading text-xl font-semibold text-gray-900 dark:text-white">Cognizant Technology Solutions</h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 mt-1">Associate • 05/2018 - 11/2021</p>
-            <ul class="list-disc ml-6 space-y-2 text-gray-700 dark:text-gray-300">
-                <li>Executed functional, regression, and UAT testing in SAFe Agile environments.</li>
-                <li>Tested iOS mobile and Salesforce web applications ensuring high-quality releases.</li>
-                <li>Automated key business scenarios using Selenium WebDriver with Java.</li>
-                <li>Maintained zero defect leakage across multiple release cycles.</li>
-            </ul>
-        </div>
-
-        <!-- Ending dot -->
-        <div class="absolute left-2 bottom-2 w-4 h-4 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
-
-    </div>
-</main>
+    </main>
 
 </body>
+
 </html>

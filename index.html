@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,10 @@
     <link rel="icon" type="image/svg+xml" href="title-logo.svg">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -47,22 +50,33 @@
     </script>
 </head>
 
-<body class="font-body bg-[#f9fafb] dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased selection:bg-gray-300 dark:selection:bg-gray-700 transition-colors duration-300">
-    
+<body
+    class="font-body bg-[#f9fafb] dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased selection:bg-gray-300 dark:selection:bg-gray-700 transition-colors duration-300">
+
     <nav class="max-w-3xl mx-auto px-6 py-10 flex justify-between items-center">
         <a href="/" class="flex items-center">
             <img src="logo-light.svg" alt="Balaji" class="h-12 w-auto block dark:hidden">
             <img src="logo-dark.svg" alt="Balaji" class="h-12 w-auto hidden dark:block">
         </a>
-        
+
         <div class="flex items-center space-x-6 text-sm font-medium text-gray-600 dark:text-gray-400">
             <a href="/" class="text-black dark:text-white transition font-extrabold text-lg">Home</a>
-            <a href="/experience" class="hover:text-black dark:hover:text-white transition font-extrabold text-lg">Experience</a>
-            <a href="/projects" class="hover:text-black dark:hover:text-white transition font-extrabold text-lg">Projects</a>
-            
-            <button onclick="toggleTheme()" class="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition focus:outline-none" aria-label="Toggle Dark Mode">
-                <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
-                <svg class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <a href="/experience"
+                class="hover:text-black dark:hover:text-white transition font-extrabold text-lg">Experience</a>
+            <a href="/projects"
+                class="hover:text-black dark:hover:text-white transition font-extrabold text-lg">Projects</a>
+
+            <button onclick="toggleTheme()"
+                class="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition focus:outline-none"
+                aria-label="Toggle Dark Mode">
+                <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z">
+                    </path>
+                </svg>
+                <svg class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                </svg>
             </button>
         </div>
     </nav>
@@ -79,7 +93,11 @@
         </h2>
 
         <p class="text-body-lg text-gray-700 dark:text-gray-300 mb-10">
-            I am a Software Quality Engineer. I design and automate tests to deliver reliable, high-quality, and bug-free software experiences. With over 7+ years in the field, I thrive in Agile teams and enjoy finding clever ways to automate repetitive tasks using test frameworks and custom Java scripts. Whether working with modern tech stacks or legacy applications, my focus is always on delivering seamless and headache-free releases.
+            I am a Software Quality Engineer. I design and automate tests to deliver reliable, high-quality, and
+            bug-free software experiences. With over 7+ years in the field, I thrive in Agile teams and enjoy finding
+            clever ways to automate repetitive tasks using test frameworks and custom Java scripts. Whether working with
+            modern tech stacks or legacy applications, my focus is always on delivering seamless and headache-free
+            releases.
         </p>
 
         <!-- Skills -->
@@ -87,41 +105,48 @@
             Skills
         </h3>
 
-        <ul class="list-disc list-outside ml-5 space-y-3 text-gray-700 dark:text-gray-300">
+
+        <ul class="list-disc list-outside ml-5 space-y-3 text-lg text-gray-700 dark:text-gray-300">
             <li><strong class="dark:text-white">Languages:</strong> Java, Node.js</li>
             <li><strong class="dark:text-white">Automation:</strong> Playwright, Selenium, Tosca, RestAssured</li>
             <li>
-              <strong class="dark:text-white">Certifications:</strong>
-              <ul class="list-disc ml-6 mt-2 space-y-1">
-                <li>Tricentis Tosca – Automation Specialist 1 & 2</li>
-                <li>Tricentis Tosca – Test Data Specialist 1 & 2</li>
-                <li>ISTQB Certified Tester Foundation Level (In Progress)</li>
-                <li>AWS Certified Cloud Practitioner (In Progress)</li>
-              </ul>
+                <strong class="dark:text-white">Certifications:</strong>
+                <ul class="list-disc ml-6 mt-2 space-y-1">
+                    <li>Tricentis Tosca – Automation Specialist 1 & 2</li>
+                    <li>Tricentis Tosca – Test Data Specialist 1 & 2</li>
+                    <li>ISTQB Certified Tester Foundation Level (In Progress)</li>
+                    <li>AWS Certified Cloud Practitioner (In Progress)</li>
+                </ul>
             </li>
-            <li><strong class="dark:text-white">Other skills:</strong> Prompt Engineering, AI-powered test automation, Cloud basics, Agile Practices, CI/CD, SQL (Oracle, MySQL, SQL Server, DynamoDB)</li>
+            <li><strong class="dark:text-white">Other skills:</strong> Prompt Engineering, AI-powered test automation,
+                Cloud basics, Agile Practices, CI/CD, SQL (Oracle, MySQL, SQL Server, DynamoDB)</li>
         </ul>
 
         <!-- CTA Buttons -->
         <div class="mt-14 flex items-center space-x-4">
-            <a href="mailto:balaah16@gmail.com" class="bg-black dark:bg-white text-white dark:text-black text-sm font-medium px-6 py-2.5 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition shadow-sm">
+            <a href="mailto:balaah16@gmail.com"
+                class="bg-black dark:bg-white text-white dark:text-black text-sm font-medium px-6 py-2.5 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition shadow-sm">
                 Send me an email
             </a>
-            <a href="resume.pdf" target="_blank" class="border border-gray-300 dark:border-gray-600 text-black dark:text-white text-sm font-medium px-6 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition shadow-sm">
+            <a href="resume.pdf" target="_blank"
+                class="border border-gray-300 dark:border-gray-600 text-black dark:text-white text-sm font-medium px-6 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition shadow-sm">
                 Download resume
             </a>
         </div>
-        
+
         <!-- Social Links -->
         <div class="mt-10 flex space-x-6 text-sm font-medium text-gray-500 dark:text-gray-400">
-            <a href="https://linkedin.com/in/balaji16s" target="_blank" class="hover:text-black dark:hover:text-white transition">
+            <a href="https://linkedin.com/in/balaji16s" target="_blank"
+                class="hover:text-black dark:hover:text-white transition">
                 LinkedIn
             </a>
-            <a href="https://github.com/balaji16s" target="_blank" class="hover:text-black dark:hover:text-white transition">
+            <a href="https://github.com/balaji16s" target="_blank"
+                class="hover:text-black dark:hover:text-white transition">
                 GitHub
             </a>
         </div>
 
     </main>
 </body>
+
 </html>
