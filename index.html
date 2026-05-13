@@ -24,7 +24,7 @@
                         system: ['ui-sans-serif', 'system-ui', 'sans-serif'],
                     },
                     fontSize: {
-                        hero: ['3rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+                        hero: ['3rem', { lineHeight: '1.1', letterSpacing: '0' }],
                         section: ['1.75rem', { lineHeight: '1.2' }],
                         'body-lg': ['1.125rem', { lineHeight: '1.8' }],
                     }
@@ -53,18 +53,18 @@
 <body
     class="font-body bg-[#f9fafb] dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased selection:bg-gray-300 dark:selection:bg-gray-700 transition-colors duration-300">
 
-    <nav class="max-w-3xl mx-auto px-6 py-10 flex justify-between items-center">
+    <nav class="max-w-4xl mx-auto px-5 sm:px-6 py-8 sm:py-10 flex flex-wrap gap-4 justify-between items-center">
         <a href="/" class="flex items-center">
             <img src="logo-light.svg" alt="Balaji" class="h-12 w-auto block dark:hidden">
             <img src="logo-dark.svg" alt="Balaji" class="h-12 w-auto hidden dark:block">
         </a>
 
-        <div class="flex items-center space-x-6 text-sm font-medium text-gray-600 dark:text-gray-400">
-            <a href="/" class="text-black dark:text-white transition font-extrabold text-lg">Home</a>
+        <div class="flex items-center gap-4 sm:gap-6 text-sm font-medium text-gray-600 dark:text-gray-400">
+            <a href="/" class="text-black dark:text-white transition font-extrabold text-base sm:text-lg">Home</a>
             <a href="/experience"
-                class="hover:text-black dark:hover:text-white transition font-extrabold text-lg">Experience</a>
+                class="hover:text-black dark:hover:text-white transition font-extrabold text-base sm:text-lg">Experience</a>
             <a href="/projects"
-                class="hover:text-black dark:hover:text-white transition font-extrabold text-lg">Projects</a>
+                class="hover:text-black dark:hover:text-white transition font-extrabold text-base sm:text-lg">Projects</a>
 
             <button onclick="toggleTheme()"
                 class="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition focus:outline-none"
@@ -81,55 +81,62 @@
         </div>
     </nav>
 
-    <main class="max-w-3xl mx-auto px-6 mt-12 mb-20">
+    <main class="max-w-4xl mx-auto px-5 sm:px-6 mt-8 sm:mt-12 mb-20">
 
         <!-- Hero -->
-        <h1 class="font-system text-hero sm:text-5xl font-extrabold mb-4 text-gray-900 dark:text-white">
-            Hey, I'm Balaji 👋
-        </h1>
+        <section class="flex flex-col-reverse sm:flex-row sm:items-center gap-8 sm:gap-10">
+            <div class="flex-1">
+                <h1 class="font-system text-4xl sm:text-5xl font-extrabold mb-4 text-gray-900 dark:text-white">
+                    Hey, I'm Balaji
+                </h1>
 
-        <h2 class="font-heading text-lg font-medium text-gray-600 dark:text-gray-400 mb-8">
-            🤖 QE | AI & Automation Enthusiast | Delivering Value Through Quality
-        </h2>
+                <h2 class="font-heading text-lg font-medium text-gray-600 dark:text-gray-400 mb-8">
+                    SDET | AI, API & Automation Engineering | Building reliable systems through quality
+                </h2>
 
-        <p class="text-body-lg text-gray-700 dark:text-gray-300 mb-10">
-            I am a Software Quality Engineer. I design and automate tests to deliver reliable, high-quality, and
-            bug-free software experiences. With over 7+ years in the field, I thrive in Agile teams and enjoy finding
-            clever ways to automate repetitive tasks using test frameworks and custom Java scripts. Whether working with
-            modern tech stacks or legacy applications, my focus is always on delivering seamless and headache-free
-            releases.
-        </p>
+                <p class="text-body-lg text-gray-700 dark:text-gray-300">
+                    I am a Software Development Engineer in Test with 8 years of experience designing scalable
+                    automation frameworks and validating complex systems and improving release confidence. I work across Playwright, Selenium, API testing,
+                    SQL, AWS, and CI/CD to improve coverage, shorten regression cycles, and reduce production risk. I
+                    also enjoy applying AI-assisted testing, LLM evaluation, and practical automation to make quality
+                    engineering faster and sharper.
+                </p>
+            </div>
+
+            <img src="portrait.jpg" alt="Balaji Sri portrait"
+                class="w-36 h-36 sm:w-44 sm:h-44 rounded-full object-cover shadow-md ring-1 ring-gray-200 dark:ring-gray-700 self-start sm:self-center">
+        </section>
 
         <!-- Skills -->
         <h3 class="font-heading text-section font-semibold mt-14 mb-6 text-gray-900 dark:text-white">
             Skills
         </h3>
 
-
         <ul class="list-disc list-outside ml-5 space-y-3 text-lg text-gray-700 dark:text-gray-300">
-            <li><strong class="dark:text-white">Languages:</strong> Java, Node.js</li>
-            <li><strong class="dark:text-white">Automation:</strong> Playwright, Selenium, Tosca, RestAssured</li>
+            <li><strong class="dark:text-white">Languages:</strong> Python, Java, SQL</li>
+            <li><strong class="dark:text-white">Automation:</strong> Playwright, Selenium WebDriver, API Testing,
+                Cucumber BDD, Tricentis Tosca</li>
+            <li><strong class="dark:text-white">Cloud & DevOps:</strong> AWS, CI/CD, Git, Docker</li>
+            <li><strong class="dark:text-white">AI & Modern Testing:</strong> Prompt Engineering, AI-assisted Testing,
+                LLM Evaluation, RAG-based Testing</li>
             <li>
                 <strong class="dark:text-white">Certifications:</strong>
                 <ul class="list-disc ml-6 mt-2 space-y-1">
-                    <li>Tricentis Tosca – Automation Specialist 1 & 2</li>
-                    <li>Tricentis Tosca – Test Data Specialist 1 & 2</li>
-                    <li>ISTQB Certified Tester Foundation Level (In Progress)</li>
-                    <li>AWS Certified Cloud Practitioner (In Progress)</li>
+                    <li>AWS Certified Cloud Practitioner</li>
+                    <li>ISTQB Certified Tester Foundation Level</li>
+                    <li>SAFe Agile Practitioner</li>
                 </ul>
             </li>
-            <li><strong class="dark:text-white">Other skills:</strong> Prompt Engineering, AI-powered test automation,
-                Cloud basics, Agile Practices, CI/CD, SQL (Oracle, MySQL, SQL Server, DynamoDB)</li>
         </ul>
 
         <!-- CTA Buttons -->
-        <div class="mt-14 flex items-center space-x-4">
+        <div class="mt-14 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
             <a href="mailto:balaah16@gmail.com"
-                class="bg-black dark:bg-white text-white dark:text-black text-sm font-medium px-6 py-2.5 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition shadow-sm">
+                class="text-center bg-black dark:bg-white text-white dark:text-black text-sm font-medium px-6 py-2.5 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition shadow-sm">
                 Send me an email
             </a>
             <a href="resume.pdf" target="_blank"
-                class="border border-gray-300 dark:border-gray-600 text-black dark:text-white text-sm font-medium px-6 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition shadow-sm">
+                class="text-center border border-gray-300 dark:border-gray-600 text-black dark:text-white text-sm font-medium px-6 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition shadow-sm">
                 Download resume
             </a>
         </div>

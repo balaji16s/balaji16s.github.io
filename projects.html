@@ -24,7 +24,7 @@
                         system: ['ui-sans-serif', 'system-ui', 'sans-serif'],
                     },
                     fontSize: {
-                        hero: ['3rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+                        hero: ['3rem', { lineHeight: '1.1', letterSpacing: '0' }],
                         section: ['2rem', { lineHeight: '1.2' }],
                         'body-lg': ['1.125rem', { lineHeight: '1.8' }],
                     }
@@ -50,16 +50,16 @@
 <body
     class="font-body bg-[#f9fafb] dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased selection:bg-gray-300 dark:selection:bg-gray-700 transition-colors duration-300">
 
-    <nav class="max-w-3xl mx-auto px-6 py-10 flex justify-between items-center">
+    <nav class="max-w-4xl mx-auto px-5 sm:px-6 py-8 sm:py-10 flex flex-wrap gap-4 justify-between items-center">
         <a href="/" class="flex items-center">
             <img src="logo-light.svg" alt="Balaji" class="h-12 w-auto block dark:hidden">
             <img src="logo-dark.svg" alt="Balaji" class="h-12 w-auto hidden dark:block">
         </a>
-        <div class="flex items-center space-x-6 text-sm font-medium text-gray-600 dark:text-gray-400">
-            <a href="/" class="hover:text-black dark:hover:text-white transition font-extrabold text-lg">Home</a>
+        <div class="flex items-center gap-4 sm:gap-6 text-sm font-medium text-gray-600 dark:text-gray-400">
+            <a href="/" class="hover:text-black dark:hover:text-white transition font-extrabold text-base sm:text-lg">Home</a>
             <a href="/experience"
-                class="hover:text-black dark:hover:text-white transition font-extrabold text-lg">Experience</a>
-            <a href="/projects" class="text-black dark:text-white transition font-extrabold text-lg">Projects</a>
+                class="hover:text-black dark:hover:text-white transition font-extrabold text-base sm:text-lg">Experience</a>
+            <a href="/projects" class="text-black dark:text-white transition font-extrabold text-base sm:text-lg">Projects</a>
             <button onclick="toggleTheme()"
                 class="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition focus:outline-none"
                 aria-label="Toggle Dark Mode">
@@ -75,44 +75,128 @@
         </div>
     </nav>
 
-    <main class="max-w-3xl mx-auto px-6 mt-12 mb-20">
+    <main class="max-w-4xl mx-auto px-5 sm:px-6 mt-8 sm:mt-12 mb-20">
 
-        <!-- Page Title -->
-        <!-- <h1 class="font-system text-section font-extrabold mb-14 tracking-tight text-gray-900 dark:text-white">
-            Projects
-        </h1> -->
-
-        <h1 class="font-system text-4xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-8">
+        <h1 class="font-system text-4xl font-extrabold tracking-normal text-gray-900 dark:text-white mb-8">
             Projects
         </h1>
 
-        <!-- Project Card -->
-        <div
-            class="border border-gray-200 dark:border-gray-700 p-8 rounded-xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-md dark:hover:shadow-gray-900 transition duration-300">
+        <div class="grid gap-5 md:grid-cols-2">
+            <!-- Project Card -->
+            <article
+                class="border border-gray-200 dark:border-gray-700 p-6 sm:p-7 rounded-lg bg-white dark:bg-gray-800 shadow-sm hover:shadow-md dark:hover:shadow-gray-900 transition duration-300">
 
-            <h2 class="font-heading text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-                Kuralverse
-            </h2>
+                <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-3">
+                    Published mobile app
+                </p>
 
-            <p class="text-body-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                A high-end Thirukkural companion app featuring modern glassmorphism UI, custom 3D animations, and a
-                robust clean architecture for a premium daily experience.
-            </p>
+                <h2 class="font-heading text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+                    KuralVerse
+                </h2>
 
-            <div class="flex flex-wrap gap-2">
-                <span
-                    class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Flutter</span>
-                <span
-                    class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Riverpod</span>
-                <span
-                    class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Clean
-                    Architecture</span>
-                <span
-                    class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Hive</span>
-                <span
-                    class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Dart</span>
-            </div>
+                <p class="text-base text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                    A Flutter Tirukkural companion with an animated number selector, Tamil and English Kural details,
+                    local history, profile settings, sharing, dark mode, and offline-first storage.
+                </p>
 
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Flutter</span>
+                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Riverpod</span>
+                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Hive</span>
+                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Clean Architecture</span>
+                </div>
+
+                <a href="https://play.google.com/store/apps/details?id=com.kuralverse.kuralverse" target="_blank"
+                    rel="noopener"
+                    class="inline-flex w-full sm:w-auto justify-center border border-gray-300 dark:border-gray-600 text-black dark:text-white text-sm font-medium px-5 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                    View on Play Store
+                </a>
+            </article>
+
+            <!-- Project Card -->
+            <article
+                class="border border-gray-200 dark:border-gray-700 p-6 sm:p-7 rounded-lg bg-white dark:bg-gray-800 shadow-sm hover:shadow-md dark:hover:shadow-gray-900 transition duration-300">
+
+                <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-3">
+                    Published mobile app
+                </p>
+
+                <h2 class="font-heading text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+                    My Thailapuram
+                </h2>
+
+                <p class="text-base text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                    A community-focused Expo mobile app for Thailapuram, built as a modern cross-platform experience
+                    and published on Google Play.
+                </p>
+
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Expo</span>
+                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">React Native</span>
+                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Mobile</span>
+                </div>
+
+                <a href="https://play.google.com/store/apps/details?id=com.thailapuram" target="_blank" rel="noopener"
+                    class="inline-flex w-full sm:w-auto justify-center border border-gray-300 dark:border-gray-600 text-black dark:text-white text-sm font-medium px-5 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                    View on Play Store
+                </a>
+            </article>
+
+            <!-- Project Card -->
+            <article
+                class="border border-gray-200 dark:border-gray-700 p-6 sm:p-7 rounded-lg bg-white dark:bg-gray-800 shadow-sm hover:shadow-md dark:hover:shadow-gray-900 transition duration-300">
+
+                <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-3">
+                    Published mobile app
+                </p>
+
+                <h2 class="font-heading text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+                    Win Your Week
+                </h2>
+
+                <p class="text-base text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                    A Flutter app built around weekly planning and personal execution, helping users focus on the week
+                    ahead through a lightweight mobile experience.
+                </p>
+
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Flutter</span>
+                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Dart</span>
+                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Productivity</span>
+                </div>
+
+                <a href="https://play.google.com/store/apps/details?id=com.balashri.winyourweek" target="_blank"
+                    rel="noopener"
+                    class="inline-flex w-full sm:w-auto justify-center border border-gray-300 dark:border-gray-600 text-black dark:text-white text-sm font-medium px-5 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                    View on Play Store
+                </a>
+            </article>
+
+            <!-- Project Card -->
+            <article
+                class="border border-gray-200 dark:border-gray-700 p-6 sm:p-7 rounded-lg bg-white dark:bg-gray-800 shadow-sm hover:shadow-md dark:hover:shadow-gray-900 transition duration-300">
+
+                <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-3">
+                    Automation system
+                </p>
+
+                <h2 class="font-heading text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+                    Gold Price Tracker
+                </h2>
+
+                <p class="text-base text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                    A WhatsApp-first automation system that scrapes daily 22K and 24K gold prices, stores historical
+                    data in SQLite, analyzes trends, and sends scheduled subscriber updates.
+                </p>
+
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Python</span>
+                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Node.js</span>
+                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">SQLite</span>
+                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">WhatsApp Web</span>
+                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Oracle Cloud</span>
+                </div>
+            </article>
         </div>
 
     </main>
