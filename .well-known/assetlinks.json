@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.promptlib.prompt_lib",
+    "sha256_cert_fingerprints": ["185BBE0A1DBB092FF14E7C663653F76AD756ED6BAD9919871717F0073F9659A51"]
+  }
+}]
