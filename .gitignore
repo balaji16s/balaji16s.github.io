@@ -17,6 +17,14 @@ _dev/
 # ───────── Browser / test tool output ─────────
 .playwright-mcp/
 test-results/
+*.log
+
+# ───────── Dependencies / build (not used today, future-proofing) ─────────
+node_modules/
+.cache/
+dist/
+
+# Note: gym/ and gym/img/*.gif are intentionally tracked (the workout page).
 
 # ───────── OS / editor junk ─────────
 .DS_Store
