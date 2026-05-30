@@ -1,0 +1,28 @@
+# ───────── Secrets — NEVER commit credentials to a public repo ─────────
+# (PAT = Personal Access Token. Keep tokens local / in a credential manager.)
+*PAT*
+*.pem
+*.key
+*.env
+.env
+.env.*
+*secret*
+*credential*
+*.token
+token*.txt
+
+# ───────── Local dev / scratch (kept locally, not deployed) ─────────
+_dev/
+
+# ───────── Browser / test tool output ─────────
+.playwright-mcp/
+test-results/
+
+# ───────── OS / editor junk ─────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.idea/
+.vscode/
