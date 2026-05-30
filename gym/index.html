@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym — Balaji</title>
+    <meta name="description" content="Personal workout plan.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Gaegu:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --dot: #8a8a8a40; --ink: #111111; --muted: #475569;
+            --line: #e5e7eb; --accent: #ede9fe; --accent-ink: #6d28d9;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            color: var(--ink); line-height: 1.6; font-size: 14px;
+            background-color: #fff;
+            background-image: radial-gradient(circle, var(--dot) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+        .hand { font-family: 'Caveat', cursive; font-weight: 700; }
+        .kicker { font-family: 'Gaegu', cursive; color: #94a3b8; font-size: 16px; }
+        a { color: inherit; }
+
+        header {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(255,255,255,0.9); backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--line);
+        }
+        header .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+        .brand { font-family: 'Caveat', cursive; font-weight: 700; font-size: 28px; }
+        .brand span { color: var(--accent-ink); }
+        .home-link { font-size: 12px; color: var(--muted); text-decoration: none; padding: 10px 0 10px 12px; }
+        .home-link:hover { color: var(--ink); }
+
+        .title { padding: 24px 0 4px; }
+        .title h1 { font-family: 'Caveat', cursive; font-weight: 700; font-size: clamp(3rem, 12vw, 5rem); line-height: .95; }
+        .lead { color: var(--muted); margin: 6px 0 0; max-width: 640px; }
+
+        .tag {
+            display: inline-flex; align-items: center; background: var(--accent); color: var(--accent-ink);
+            font-size: 12px; padding: 3px 10px; border-radius: 9999px; white-space: nowrap;
+        }
+        a.tag { text-decoration: none; cursor: pointer; }
+        a.tag:hover { filter: brightness(.96); }
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+        .chips a.tag { padding: 8px 13px; }
+
+        /* Filter bar */
+        .filterbar {
+            position: sticky; top: 56px; z-index: 40;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(8px);
+            border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; margin: 16px 0;
+        }
+        .fil-label { font-size: 10.5px; color: #94a3b8; text-transform: uppercase; letter-spacing: .08em; margin: 0 0 6px; }
+        .fil-label + .fil-label, .pillrow + .fil-label { margin-top: 10px; }
+        .pillrow { display: flex; flex-wrap: wrap; gap: 6px; }
+        .pill {
+            font-family: inherit; font-size: 12.5px; padding: 8px 14px; border-radius: 10px;
+            min-height: 44px; display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+            border: 1px solid var(--line); background: #fff; color: var(--muted); cursor: pointer;
+            line-height: 1.15; text-align: center; transition: background .15s, color .15s, border-color .15s;
+        }
+        .pill small { display: block; font-size: 10px; opacity: .7; margin-top: 1px; }
+        .pill:hover { border-color: #cbd5e1; }
+        .pill[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+        .dayRow .pill[aria-pressed="true"] { background: var(--accent-ink); border-color: var(--accent-ink); color: #fff; }
+
+        .phase-note { background: var(--accent); border-radius: 12px; padding: 11px 14px; font-size: 12.5px; line-height: 1.55; margin: 0 0 14px; }
+        .phase-note b { color: var(--accent-ink); }
+
+        .note { background: var(--accent); border-radius: 14px; padding: 14px 16px; margin: 14px 0; font-size: 13px; line-height: 1.6; }
+        .note.plain { background: #f8fafc; border: 1px solid var(--line); }
+        .note .lbl { display: block; font-weight: 700; letter-spacing: .04em; margin-bottom: 4px; font-size: 12px; color: var(--accent-ink); text-transform: uppercase; }
+        .note.plain .lbl { color: var(--ink); }
+
+        .card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; margin: 14px 0; }
+        h3 { font-family: 'Caveat', cursive; font-weight: 700; font-size: 1.8rem; margin: 22px 0 8px; }
+        h4 { font-weight: 700; font-size: 13.5px; margin: 14px 0 6px; }
+        p { margin-bottom: 10px; }
+        ul, ol { margin: 0 0 12px 18px; }
+        li { margin-bottom: 5px; }
+        .sub { font-size: 11.5px; color: var(--muted); }
+
+        .day { margin: 14px 0; padding: 18px 20px; }
+        .day-title { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+        .day-title .d { font-family: 'Caveat', cursive; font-weight: 700; font-size: 2rem; line-height: 1; }
+        .day-title .f { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent-ink); }
+        .day-focus { font-size: 12.5px; color: var(--muted); margin: 4px 0 4px; }
+
+        .ex { display: flex; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line); }
+        .ex:first-of-type { border-top: 0; }
+        .ex-thumb { flex: none; width: 76px; height: 76px; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: #fff; display: block; }
+        .ex-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .ex-body { min-width: 0; }
+        .ex-name { font-weight: 700; font-size: 14.5px; }
+        .ex-cue { font-size: 12px; color: var(--muted); margin: 2px 0 8px; }
+        .ex-meta { display: flex; flex-wrap: wrap; gap: 6px; }
+
+        .scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); border-radius: 12px; margin: 12px 0 18px; }
+        table { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 480px; background: #fff; }
+        th { background: var(--ink); color: #fff; text-align: left; padding: 10px 12px; font-weight: 700; font-size: 11px; letter-spacing: .04em; text-transform: uppercase; }
+        td { padding: 10px 12px; border-top: 1px solid var(--line); vertical-align: top; }
+        td b { color: var(--ink); }
+
+        .phase { border: 1px solid var(--line); border-left: 4px solid var(--accent-ink); border-radius: 14px; padding: 16px 18px; margin: 12px 0; }
+        .mini-label { font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--accent-ink); margin: 12px 0 4px; }
+        .dur { font-size: 12.5px; color: var(--muted); font-weight: 700; margin-bottom: 6px; }
+
+        .dd { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin-bottom: 10px; }
+        .dd .bad { padding: 9px 14px; font-size: 12.5px; color: var(--muted); border-left: 3px solid #cbd5e1; }
+        .dd .good { padding: 9px 14px; font-size: 12.5px; color: var(--ink); border-left: 3px solid var(--accent-ink); background: #faf9ff; }
+
+        .snapshot { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 16px 0; }
+        .snap { border: 1px solid var(--line); border-top: 3px solid var(--accent-ink); border-radius: 12px; padding: 12px; text-align: center; }
+        .snap .h { font-family: 'Caveat', cursive; font-weight: 700; font-size: 1.4rem; }
+        .snap .b { font-size: 11px; color: var(--muted); line-height: 1.4; }
+        @media (max-width: 600px) { .snapshot { grid-template-columns: 1fr 1fr; } }
+
+        .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        @media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
+
+        details.acc { border: 1px solid var(--line); border-radius: 14px; margin: 12px 0; background: #fff; overflow: hidden; }
+        details.acc > summary { list-style: none; cursor: pointer; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+        details.acc > summary::-webkit-details-marker { display: none; }
+        details.acc > summary .s-title { font-family: 'Caveat', cursive; font-weight: 700; font-size: 1.7rem; line-height: 1; }
+        details.acc > summary .s-teaser { font-size: 11.5px; color: var(--muted); display: block; margin-top: 2px; }
+        details.acc > summary .chev { flex: none; transition: transform .25s ease; color: var(--muted); }
+        details.acc[open] > summary .chev { transform: rotate(180deg); }
+        details.acc > .body { padding: 0 18px 18px; }
+
+        footer { border-top: 1px solid var(--line); margin-top: 24px; padding: 26px 0; text-align: center; color: var(--muted); font-size: 12px; }
+        footer .hand { font-size: 26px; color: var(--ink); }
+        .disclaimer { font-size: 11.5px; color: var(--muted); font-style: italic; margin-top: 18px; padding: 14px; background: #f8fafc; border: 1px solid var(--line); border-radius: 10px; }
+
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .chev { transition: none; } }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="wrap">
+            <span class="brand">Balaji <span>/ gym</span></span>
+            <a class="home-link" href="/">← back to site</a>
+        </div>
+    </header>
+
+    <main class="wrap">
+
+        <div class="title">
+            <p class="kicker">my</p>
+            <h1>Workout Plan</h1>
+            <p class="lead">Pick your phase and day — only that session shows. Defaults to today. 4 training days: Mon · Wed · Fri · Sat.</p>
+        </div>
+
+        <!-- Filter -->
+        <div class="filterbar">
+            <p class="fil-label">Phase</p>
+            <div class="pillrow phaseRow" id="phaseRow"></div>
+            <p class="fil-label">Training day</p>
+            <div class="pillrow dayRow" id="dayRow"></div>
+        </div>
+
+        <!-- Warm-up (every session) -->
+        <div class="card">
+            <h3 style="margin-top:0">Warm-up — every session (8 min)</h3>
+            <ol style="margin-bottom:0">
+                <li><b>Raise temp</b> — treadmill brisk walk or cycle, easy pace · <span class="sub">5 min</span></li>
+                <li><b>Mobility</b> — leg swings, arm circles, hip circles, cat-cow, world's greatest stretch · <span class="sub">2 min</span></li>
+                <li><b>Activation</b> — 2 light "feel-out" sets of your first main exercise (50% weight) · <span class="sub">1 min</span></li>
+            </ol>
+        </div>
+
+        <!-- JS renders the selected phase × day here -->
+        <div id="workout-render"></div>
+
+        <!-- Cool-down (every session) -->
+        <div class="card">
+            <h3 style="margin-top:0">Cool-down — every session (5 min)</h3>
+            <p style="margin-bottom:0">5 minutes of static stretching on the muscles you trained: hold each 20–30 seconds, breathe slowly.
+                <b>Lower days:</b> quad, hamstring, hip-flexor, calf. <b>Upper days:</b> chest doorway, lat, shoulder cross-body, tricep overhead.</p>
+        </div>
+
+        <div class="note plain">
+            <span class="lbl">Form &gt; ego, always</span>
+            For your entire first month, deliberately use weights that feel <em>too easy</em>. Master the movement pattern first. Injuries from rushing
+            weight are the #1 reason beginners quit. Nobody at the gym is judging your weights — they're worried about their own.
+        </div>
+
+        <!-- Quick jump -->
+        <p class="kicker" style="margin-top:28px;">the rest of the plan</p>
+        <div class="chips">
+            <a class="tag" href="#strategy">Strategy</a>
+            <a class="tag" href="#roadmap">Roadmap</a>
+            <a class="tag" href="#progression">Progression</a>
+            <a class="tag" href="#cardio">Cardio</a>
+            <a class="tag" href="#nutrition">Nutrition</a>
+            <a class="tag" href="#foods">Chennai Foods</a>
+            <a class="tag" href="#meals">Meal Plans</a>
+            <a class="tag" href="#lifestyle">Lifestyle</a>
+            <a class="tag" href="#tracking">Tracking</a>
+            <a class="tag" href="#mistakes">Mistakes</a>
+            <a class="tag" href="#phases">Phase evolution</a>
+        </div>
+
+        <!-- STRATEGY -->
+        <details class="acc" id="strategy">
+            <summary>
+                <span><span class="s-title">Strategy</span><span class="s-teaser">Why "recomposition" is your game</span></span>
+                <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="body">
+                <p>You're not skinny, and you're not fat — you're <em>skinny-fat</em>. This is the easiest starting point to mess up and one of the most rewarding to fix.</p>
+                <div class="snapshot">
+                    <div class="snap"><div class="h">Eat</div><div class="b">~2,000–2,150 kcal at maintenance · 120–135g protein daily</div></div>
+                    <div class="snap"><div class="h">Train</div><div class="b">4 days/week · Upper/Lower split · add weight over time</div></div>
+                    <div class="snap"><div class="h">Move</div><div class="b">8–10k steps · short walks after meals · break up sitting</div></div>
+                    <div class="snap"><div class="h">Recover</div><div class="b">7–9 hrs sleep · manage stress · one full rest day</div></div>
+                    <div class="snap"><div class="h">Repeat</div><div class="b">Stay consistent ~12 months · track waist &amp; strength, not just scale</div></div>
+                </div>
+                <p>Skinny-fat means relatively low muscle mass with a higher-than-ideal body fat percentage, often around the belly and chest. The classic mistake is to either crash-diet (which burns your already-low muscle) or "dirty bulk" (which just adds more fat). Neither works for you.</p>
+                <p>Your strategy is <strong>body recomposition</strong>: build muscle and lose fat at the same time. Beginners with your profile can genuinely do this — untrained muscles respond dramatically ("newbie gains"), and excess body fat fuels muscle building even at maintenance calories.</p>
+                <div class="note"><span class="lbl">The core formula</span>Eat at <strong>roughly maintenance calories</strong> + <strong>high protein</strong> + <strong>progressive strength training</strong> + <strong>daily walking</strong> + <strong>good sleep</strong>. Be patient. Recomposition is slower on the scale but transforms how you look.</div>
+                <h4>What to expect on the scale (and why not to trust it)</h4>
+                <p style="margin-bottom:0">Your weight may barely move for months, yet your waist shrinks and your arms and shoulders fill out. This is success. The mirror, tape measure, and your strength numbers tell the real story — not the scale.</p>
+            </div>
+        </details>
+
+        <!-- ROADMAP -->
+        <details class="acc" id="roadmap">
+            <summary>
+                <span><span class="s-title">Roadmap</span><span class="s-teaser">Four phases across ~12 months</span></span>
+                <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="body">
+                <p class="sub">Move to the next phase only when you meet the progression criteria, not when the calendar says so. Strength benchmarks are a compass, not a pass/fail test — faster or slower is normal.</p>
+
+                <div class="phase">
+                    <span class="tag">Phase 1</span>
+                    <h3 style="margin-top:8px">Beginner Foundation</h3>
+                    <div class="dur">Months 1–2 (Weeks 1–8)</div>
+                    <div class="mini-label">Primary objectives</div>
+                    <ul><li>Learn correct form on fundamentals (squat, hinge, push, pull)</li><li>Build the habit of showing up 4×/week</li><li>Wake up dormant muscles, connect mind-to-muscle</li><li>Establish protein-focused eating without dieting</li></ul>
+                    <div class="mini-label">Strength benchmarks (end of phase)</div>
+                    <ul><li>Goblet squat: 16–20 kg × 10 clean reps</li><li>Dumbbell bench: 12–14 kg per hand × 10</li><li>Lat pulldown: ~bodyweight load for 10</li><li>Plank: 45–60 seconds solid</li></ul>
+                    <div class="mini-label">Progress to Phase 2 when…</div>
+                    <ul style="margin-bottom:0"><li>You complete all sets with good form, never lost on technique</li><li>You've trained 4×/week for at least 6 of 8 weeks</li></ul>
+                </div>
+
+                <div class="phase">
+                    <span class="tag">Phase 2</span>
+                    <h3 style="margin-top:8px">Early Intermediate</h3>
+                    <div class="dur">Months 3–5 (Weeks 9–20)</div>
+                    <div class="mini-label">Primary objectives</div>
+                    <ul><li>Transition to barbell compounds (squat, deadlift, bench, OHP)</li><li>Apply structured progressive overload weekly</li><li>Increase volume gradually (more sets)</li><li>Visible fat loss around the waist begins</li></ul>
+                    <div class="mini-label">Strength benchmarks (end of phase)</div>
+                    <ul><li>Barbell squat: 40–50 kg × 5</li><li>Deadlift: 60–70 kg × 5</li><li>Bench press: 40–45 kg × 5</li><li>Overhead press: 25–30 kg × 5</li></ul>
+                    <div class="mini-label">Progress to Phase 3 when…</div>
+                    <ul style="margin-bottom:0"><li>Compounds feel stable and you hit benchmark loads with control</li><li>You can add weight/reps on your own</li></ul>
+                </div>
+
+                <div class="phase">
+                    <span class="tag">Phase 3</span>
+                    <h3 style="margin-top:8px">Intermediate</h3>
+                    <div class="dur">Months 6–9 (Weeks 21–36)</div>
+                    <div class="mini-label">Primary objectives</div>
+                    <ul><li>Drive real muscle growth with higher volume</li><li>Refine weak points (chest, rear delts, glutes for desk workers)</li><li>Dial in nutrition more precisely as progress slows</li><li>Introduce periodized deloads every 6–8 weeks</li></ul>
+                    <div class="mini-label">Strength benchmarks (end of phase)</div>
+                    <ul><li>Squat: ~1× bodyweight (60+ kg) × 5</li><li>Deadlift: ~1.5× bodyweight (90 kg) × 3–5</li><li>Bench: ~0.8× bodyweight (50 kg) × 5</li><li>5+ strict pull-ups</li></ul>
+                    <div class="mini-label">Progress to Phase 4 when…</div>
+                    <ul style="margin-bottom:0"><li>Progress naturally slows and you've built a solid base</li><li>You want to maintain and refine rather than chase maxes</li></ul>
+                </div>
+
+                <div class="phase">
+                    <span class="tag">Phase 4</span>
+                    <h3 style="margin-top:8px">Advanced Lifestyle Fitness</h3>
+                    <div class="dur">Month 10 onward (lifelong)</div>
+                    <div class="mini-label">Primary objectives</div>
+                    <ul><li>Maintain your hard-won physique sustainably</li><li>Train for performance, longevity, and enjoyment</li><li>Auto-regulate: push hard some weeks, coast others</li><li>Make fitness a permanent identity, not a project</li></ul>
+                    <div class="mini-label">This phase has no end</div>
+                    <p style="margin:0">Fitness woven into your life permanently. Run focused 8–12 week blocks whenever you want a specific result.</p>
+                </div>
+            </div>
+        </details>
+
+        <!-- PROGRESSION -->
+        <details class="acc" id="progression">
+            <summary>
+                <span><span class="s-title">Progression &amp; Recovery</span><span class="s-teaser">Progressive overload, deloads, injury prevention</span></span>
+                <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="body">
+                <p>Progressive overload is the single principle behind all results: gradually demand more of your body over time.</p>
+                <h4>The "double progression" method</h4>
+                <ol><li>Pick a rep range (e.g. 10–12).</li><li>Start at a weight where you can hit the <em>bottom</em> (10) with good form.</li><li>Each session, try to add a rep. When you do the <em>top</em> (12) for <strong>all sets</strong> with good form…</li><li>…increase weight by the smallest increment (1–2.5 kg), dropping back to ~10 reps. Repeat.</li></ol>
+                <div class="scroll"><table>
+                    <thead><tr><th>Lift type</th><th>Weight jump</th><th>How often (beginner)</th></tr></thead>
+                    <tbody>
+                        <tr><td><b>Big compounds</b> (squat, deadlift, leg press)</td><td>2.5–5 kg</td><td>Often weekly early on</td></tr>
+                        <tr><td><b>Upper compounds</b> (bench, row, press)</td><td>1.25–2.5 kg</td><td>Every 1–2 weeks</td></tr>
+                        <tr><td><b>Isolation</b> (curls, raises, pushdowns)</td><td>1–2 kg</td><td>Every 2–3 weeks</td></tr>
+                    </tbody>
+                </table></div>
+                <h4>Deloads</h4>
+                <ul><li><strong>When:</strong> every 6–8 weeks, or when run-down, sleep-deprived, or lifts stall 2+ weeks.</li><li><strong>How:</strong> same exercises at ~60% weight, or halve the sets. Leave feeling refreshed.</li><li>In Phase 1 you likely won't need formal deloads — just take an extra rest day if very sore.</li></ul>
+                <h4>Recovery</h4>
+                <div class="grid2">
+                    <div class="card" style="margin:6px 0"><h4 style="margin-top:0">Sleep</h4><p class="sub" style="margin:0">7–9 hours. This is when muscle actually grows.</p></div>
+                    <div class="card" style="margin:6px 0"><h4 style="margin-top:0">Protein timing</h4><p class="sub" style="margin:0">Spread across 4 meals. Protein within ~2 hours of training.</p></div>
+                    <div class="card" style="margin:6px 0"><h4 style="margin-top:0">Rest days</h4><p class="sub" style="margin:0">Tue, Thu, Sun are growth days. Walk and stretch, let muscles repair.</p></div>
+                    <div class="card" style="margin:6px 0"><h4 style="margin-top:0">Active recovery</h4><p class="sub" style="margin:0">Light walking, stretching, mobility reduces soreness.</p></div>
+                </div>
+                <h4>Injury prevention</h4>
+                <ul style="margin-bottom:0"><li>Never skip the warm-up.</li><li><strong>Sharp pain = stop immediately.</strong> Muscle burn is fine; joint/sharp pain is not.</li><li>Control the lowering (eccentric) phase of every rep.</li><li>Leave 1–2 reps "in the tank" on most sets.</li><li>Prioritize face pulls and rows — they protect shoulders and fix desk posture.</li><li>If unsure, ask a gym trainer to watch one set.</li></ul>
+            </div>
+        </details>
+
+        <!-- CARDIO -->
+        <details class="acc" id="cardio">
+            <summary>
+                <span><span class="s-title">Cardio &amp; Heart Health</span><span class="s-teaser">Walking foundation + light structured cardio</span></span>
+                <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="body">
+                <p>For a skinny-fat recomp, cardio is a <em>support tool</em> — not the main event. Don't overdo it, or you'll burn the muscle you're building.</p>
+                <h4>The walking foundation (your most powerful tool)</h4>
+                <div class="scroll"><table>
+                    <thead><tr><th>Metric</th><th>Starting target</th><th>Build toward</th></tr></thead>
+                    <tbody>
+                        <tr><td><b>Daily steps</b></td><td>6,000–7,000</td><td>8,000–10,000</td></tr>
+                        <tr><td><b>Post-meal walks</b></td><td>10 min after lunch</td><td>10–15 min after each main meal</td></tr>
+                        <tr><td><b>Desk breaks</b></td><td>Stand/walk 2 min every hour</td><td>Habit on autopilot</td></tr>
+                    </tbody>
+                </table></div>
+                <h4>Structured cardio (rest or post-lifting days)</h4>
+                <ul><li><strong>Beginner:</strong> 2–3×/week of 20–30 min steady, easy cardio — "Zone 2," can hold a conversation.</li><li><strong>Fat loss:</strong> keep it low-intensity and consistent; after weights or on rest days, never before lifting.</li><li><strong>Phase 2+ optional:</strong> 1×/week light intervals (30s faster / 90s easy × 6–8). Don't add early.</li></ul>
+                <div class="note"><span class="lbl">Heart health</span>Aim for ~150 min of moderate activity per week — walking covers it. Get a basic health check (lipids, fasting glucose, HbA1c, Vitamin D, B12).</div>
+            </div>
+        </details>
+
+        <!-- NUTRITION -->
+        <details class="acc" id="nutrition">
+            <summary>
+                <span><span class="s-title">Nutrition</span><span class="s-teaser">Maintenance calories, high protein</span></span>
+                <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="body">
+                <p>No extreme dieting. Eat at roughly <strong>maintenance calories</strong> with high protein. The magic is protein and consistency, not starvation.</p>
+                <p>Estimated maintenance ~<strong>2,000–2,150 kcal/day</strong>. Eat right around there. If fat is dropping but you feel weak, nudge up 100–150 kcal. Adjust based on 3–4 weeks of real results.</p>
+                <div class="scroll"><table>
+                    <thead><tr><th>Macro</th><th>Daily target</th><th>Why it matters</th><th>Roughly</th></tr></thead>
+                    <tbody>
+                        <tr><td><b>Calories</b></td><td>~2,000–2,150 kcal</td><td>Maintenance for recomposition</td><td>—</td></tr>
+                        <tr><td><b>Protein</b></td><td>120–135 g</td><td>The #1 lever. Builds &amp; preserves muscle, keeps you full</td><td>~2 g/kg</td></tr>
+                        <tr><td><b>Carbohydrates</b></td><td>200–240 g</td><td>Fuels training &amp; brain</td><td>~40–45%</td></tr>
+                        <tr><td><b>Fats</b></td><td>50–60 g</td><td>Hormones, joints, satiety</td><td>~25%</td></tr>
+                        <tr><td><b>Water</b></td><td>3–3.5 L</td><td>Performance, recovery, appetite (Chennai heat)</td><td>—</td></tr>
+                        <tr><td><b>Fibre</b></td><td>30–35 g</td><td>Digestion, fullness, blood sugar</td><td>—</td></tr>
+                    </tbody>
+                </table></div>
+                <div class="note plain"><span class="lbl">The skinny-fat nutrition trap</span>The typical South Indian diet is heavy on rice, idli, dosa and refined carbs with little protein — exactly what creates a skinny-fat body. Your biggest change: <strong>add a protein source to every meal</strong> and slightly reduce the rice.</div>
+                <h4>Supplements — only what's evidence-based</h4>
+                <div class="scroll"><table>
+                    <thead><tr><th>Supplement</th><th>Worth it?</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td><b>Whey protein</b></td><td>Optional</td><td>Only if you struggle to hit 120g+ from food. A tool, not magic.</td></tr>
+                        <tr><td><b>Creatine monohydrate</b></td><td>Yes — proven</td><td>Most researched, safe supplement. 5 g/day, any time. Cheap.</td></tr>
+                        <tr><td><b>Vitamin D3</b></td><td>Likely yes</td><td>Deficiency common in indoor IT workers. Test first.</td></tr>
+                        <tr><td><b>Vitamin B12</b></td><td>If vegetarian</td><td>Often low in vegetarian diets. Test and supplement if needed.</td></tr>
+                        <tr><td><b>Everything else</b></td><td>Skip</td><td>Fat burners, BCAAs, test boosters, mass gainers — waste of money.</td></tr>
+                    </tbody>
+                </table></div>
+            </div>
+        </details>
+
+        <!-- FOODS -->
+        <details class="acc" id="foods">
+            <summary>
+                <span><span class="s-title">Chennai Foods</span><span class="s-teaser">Rebalance your food culture, don't abandon it</span></span>
+                <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="body">
+                <h4>Eat regularly (build meals around these)</h4>
+                <div class="scroll"><table>
+                    <thead><tr><th>Food</th><th>Why it's great</th></tr></thead>
+                    <tbody>
+                        <tr><td><b>Eggs</b></td><td>Cheapest, best protein. 3–4 whole eggs/day is fine.</td></tr>
+                        <tr><td><b>Chicken</b></td><td>Lean protein staple. Grilled, curry (less oil), pepper chicken.</td></tr>
+                        <tr><td><b>Fish</b></td><td>Protein + omega-3s. Grill or curry, easy on oil.</td></tr>
+                        <tr><td><b>Paneer</b></td><td>Top vegetarian protein. ~18g per 100g.</td></tr>
+                        <tr><td><b>Curd &amp; buttermilk</b></td><td>Protein, probiotics, cooling. Prefer unsweetened curd.</td></tr>
+                        <tr><td><b>Dal, sambar, rasam</b></td><td>Plant protein + fibre. Make sambar with extra dal.</td></tr>
+                        <tr><td><b>Sundal, sprouts, legumes</b></td><td>High-protein, high-fibre snacks. Channa/rajma/moong.</td></tr>
+                        <tr><td><b>Vegetables</b></td><td>Half your plate. Poriyal, kootu, avial, keerai.</td></tr>
+                        <tr><td><b>Millets</b></td><td>Swap some rice for ragi, kambu, thinai.</td></tr>
+                        <tr><td><b>Groundnuts</b></td><td>Good fats + protein. A small handful.</td></tr>
+                        <tr><td><b>Fruits</b></td><td>Banana, guava, papaya, apple. Whole fruit, not juice.</td></tr>
+                    </tbody>
+                </table></div>
+                <h4>Moderate (portion-control)</h4>
+                <div class="scroll"><table>
+                    <thead><tr><th>Food</th><th>How to moderate</th></tr></thead>
+                    <tbody>
+                        <tr><td><b>White rice</b></td><td>~1–1.5 cups cooked per meal, not 3. Pair with protein + veg.</td></tr>
+                        <tr><td><b>Idli / Dosa</b></td><td>Mostly carbs. Add egg/paneer; 2–3 idlis, not 6.</td></tr>
+                        <tr><td><b>Appam, Pongal, Upma</b></td><td>Carb-heavy. Smaller portions + a protein side.</td></tr>
+                        <tr><td><b>Chapati</b></td><td>Better fibre than rice, but still portion: 2–3 per meal.</td></tr>
+                    </tbody>
+                </table></div>
+                <h4>Minimize</h4>
+                <p>Fried snacks (vada, bonda, bajji), sugary coffee/tea, bakery items, sweets, sodas, packaged namkeen, deep-fried gravies. Occasional, not daily.</p>
+                <h4>Portion control — the hand method</h4>
+                <ul><li><strong>Protein:</strong> 1–2 palm-sized portions per meal</li><li><strong>Carbs:</strong> 1 cupped-hand portion per meal</li><li><strong>Vegetables:</strong> 1–2 fist-sized — half the plate</li><li><strong>Fats:</strong> 1 thumb-sized portion</li></ul>
+                <div class="note"><span class="lbl">Office &amp; restaurant strategy</span><strong>Canteen:</strong> smaller rice, double the sambar/dal, add curd, bring boiled eggs or a paneer/chicken side. <strong>Restaurants:</strong> grilled/tandoori over fried, ask for less oil, share the biryani, start with soup or salad.</div>
+            </div>
+        </details>
+
+        <!-- MEALS -->
+        <details class="acc" id="meals">
+            <summary>
+                <span><span class="s-title">Meal Plans</span><span class="s-teaser">Budget · Standard · High-protein</span></span>
+                <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="body">
+                <p class="sub">Templates, not rules. Each lands near ~2,000–2,150 kcal / 120g+ protein.</p>
+                <h4>Budget-friendly</h4>
+                <div class="scroll"><table>
+                    <thead><tr><th>Meal</th><th>Veg</th><th>Non-veg</th></tr></thead>
+                    <tbody>
+                        <tr><td><b>Breakfast</b></td><td>3 idli + extra sambar + 1 egg / 100g paneer bhurji</td><td>3 idli + sambar + 2 boiled eggs</td></tr>
+                        <tr><td><b>Mid-morning</b></td><td>Buttermilk + handful groundnuts</td><td>Buttermilk + handful groundnuts</td></tr>
+                        <tr><td><b>Lunch</b></td><td>1 cup rice + dal + channa sundal + poriyal + curd</td><td>1 cup rice + dal + 2 egg curry + poriyal + curd</td></tr>
+                        <tr><td><b>Evening</b></td><td>Sprouts sundal + black coffee</td><td>Sprouts sundal + tea</td></tr>
+                        <tr><td><b>Dinner</b></td><td>2 chapati + paneer/soya curry + veg</td><td>2 chapati + chicken curry (less oil) + veg</td></tr>
+                        <tr><td><b>Post-workout</b></td><td>Milk + banana</td><td>Milk + banana / 2 boiled eggs</td></tr>
+                    </tbody>
+                </table></div>
+                <h4>Standard</h4>
+                <div class="scroll"><table>
+                    <thead><tr><th>Meal</th><th>Veg</th><th>Non-veg</th></tr></thead>
+                    <tbody>
+                        <tr><td><b>Breakfast</b></td><td>2 dosa + sambar/chutney + 150g paneer scramble</td><td>2 dosa + sambar + 3-egg omelette</td></tr>
+                        <tr><td><b>Mid-morning</b></td><td>Bowl of curd + fruit</td><td>Bowl of curd + fruit</td></tr>
+                        <tr><td><b>Lunch</b></td><td>1–1.5 cup rice/millet + dal + paneer curry + veg + curd</td><td>1–1.5 cup rice + 150g chicken curry + veg + curd</td></tr>
+                        <tr><td><b>Evening</b></td><td>Sundal/sprouts + handful nuts + coffee</td><td>Boiled eggs / chicken sandwich</td></tr>
+                        <tr><td><b>Dinner</b></td><td>3 chapati + soya/paneer + dal + salad</td><td>3 chapati + fish curry + dal + salad</td></tr>
+                        <tr><td><b>Post-workout</b></td><td>Milk + banana (or whey)</td><td>Milk + banana (or whey)</td></tr>
+                    </tbody>
+                </table></div>
+                <h4>High-protein (Phase 2+ muscle focus)</h4>
+                <div class="scroll"><table>
+                    <thead><tr><th>Meal</th><th>Veg</th><th>Non-veg</th></tr></thead>
+                    <tbody>
+                        <tr><td><b>Breakfast</b></td><td>150g paneer + veg stuffed dosa / 2 chapati + 200g curd</td><td>4-egg omelette + 2 chapati + 1 glass milk</td></tr>
+                        <tr><td><b>Mid-morning</b></td><td>Whey in milk + handful almonds</td><td>Whey in milk / 3 boiled egg whites</td></tr>
+                        <tr><td><b>Lunch</b></td><td>1 cup rice + rajma/chana + 100g paneer + veg + curd</td><td>1 cup rice + 200g chicken + dal + veg + curd</td></tr>
+                        <tr><td><b>Evening</b></td><td>Roasted channa/sundal (large) + buttermilk</td><td>150g grilled chicken / tuna + buttermilk</td></tr>
+                        <tr><td><b>Dinner</b></td><td>150g paneer tikka + 2 chapati + salad + dal</td><td>200g fish/chicken + 2 chapati + salad</td></tr>
+                        <tr><td><b>Post-workout</b></td><td>Whey + banana, or milk + soya chunks</td><td>Whey + banana, or 3 eggs + toast</td></tr>
+                    </tbody>
+                </table></div>
+                <div class="note"><span class="lbl">How to use these</span>Don't follow rigidly. The pattern that matters: <strong>protein at every meal, moderate carbs, half a plate of veg, water all day.</strong></div>
+            </div>
+        </details>
+
+        <!-- LIFESTYLE -->
+        <details class="acc" id="lifestyle">
+            <summary>
+                <span><span class="s-title">Lifestyle</span><span class="s-teaser">For a desk-bound engineer</span></span>
+                <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="body">
+                <p>Your 8+ hours of sitting works against you. These habits matter as much as the gym.</p>
+                <div class="grid2">
+                    <div class="card" style="margin:6px 0"><h4 style="margin-top:0">Sleep</h4><p class="sub" style="margin:0">7–9 hours, consistent. No screens 30–60 min before bed.</p></div>
+                    <div class="card" style="margin:6px 0"><h4 style="margin-top:0">Stress</h4><p class="sub" style="margin:0">Chronic stress raises cortisol → belly fat. 5–10 min daily breathing, sunlight.</p></div>
+                    <div class="card" style="margin:6px 0"><h4 style="margin-top:0">Screen time</h4><p class="sub" style="margin:0">20-20-20 for eyes. A "phone down" time. Swap scrolling for a walk.</p></div>
+                    <div class="card" style="margin:6px 0"><h4 style="margin-top:0">Posture</h4><p class="sub" style="margin:0">Screen at eye level, feet flat. Rows + face pulls fix "tech neck."</p></div>
+                </div>
+                <h4>Desk stretches (2–3 every couple of hours)</h4>
+                <div class="scroll"><table>
+                    <thead><tr><th>Stretch</th><th>How</th><th>Fixes</th></tr></thead>
+                    <tbody>
+                        <tr><td><b>Chin tucks</b></td><td>Pull head straight back, hold 5s × 5</td><td>Forward head / tech neck</td></tr>
+                        <tr><td><b>Doorway chest stretch</b></td><td>Forearms on door frame, lean forward, 20–30s</td><td>Tight chest, rounded shoulders</td></tr>
+                        <tr><td><b>Stand &amp; hinge</b></td><td>Stand, gently arch back, push hips forward</td><td>Tight hips from sitting</td></tr>
+                        <tr><td><b>Neck side stretch</b></td><td>Ear toward shoulder, 20s each side</td><td>Neck/trap tension</td></tr>
+                        <tr><td><b>Wrist/forearm</b></td><td>Extend arm, pull fingers back gently</td><td>Typing strain, RSI</td></tr>
+                        <tr><td><b>Stand &amp; walk</b></td><td>Every hour, 2 min — set a timer</td><td>Circulation, energy</td></tr>
+                    </tbody>
+                </table></div>
+                <h4>Recovery practices</h4>
+                <ul style="margin-bottom:0"><li>Foam roll tight areas 5 min on rest days.</li><li>Hydrate well — Chennai heat means you lose more.</li><li>One full rest day (Sunday) — genuinely rest.</li><li>Light walks Tue/Thu keep you loose.</li></ul>
+            </div>
+        </details>
+
+        <!-- TRACKING -->
+        <details class="acc" id="tracking">
+            <summary>
+                <span><span class="s-title">Progress Tracking</span><span class="s-teaser">The scale lies — track the real story</span></span>
+                <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="body">
+                <h4>What to track</h4>
+                <div class="scroll"><table>
+                    <thead><tr><th>Metric</th><th>How often</th><th>Why</th></tr></thead>
+                    <tbody>
+                        <tr><td><b>Body weight</b></td><td>2–3×/week, morning, fasted — weekly average</td><td>Daily fluctuates; the trend matters</td></tr>
+                        <tr><td><b>Waist</b></td><td>Weekly, at navel</td><td>Best single fat-loss indicator for you</td></tr>
+                        <tr><td><b>Progress photos</b></td><td>Every 2 weeks, same light/pose/time</td><td>Most honest view of recomposition</td></tr>
+                        <tr><td><b>Strength log</b></td><td>Every session</td><td>Lifts up = muscle being built</td></tr>
+                        <tr><td><b>Other measures</b></td><td>Monthly (arms, chest, thighs)</td><td>See muscle grow even when weight is flat</td></tr>
+                        <tr><td><b>Energy/sleep/mood</b></td><td>Weekly, casually</td><td>Early wins show up here first</td></tr>
+                    </tbody>
+                </table></div>
+                <h4>Weekly method</h4>
+                <p>Pick one day (e.g. Sunday). Log weekly average weight, take waist measurement, confirm lifts progressing. Adjust food only if needed. 5 minutes.</p>
+                <h4>Monthly review</h4>
+                <p>Compare photos and measurements to last month. Waist down or stable? Lifts up? If yes — change nothing. If fat isn't moving after a month, reduce ~150 kcal. If weak and stalling, add ~150 kcal.</p>
+                <div class="note"><span class="lbl">Realistic expectations</span><strong>Month 1–2:</strong> energy, posture, beginner strength jumps. <strong>3–5:</strong> visible waist reduction, first definition. <strong>6–9:</strong> clear transformation. <strong>12:</strong> a genuinely different physique. You may stay ~60–63 kg while looking dramatically leaner. <em>That's the win.</em></div>
+            </div>
+        </details>
+
+        <!-- MISTAKES -->
+        <details class="acc" id="mistakes">
+            <summary>
+                <span><span class="s-title">Top Mistakes</span><span class="s-teaser">Avoid these, beat 90% of beginners</span></span>
+                <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="body">
+                <div class="dd"><div class="bad">✗ Crash dieting to "lose the belly first"</div><div class="good">✓ Eat at maintenance with high protein and lift. Cutting hard burns your already-low muscle.</div></div>
+                <div class="dd"><div class="bad">✗ Endless cardio and ab workouts</div><div class="good">✓ Lift weights as the priority. You can't spot-reduce belly fat with crunches.</div></div>
+                <div class="dd"><div class="bad">✗ Not eating enough protein</div><div class="good">✓ Hit 120g+ daily — the #1 fix for the carb-heavy South Indian diet.</div></div>
+                <div class="dd"><div class="bad">✗ Ego-lifting / chasing heavy weights early</div><div class="good">✓ Master form with light weights the first month.</div></div>
+                <div class="dd"><div class="bad">✗ Program-hopping every two weeks</div><div class="good">✓ Stick to one plan for months. Progress comes from progressive overload over time.</div></div>
+                <div class="dd"><div class="bad">✗ Obsessing over the scale</div><div class="good">✓ Track waist, photos, and strength. Recomp keeps weight stable while you transform.</div></div>
+                <div class="dd"><div class="bad">✗ Ignoring sleep and stress</div><div class="good">✓ Treat 7–9 hrs sleep as part of the program.</div></div>
+                <div class="dd"><div class="bad">✗ Wasting money on fat burners &amp; mass gainers</div><div class="good">✓ Only creatine, possibly whey, and Vitamin D/B12 if tested low.</div></div>
+                <div class="dd"><div class="bad">✗ Quitting because results feel slow</div><div class="good">✓ Month 1 invisible, month 3 noticeable, month 6 undeniable.</div></div>
+                <div class="dd"><div class="bad">✗ "All or nothing" — one missed day ruins the week</div><div class="good">✓ Missed Monday? Train Tuesday. Bad meal? Next meal is normal.</div></div>
+                <div class="note"><span class="lbl">If you remember only one thing</span>Lift 4×/week with progressive overload, eat protein at every meal, walk daily, sleep well, stay consistent for 6 months.</div>
+            </div>
+        </details>
+
+        <!-- PHASE EVOLUTION -->
+        <details class="acc" id="phases">
+            <summary>
+                <span><span class="s-title">Phase Evolution</span><span class="s-teaser">Does the workout change, or just the weight?</span></span>
+                <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="body">
+                <p>A common beginner question: <em>does the workout itself change each phase, or do I just add sets and weight?</em> Both — but at different points:</p>
+                <ul>
+                    <li><strong>Phases 1 → 2 (months 1–5): same workout, just heavier.</strong> You run the same Upper/Lower template the whole time. What changes is the <em>load and volume</em>, not the exercises — start at 2 light sets, ramp to full 3 sets, then add weight week to week. The one swap: in Phase 2 a few movements upgrade to their barbell versions (goblet squat → barbell squat, DB Romanian deadlift → barbell deadlift, DB bench → barbell bench). Same movement <em>pattern</em>, just the grown-up tool.</li>
+                    <li><strong>Phase 3 onward (month 6+): the workout itself changes.</strong> The structure changes, not just the numbers — you move to a Push / Pull / Legs / Upper split with more exercises and more sets, because by then your body adapts faster than a twice-weekly template can keep up with.</li>
+                </ul>
+                <p class="sub">The phase selector at the top reflects exactly this — switch phases to see the load/volume notes, the Phase 2 barbell swaps, and the full Phase 3/4 Push-Pull-Legs-Upper sessions.</p>
+                <p>As you get stronger, the structure grows with you:</p>
+                <div class="scroll"><table>
+                    <thead><tr><th>Phase</th><th>Split</th><th>Weekly volume</th><th>Main focus</th></tr></thead>
+                    <tbody>
+                        <tr><td><b>1 — Foundation</b></td><td>Upper/Lower — 2 sets ramping to 3</td><td>Low, start very light</td><td>Form &amp; habit</td></tr>
+                        <tr><td><b>2 — Early Intermediate</b></td><td>Upper/Lower — full 3 sets, add barbells</td><td>Moderate</td><td>Strength on compounds</td></tr>
+                        <tr><td><b>3 — Intermediate</b></td><td>Push / Pull / Legs / Upper (4-day)</td><td>Higher — 3–4 sets, more exercises</td><td>Muscle growth &amp; weak points</td></tr>
+                        <tr><td><b>4 — Lifestyle</b></td><td>Any 4-day split you enjoy</td><td>Auto-regulated to life</td><td>Maintain &amp; perform</td></tr>
+                    </tbody>
+                </table></div>
+                <p class="sub" style="margin-bottom:0">The template you stick with beats the perfect one you keep swapping. Master each phase before moving on.</p>
+            </div>
+        </details>
+
+        <p class="disclaimer">This plan is general fitness and nutrition guidance, not medical advice. Given a sedentary background, consider a basic health check-up (lipids, fasting glucose/HbA1c, Vitamin D, B12, blood pressure) before starting, and consult a doctor before beginning a new exercise or nutrition program — especially with existing conditions or pain. Stop and seek advice if you experience chest pain, dizziness, or sharp joint pain.</p>
+
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <p class="hand">Balaji</p>
+            <p>Consistency &gt; intensity. Start this week.</p>
+        </div>
+    </footer>
+
+    <script>
+        /* ---------- Workout data ---------- */
+        function e(n, c, g, s, r, t, i) { return { n: n, c: c, g: g, s: s, r: r, t: t, i: i }; }
+
+        // Phase 1 — dumbbell Upper/Lower template
+        var lowerA_db = { short: 'Lower A', title: 'Lower Body A', focus: 'Quads, glutes, hamstrings, core. Counteracts all that sitting.', ex: [
+            e('Goblet Squat', 'Hold a dumbbell at your chest, squat down keeping chest up.', 'goblet-squat.gif', '3', '10–12', '90s', 'Moderate'),
+            e('Romanian Deadlift (DB)', 'Push hips back, slight knee bend, feel the hamstring stretch.', 'romanian-deadlift.gif', '3', '10–12', '90s', 'Moderate'),
+            e('Leg Press', 'Feet shoulder-width. Don\'t lock the knees at the top.', 'leg-press.gif', '3', '12–15', '75s', 'Moderate'),
+            e('Seated Leg Curl', 'Targets hamstrings. Slow on the way back.', 'lying-leg-curl.gif', '3', '12–15', '60s', 'Moderate'),
+            e('Standing Calf Raise', 'Full stretch at the bottom, pause at the top.', 'standing-calf-raise.gif', '3', '15–20', '45s', 'Light–Mod'),
+            e('Plank', 'Brace abs, straight line. Don\'t let hips sag.', 'plank.gif', '3', '30–45s', '45s', 'Bodyweight')
+        ]};
+        var upperA_db = { short: 'Upper A', title: 'Upper Body A', focus: 'Chest, back, shoulders, arms — pushing emphasis.', ex: [
+            e('Dumbbell Bench Press', 'Lower to chest, press up. Keep elbows ~45°.', 'db-bench-press.gif', '3', '8–12', '90s', 'Moderate'),
+            e('Lat Pulldown', 'Pull bar to upper chest, squeeze the back.', 'lat-pulldown.gif', '3', '10–12', '90s', 'Moderate'),
+            e('Seated DB Shoulder Press', 'Press overhead, don\'t arch the lower back.', 'seated-shoulder-press.gif', '3', '10–12', '75s', 'Moderate'),
+            e('Seated Cable Row', 'Drive elbows back, chest tall. Great for posture.', 'seated-cable-row.gif', '3', '10–12', '75s', 'Moderate'),
+            e('DB Bicep Curl', 'No swinging. Full range.', 'db-bicep-curl.gif', '2', '12–15', '60s', 'Light–Mod'),
+            e('Tricep Pushdown', 'Elbows pinned at the sides.', 'tricep-pushdown.gif', '2', '12–15', '60s', 'Light–Mod')
+        ]};
+        // Phase 2 — same template, barbell swaps on the big lifts
+        var lowerA_bb = { short: 'Lower A', title: 'Lower Body A', focus: 'Quads, glutes, hamstrings, core. Barbell strength focus.', ex: [
+            e('Barbell Back Squat', 'Bar on upper traps, brace hard, squat to depth with control.', 'barbell-squat.gif', '3', '6–8', '120s', 'Mod–Hard'),
+            e('Barbell Deadlift', 'Flat back, push the floor away, lock out tall.', 'barbell-deadlift.gif', '3', '5–6', '120s', 'Mod–Hard'),
+            e('Leg Press', 'Feet shoulder-width. Don\'t lock the knees at the top.', 'leg-press.gif', '3', '12–15', '75s', 'Moderate'),
+            e('Seated Leg Curl', 'Targets hamstrings. Slow on the way back.', 'lying-leg-curl.gif', '3', '12–15', '60s', 'Moderate'),
+            e('Standing Calf Raise', 'Full stretch at the bottom, pause at the top.', 'standing-calf-raise.gif', '3', '15–20', '45s', 'Light–Mod'),
+            e('Plank', 'Brace abs, straight line. Don\'t let hips sag.', 'plank.gif', '3', '30–45s', '45s', 'Bodyweight')
+        ]};
+        var upperA_bb = { short: 'Upper A', title: 'Upper Body A', focus: 'Chest, back, shoulders, arms — barbell pressing strength.', ex: [
+            e('Barbell Bench Press', 'Lower to chest under control, drive up. Keep elbows ~45°.', 'barbell-bench-press.gif', '3', '6–8', '90s', 'Mod–Hard'),
+            e('Lat Pulldown', 'Pull bar to upper chest, squeeze the back.', 'lat-pulldown.gif', '3', '10–12', '90s', 'Moderate'),
+            e('Seated DB Shoulder Press', 'Press overhead, don\'t arch the lower back.', 'seated-shoulder-press.gif', '3', '10–12', '75s', 'Moderate'),
+            e('Seated Cable Row', 'Drive elbows back, chest tall. Great for posture.', 'seated-cable-row.gif', '3', '10–12', '75s', 'Moderate'),
+            e('DB Bicep Curl', 'No swinging. Full range.', 'db-bicep-curl.gif', '2', '12–15', '60s', 'Light–Mod'),
+            e('Tricep Pushdown', 'Elbows pinned at the sides.', 'tricep-pushdown.gif', '2', '12–15', '60s', 'Light–Mod')
+        ]};
+        // Friday / Saturday — same across Phase 1 & 2
+        var lowerB = { short: 'Lower B', title: 'Lower Body B', focus: 'Lower body again — different emphasis and exercises.', ex: [
+            e('Leg Press (heavier)', 'Primary strength movement today.', 'leg-press.gif', '4', '8–10', '120s', 'Mod–Hard'),
+            e('Dumbbell Walking Lunge', 'Step forward, knee tracks over toes. Balance + glutes.', 'walking-lunge.gif', '3', '10 / leg', '90s', 'Moderate'),
+            e('Hip Thrust (machine or DB)', 'Squeeze glutes hard at the top. Crucial for desk-flattened glutes.', 'hip-thrust.gif', '3', '12–15', '75s', 'Moderate'),
+            e('Leg Extension', 'Quad isolation. Controlled, no swinging.', 'leg-extension.gif', '3', '12–15', '60s', 'Moderate'),
+            e('Seated Calf Raise', 'Slow, full range. Pause at the top.', 'seated-calf-raise.gif', '3', '15–20', '45s', 'Light–Mod'),
+            e('Cable Crunch / Hanging Knee Raise', 'Controlled core work — no swinging or momentum.', 'hanging-knee-raise.gif', '3', '12–15', '45s', 'Moderate')
+        ]};
+        var upperB = { short: 'Upper B', title: 'Upper Body B', focus: 'Upper body again — pulling emphasis + posture work.', ex: [
+            e('Incline DB Press', 'Targets upper chest — fills out the chest sag.', 'incline-db-press.gif', '3', '10–12', '90s', 'Moderate'),
+            e('Assisted Pull-up / Lat Pulldown', 'Use the assist machine. Builds toward your first real pull-up.', 'assisted-pull-up.gif', '3', '6–10', '90s', 'Moderate'),
+            e('Single-Arm DB Row', 'Knee on bench, pull dumbbell to hip. Full stretch.', 'single-arm-row.gif', '3', '10–12', '75s', 'Moderate'),
+            e('Lateral Raise', 'Light, strict. Builds shoulder width.', 'lateral-raise.gif', '3', '12–15', '60s', 'Light'),
+            e('Face Pull (Cable)', 'Pull rope to face, elbows high. Fixes rounded "desk shoulders."', 'face-pull.gif', '3', '15–20', '60s', 'Light'),
+            e('Hammer Curl', 'Neutral grip, no swinging. Full range.', 'hammer-curl.gif', '2', '12–15', '60s', 'Light–Mod')
+        ]};
+        // Phase 3/4 — Push / Pull / Legs / Upper
+        var push = { short: 'Push', title: 'Push', focus: 'Chest, shoulders, triceps — pressing day.', ex: [
+            e('Barbell Bench Press', 'Main pressing lift. Lower to chest, drive up.', 'barbell-bench-press.gif', '4', '6–8', '120s', 'Mod–Hard'),
+            e('Incline DB Press', 'Upper-chest focus.', 'incline-db-press.gif', '3', '8–12', '90s', 'Moderate'),
+            e('Seated DB Shoulder Press', 'Press overhead, ribs down.', 'seated-shoulder-press.gif', '3', '8–12', '90s', 'Moderate'),
+            e('Lateral Raise', 'Strict and light. Builds shoulder width.', 'lateral-raise.gif', '3', '12–15', '60s', 'Light'),
+            e('Overhead Tricep Extension', 'Elbows in, full stretch overhead.', 'overhead-tricep-extension.gif', '3', '10–12', '60s', 'Moderate'),
+            e('Tricep Pushdown', 'Elbows pinned, squeeze at the bottom.', 'tricep-pushdown.gif', '3', '12–15', '45s', 'Light–Mod')
+        ]};
+        var pull = { short: 'Pull', title: 'Pull', focus: 'Back, biceps, rear delts — pulling day.', ex: [
+            e('Barbell Bent-Over Row', 'Flat back, pull the bar to your lower ribs.', 'barbell-row.gif', '4', '6–8', '120s', 'Mod–Hard'),
+            e('Lat Pulldown', 'Pull to upper chest, squeeze the lats.', 'lat-pulldown.gif', '3', '10–12', '90s', 'Moderate'),
+            e('Single-Arm DB Row', 'Full stretch, pull to the hip.', 'single-arm-row.gif', '3', '10–12', '75s', 'Moderate'),
+            e('Face Pull (Cable)', 'Elbows high — fixes desk posture.', 'face-pull.gif', '3', '15–20', '60s', 'Light'),
+            e('DB Bicep Curl', 'No swing, full range.', 'db-bicep-curl.gif', '3', '10–12', '60s', 'Moderate'),
+            e('Hammer Curl', 'Neutral grip, controlled.', 'hammer-curl.gif', '3', '12–15', '60s', 'Light–Mod')
+        ]};
+        var legs = { short: 'Legs', title: 'Legs', focus: 'Quads, hamstrings, glutes, calves — full lower body.', ex: [
+            e('Barbell Back Squat', 'Main leg lift. Brace and hit depth.', 'barbell-squat.gif', '4', '6–8', '120s', 'Mod–Hard'),
+            e('Romanian / Barbell Deadlift', 'Hip hinge, hamstring stretch, flat back.', 'barbell-deadlift.gif', '3', '6–8', '120s', 'Mod–Hard'),
+            e('Leg Press', 'Higher reps for volume.', 'leg-press.gif', '3', '10–12', '90s', 'Moderate'),
+            e('Leg Extension', 'Quad isolation, controlled.', 'leg-extension.gif', '3', '12–15', '60s', 'Moderate'),
+            e('Lying Leg Curl', 'Hamstring isolation.', 'lying-leg-curl.gif', '3', '12–15', '60s', 'Moderate'),
+            e('Seated Calf Raise', 'Full range, pause at the top.', 'seated-calf-raise.gif', '4', '15–20', '45s', 'Light–Mod')
+        ]};
+        var upper = { short: 'Upper', title: 'Upper', focus: 'Balanced push & pull — extra volume and weak points.', ex: [
+            e('Incline DB Press', 'Upper chest.', 'incline-db-press.gif', '3', '8–12', '90s', 'Moderate'),
+            e('Pull-up / Assisted Pull-up', 'Use the assist as needed.', 'assisted-pull-up.gif', '3', '6–10', '90s', 'Moderate'),
+            e('Seated DB Shoulder Press', 'Overhead press.', 'seated-shoulder-press.gif', '3', '10–12', '75s', 'Moderate'),
+            e('Seated Cable Row', 'Mid-back + posture.', 'seated-cable-row.gif', '3', '10–12', '75s', 'Moderate'),
+            e('Lateral Raise', 'Shoulder width.', 'lateral-raise.gif', '3', '12–15', '60s', 'Light'),
+            e('DB Bicep Curl', 'Arms.', 'db-bicep-curl.gif', '3', '12–15', '45s', 'Light–Mod'),
+            e('Tricep Pushdown', 'Arms.', 'tricep-pushdown.gif', '3', '12–15', '45s', 'Light–Mod')
+        ]};
+
+        var PLAN = {
+            1: { label: '1 · Foundation', note: '<b>Foundation.</b> Run this exact template. Weeks 1–2: do only the <b>first 2 sets</b>, light — just learn the movements. Week 3+: the full sets shown.', days: { Mon: lowerA_db, Wed: upperA_db, Fri: lowerB, Sat: upperB } },
+            2: { label: '2 · Early Int.', note: '<b>Early Intermediate.</b> Full 3 sets, progressive overload weekly. Squat, deadlift &amp; bench upgrade to the <b>barbell</b> version — same movement pattern, grown-up tool.', days: { Mon: lowerA_bb, Wed: upperA_bb, Fri: lowerB, Sat: upperB } },
+            3: { label: '3 · Intermediate', note: '<b>Intermediate.</b> Push / Pull / Legs / Upper — higher volume (3–4 sets), more exercises. Drives muscle growth and fixes weak points.', days: { Mon: push, Wed: pull, Fri: legs, Sat: upper } },
+            4: { label: '4 · Lifestyle', note: '<b>Lifestyle.</b> Same Push/Pull/Legs/Upper structure, <b>auto-regulated</b> — push hard some weeks, coast others. Maintain &amp; perform.', days: { Mon: push, Wed: pull, Fri: legs, Sat: upper } }
+        };
+
+        var DAYS = ['Mon', 'Wed', 'Fri', 'Sat'];
+        var WD = { Mon: 'Monday', Wed: 'Wednesday', Fri: 'Friday', Sat: 'Saturday' };
+
+        var state = { phase: 1, day: null };
+
+        function todayDay() {
+            var map = { 1: 'Mon', 3: 'Wed', 5: 'Fri', 6: 'Sat' };
+            return map[new Date().getDay()] || null; // null on Tue/Thu/Sun (rest)
+        }
+
+        function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+        function renderPhasePills() {
+            var html = '';
+            [1, 2, 3, 4].forEach(function (p) {
+                html += '<button class="pill" data-phase="' + p + '" aria-pressed="' + (state.phase === p) + '">' + PLAN[p].label + '</button>';
+            });
+            document.getElementById('phaseRow').innerHTML = html;
+        }
+        function renderDayPills() {
+            var days = PLAN[state.phase].days;
+            var html = '';
+            DAYS.forEach(function (d) {
+                html += '<button class="pill" data-day="' + d + '" aria-pressed="' + (state.day === d) + '">' + d + '<small>' + days[d].short + '</small></button>';
+            });
+            document.getElementById('dayRow').innerHTML = html;
+        }
+        function renderWorkout() {
+            var host = document.getElementById('workout-render');
+            var note = '<div class="phase-note">' + PLAN[state.phase].note + '</div>';
+            if (!state.day) {
+                host.innerHTML = note +
+                    '<div class="card day"><div class="day-title"><span class="d">Rest day</span></div>' +
+                    '<p class="day-focus" style="margin-bottom:0">No lifting scheduled today — a light 20–30 min walk plus some mobility keeps you loose. Tap a training day above to preview its session.</p></div>';
+                return;
+            }
+            var d = PLAN[state.phase].days[state.day];
+            var rows = d.ex.map(function (x) {
+                return '<div class="ex">' +
+                    '<a class="ex-thumb" href="img/' + x.g + '" target="_blank" rel="noopener"><img src="img/' + x.g + '" loading="lazy" alt="' + esc(x.n) + ' demonstration"></a>' +
+                    '<div class="ex-body"><div class="ex-name">' + esc(x.n) + '</div>' +
+                    '<div class="ex-cue">' + esc(x.c) + '</div>' +
+                    '<div class="ex-meta"><span class="tag">' + x.s + ' × ' + x.r + '</span><span class="tag">' + x.t + ' rest</span><span class="tag">' + x.i + '</span></div>' +
+                    '</div></div>';
+            }).join('');
+            host.innerHTML = note +
+                '<div class="card day"><div class="day-title"><span class="d">' + WD[state.day] + '</span><span class="f">' + esc(d.title) + '</span></div>' +
+                '<p class="day-focus">' + esc(d.focus) + '</p>' + rows + '</div>';
+        }
+        function renderAll() { renderPhasePills(); renderDayPills(); renderWorkout(); }
+
+        document.getElementById('phaseRow').addEventListener('click', function (ev) {
+            var b = ev.target.closest('[data-phase]'); if (!b) return;
+            state.phase = +b.getAttribute('data-phase');
+            try { localStorage.setItem('gym-phase', state.phase); } catch (e) {}
+            renderAll();
+        });
+        document.getElementById('dayRow').addEventListener('click', function (ev) {
+            var b = ev.target.closest('[data-day]'); if (!b) return;
+            state.day = b.getAttribute('data-day');
+            renderDayPills(); renderWorkout();
+        });
+
+        (function init() {
+            var saved = parseInt(localStorage.getItem('gym-phase'), 10);
+            state.phase = (saved >= 1 && saved <= 4) ? saved : 1;
+            state.day = todayDay();
+            renderAll();
+        })();
+
+        /* ---------- Accordion deep-linking ---------- */
+        function openFromHash() {
+            var id = location.hash.slice(1); if (!id) return;
+            var el = document.getElementById(id);
+            if (el && el.tagName === 'DETAILS') { el.open = true; el.scrollIntoView(); }
+        }
+        document.addEventListener('click', function (ev) {
+            var a = ev.target.closest('a[href^="#"]'); if (!a) return;
+            var el = document.getElementById(a.getAttribute('href').slice(1));
+            if (el && el.tagName === 'DETAILS') el.open = true;
+        });
+        window.addEventListener('hashchange', openFromHash);
+        window.addEventListener('load', openFromHash);
+    </script>
+</body>
+
+</html>
