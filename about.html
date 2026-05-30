@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Balaji</title>
+    <meta name="description" content="About Balaji — an SDET focused on automation frameworks, API testing, and AI-assisted quality engineering.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Gaegu:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { fontFamily: {
+                hand: ['Caveat', 'cursive'],
+                sans: ['ui-sans-serif', 'system-ui', 'sans-serif'],
+                mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+            } } }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/site.css">
+</head>
+
+<body class="bg-dot-pattern text-gray-900 antialiased min-h-screen selection:bg-violet-100">
+
+    <!-- ===== Floating Navbar ===== -->
+    <div class="fixed left-1/2 -translate-x-1/2 w-[90%] max-w-[800px] z-50 top-[1.2em] md:top-[2em]" data-nav>
+        <nav class="nav-card">
+            <div class="h-[60px] flex items-center justify-between px-3">
+                <button type="button" class="hamburger p-2 -ml-1 cursor-pointer" data-nav-toggle aria-label="Open menu"
+                    aria-expanded="false" aria-controls="nav-links">
+                    <span></span><span></span><span></span>
+                </button>
+                <a href="/" class="font-hand text-3xl font-bold tracking-tight absolute left-1/2 -translate-x-1/2">Balaji</a>
+                <a href="resume.pdf" target="_blank"
+                    class="bg-[#111] text-white text-sm font-medium px-4 h-[40px] inline-flex items-center rounded-[0.55rem] hover:bg-gray-800 transition-colors cursor-pointer">
+                    Resume
+                </a>
+            </div>
+            <div class="nav-panel px-3" id="nav-links">
+                <ul class="font-hand text-2xl py-2 flex flex-col md:flex-row md:justify-center gap-1 md:gap-6">
+                    <li><a data-nav-link href="/" class="block px-2 py-1 hover:text-violet-600 transition-colors">Home</a></li>
+                    <li><a data-nav-link href="/about" class="block px-2 py-1 text-violet-600">About</a></li>
+                    <li><a data-nav-link href="/experience" class="block px-2 py-1 hover:text-violet-600 transition-colors">Experience</a></li>
+                    <li><a data-nav-link href="/projects" class="block px-2 py-1 hover:text-violet-600 transition-colors">Projects</a></li>
+                    <li><a data-nav-link href="/contact" class="block px-2 py-1 hover:text-violet-600 transition-colors">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <main class="max-w-4xl mx-auto px-6 pt-36 md:pt-44 pb-24">
+
+        <!-- Intro -->
+        <p class="kicker text-xl">about me</p>
+        <h1 class="font-hand font-bold text-7xl md:text-8xl leading-none mb-8">About Me</h1>
+
+        <div class="flex flex-col-reverse md:flex-row gap-8 md:gap-12 items-start">
+            <p class="font-mono text-sm md:text-base leading-relaxed text-gray-600 flex-1">
+                I'm a Software Development Engineer in Test with 8 years of experience designing scalable automation
+                frameworks and validating complex systems. I work across Playwright, Selenium, API testing, SQL, AWS,
+                and CI/CD to improve coverage, shorten regression cycles, and reduce production risk. I also enjoy
+                applying AI-assisted testing, LLM evaluation, and practical automation to make quality engineering
+                faster and sharper — and I ship mobile apps on the side.
+            </p>
+            <div class="photo-frame w-40 rotate-[4deg] self-center md:self-start shrink-0">
+                <img src="portrait.jpg" alt="Balaji portrait" class="w-full h-44 object-cover grayscale">
+            </div>
+        </div>
+
+        <!-- The Breakdown -->
+        <h2 class="font-hand font-bold text-5xl md:text-6xl mt-20 mb-8">The Breakdown</h2>
+        <div class="grid md:grid-cols-2 gap-5">
+            <!-- Core stack -->
+            <div class="soft-card p-6">
+                <p class="font-mono text-xs uppercase tracking-widest text-gray-400 mb-4">Core Stack</p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="tag">Python</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">SQL</span>
+                    <span class="tag">Playwright</span>
+                    <span class="tag">Selenium</span>
+                    <span class="tag">API Testing</span>
+                    <span class="tag">Cucumber BDD</span>
+                    <span class="tag">Tricentis Tosca</span>
+                    <span class="tag">AWS</span>
+                    <span class="tag">CI/CD</span>
+                    <span class="tag">Docker</span>
+                    <span class="tag">Git</span>
+                </div>
+            </div>
+            <!-- Focus (dark) -->
+            <div class="rounded-2xl p-6 bg-[#111] text-white">
+                <p class="font-mono text-xs uppercase tracking-widest text-gray-500 mb-4">Vision &amp; Focus</p>
+                <ul class="font-hand text-3xl leading-snug space-y-1">
+                    <li>SDET &amp; Automation</li>
+                    <li>API &amp; System Validation</li>
+                    <li>AI-assisted Testing</li>
+                    <li>App Developer</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Certifications -->
+        <h2 class="font-hand font-bold text-5xl md:text-6xl mt-20 mb-8">Certifications</h2>
+        <div class="grid sm:grid-cols-3 gap-5">
+            <div class="soft-card p-6">
+                <p class="font-hand text-2xl mb-1">AWS</p>
+                <p class="font-mono text-sm text-gray-600">Certified Cloud Practitioner</p>
+            </div>
+            <div class="soft-card p-6">
+                <p class="font-hand text-2xl mb-1">ISTQB</p>
+                <p class="font-mono text-sm text-gray-600">Foundation Level Tester</p>
+            </div>
+            <div class="soft-card p-6">
+                <p class="font-hand text-2xl mb-1">SAFe</p>
+                <p class="font-mono text-sm text-gray-600">Agile Practitioner</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Signature marquee -->
+    <div class="marquee py-10 border-t border-gray-200" aria-hidden="true">
+        <div class="marquee-track font-hand font-bold text-7xl md:text-8xl text-gray-200">
+            <span class="px-6">BALAJI</span><span class="px-6">BALAJI</span><span class="px-6">BALAJI</span><span class="px-6">BALAJI</span>
+            <span class="px-6">BALAJI</span><span class="px-6">BALAJI</span><span class="px-6">BALAJI</span><span class="px-6">BALAJI</span>
+        </div>
+    </div>
+
+    <!-- ===== Footer ===== -->
+    <footer class="border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-5">
+            <a href="/" class="flex items-center gap-2 cursor-pointer">
+                <img src="logo-light.svg" alt="Balaji logo" class="h-8 w-8 object-contain">
+                <span class="font-hand font-bold text-2xl leading-none">Balaji</span>
+            </a>
+            <p class="font-mono text-xs text-gray-400">© <span data-year>2026</span> Balaji · Built with care.</p>
+            <div class="flex gap-4 font-mono text-xs text-gray-500">
+                <a href="https://linkedin.com/in/balaji16s" target="_blank" rel="noopener" class="hover:text-black transition-colors cursor-pointer">LinkedIn</a>
+                <a href="https://github.com/balaji16s" target="_blank" rel="noopener" class="hover:text-black transition-colors cursor-pointer">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/site.js"></script>
+</body>
+
+</html>

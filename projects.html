@@ -4,202 +4,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
-    <link rel="icon" type="image/svg+xml" href="title-logo.svg">
+    <title>Projects — Balaji</title>
+    <meta name="description" content="Selected works by Balaji — published mobile apps and automation systems built with Flutter, React Native, and Python.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="theme-color" content="#ffffff">
 
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap"
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Gaegu:wght@300;400;700&display=swap"
         rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        heading: ['Rubik', 'sans-serif'],
-                        body: ['Manrope', 'sans-serif'],
-                        system: ['ui-sans-serif', 'system-ui', 'sans-serif'],
-                    },
-                    fontSize: {
-                        hero: ['3rem', { lineHeight: '1.1', letterSpacing: '0' }],
-                        section: ['2rem', { lineHeight: '1.2' }],
-                        'body-lg': ['1.125rem', { lineHeight: '1.8' }],
-                    }
-                }
-            }
-        }
-
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-
-        function toggleTheme() {
-            document.documentElement.classList.toggle('dark');
-            localStorage.setItem('theme',
-                document.documentElement.classList.contains('dark') ? 'dark' : 'light'
-            );
+            theme: { extend: { fontFamily: {
+                hand: ['Caveat', 'cursive'],
+                sans: ['ui-sans-serif', 'system-ui', 'sans-serif'],
+                mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+            } } }
         }
     </script>
+    <link rel="stylesheet" href="assets/site.css">
 </head>
 
-<body
-    class="font-body bg-[#f9fafb] dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased selection:bg-gray-300 dark:selection:bg-gray-700 transition-colors duration-300">
+<body class="bg-dot-pattern text-gray-900 antialiased min-h-screen selection:bg-violet-100">
 
-    <nav class="max-w-4xl mx-auto px-5 sm:px-6 py-8 sm:py-10 flex flex-wrap gap-4 justify-between items-center">
-        <a href="/" class="flex items-center">
-            <img src="logo-light.svg" alt="Balaji" class="h-12 w-auto block dark:hidden">
-            <img src="logo-dark.svg" alt="Balaji" class="h-12 w-auto hidden dark:block">
-        </a>
-        <div class="flex items-center gap-4 sm:gap-6 text-sm font-medium text-gray-600 dark:text-gray-400">
-            <a href="/" class="hover:text-black dark:hover:text-white transition font-extrabold text-base sm:text-lg">Home</a>
-            <a href="/experience"
-                class="hover:text-black dark:hover:text-white transition font-extrabold text-base sm:text-lg">Experience</a>
-            <a href="/projects" class="text-black dark:text-white transition font-extrabold text-base sm:text-lg">Projects</a>
-            <button onclick="toggleTheme()"
-                class="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition focus:outline-none"
-                aria-label="Toggle Dark Mode">
-                <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z">
-                    </path>
-                </svg>
-                <svg class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                </svg>
-            </button>
-        </div>
-    </nav>
-
-    <main class="max-w-4xl mx-auto px-5 sm:px-6 mt-8 sm:mt-12 mb-20">
-
-        <h1 class="font-system text-4xl font-extrabold tracking-normal text-gray-900 dark:text-white mb-8">
-            Projects
-        </h1>
-
-        <div class="grid gap-5 md:grid-cols-2">
-            <!-- Project Card -->
-            <article
-                class="border border-gray-200 dark:border-gray-700 p-6 sm:p-7 rounded-lg bg-white dark:bg-gray-800 shadow-sm hover:shadow-md dark:hover:shadow-gray-900 transition duration-300">
-
-                <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-3">
-                    Published mobile app
-                </p>
-
-                <h2 class="font-heading text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-                    KuralVerse
-                </h2>
-
-                <p class="text-base text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                    A Flutter Tirukkural companion with an animated number selector, Tamil and English Kural details,
-                    local history, profile settings, sharing, dark mode, and offline-first storage.
-                </p>
-
-                <div class="flex flex-wrap gap-2 mb-6">
-                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Flutter</span>
-                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Riverpod</span>
-                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Hive</span>
-                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Clean Architecture</span>
-                </div>
-
-                <a href="https://play.google.com/store/apps/details?id=com.kuralverse.kuralverse" target="_blank"
-                    rel="noopener"
-                    class="inline-flex w-full sm:w-auto justify-center border border-gray-300 dark:border-gray-600 text-black dark:text-white text-sm font-medium px-5 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                    View on Play Store
+    <!-- ===== Floating Navbar ===== -->
+    <div class="fixed left-1/2 -translate-x-1/2 w-[90%] max-w-[800px] z-50 top-[1.2em] md:top-[2em]" data-nav>
+        <nav class="nav-card">
+            <div class="h-[60px] flex items-center justify-between px-3">
+                <button type="button" class="hamburger p-2 -ml-1 cursor-pointer" data-nav-toggle aria-label="Open menu"
+                    aria-expanded="false" aria-controls="nav-links">
+                    <span></span><span></span><span></span>
+                </button>
+                <a href="/" class="font-hand text-3xl font-bold tracking-tight absolute left-1/2 -translate-x-1/2">Balaji</a>
+                <a href="resume.pdf" target="_blank"
+                    class="bg-[#111] text-white text-sm font-medium px-4 h-[40px] inline-flex items-center rounded-[0.55rem] hover:bg-gray-800 transition-colors cursor-pointer">
+                    Resume
                 </a>
-            </article>
+            </div>
+            <div class="nav-panel px-3" id="nav-links">
+                <ul class="font-hand text-2xl py-2 flex flex-col md:flex-row md:justify-center gap-1 md:gap-6">
+                    <li><a data-nav-link href="/" class="block px-2 py-1 hover:text-violet-600 transition-colors">Home</a></li>
+                    <li><a data-nav-link href="/about" class="block px-2 py-1 hover:text-violet-600 transition-colors">About</a></li>
+                    <li><a data-nav-link href="/experience" class="block px-2 py-1 hover:text-violet-600 transition-colors">Experience</a></li>
+                    <li><a data-nav-link href="/projects" class="block px-2 py-1 text-violet-600">Projects</a></li>
+                    <li><a data-nav-link href="/contact" class="block px-2 py-1 hover:text-violet-600 transition-colors">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 
-            <!-- Project Card -->
-            <article
-                class="border border-gray-200 dark:border-gray-700 p-6 sm:p-7 rounded-lg bg-white dark:bg-gray-800 shadow-sm hover:shadow-md dark:hover:shadow-gray-900 transition duration-300">
+    <main class="max-w-4xl mx-auto px-6 pt-36 md:pt-44 pb-24">
 
-                <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-3">
-                    Published mobile app
-                </p>
-
-                <h2 class="font-heading text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-                    My Thailapuram
-                </h2>
-
-                <p class="text-base text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                    A community-focused Expo mobile app for Thailapuram, built as a modern cross-platform experience
-                    and published on Google Play.
-                </p>
-
-                <div class="flex flex-wrap gap-2 mb-6">
-                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Expo</span>
-                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">React Native</span>
-                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Mobile</span>
-                </div>
-
-                <a href="https://play.google.com/store/apps/details?id=com.thailapuram" target="_blank" rel="noopener"
-                    class="inline-flex w-full sm:w-auto justify-center border border-gray-300 dark:border-gray-600 text-black dark:text-white text-sm font-medium px-5 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                    View on Play Store
-                </a>
-            </article>
-
-            <!-- Project Card -->
-            <article
-                class="border border-gray-200 dark:border-gray-700 p-6 sm:p-7 rounded-lg bg-white dark:bg-gray-800 shadow-sm hover:shadow-md dark:hover:shadow-gray-900 transition duration-300">
-
-                <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-3">
-                    Published mobile app
-                </p>
-
-                <h2 class="font-heading text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-                    Win Your Week
-                </h2>
-
-                <p class="text-base text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                    A Flutter app built around weekly planning and personal execution, helping users focus on the week
-                    ahead through a lightweight mobile experience.
-                </p>
-
-                <div class="flex flex-wrap gap-2 mb-6">
-                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Flutter</span>
-                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Dart</span>
-                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Productivity</span>
-                </div>
-
-                <a href="https://play.google.com/store/apps/details?id=com.balashri.winyourweek" target="_blank"
-                    rel="noopener"
-                    class="inline-flex w-full sm:w-auto justify-center border border-gray-300 dark:border-gray-600 text-black dark:text-white text-sm font-medium px-5 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                    View on Play Store
-                </a>
-            </article>
-
-            <!-- Project Card -->
-            <article
-                class="border border-gray-200 dark:border-gray-700 p-6 sm:p-7 rounded-lg bg-white dark:bg-gray-800 shadow-sm hover:shadow-md dark:hover:shadow-gray-900 transition duration-300">
-
-                <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-3">
-                    Automation system
-                </p>
-
-                <h2 class="font-heading text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-                    Gold Price Tracker
-                </h2>
-
-                <p class="text-base text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                    A WhatsApp-first automation system that scrapes daily 22K and 24K gold prices, stores historical
-                    data in SQLite, analyzes trends, and sends scheduled subscriber updates.
-                </p>
-
-                <div class="flex flex-wrap gap-2">
-                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Python</span>
-                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Node.js</span>
-                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">SQLite</span>
-                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">WhatsApp Web</span>
-                    <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1 rounded-md font-mono">Oracle Cloud</span>
-                </div>
-            </article>
+        <p class="kicker text-xl">here are my</p>
+        <div class="flex flex-wrap items-end justify-between gap-4 mb-12">
+            <h1 class="font-hand font-bold text-7xl md:text-8xl leading-none">Selected Works</h1>
+            <p class="font-mono text-sm text-gray-500 max-w-xs md:text-right">A mix of apps, automation &amp; late-night builds.</p>
         </div>
 
+        <div class="grid md:grid-cols-2 gap-5 items-stretch">
+
+            <!-- KuralVerse -->
+            <article class="soft-card relative overflow-hidden p-6 pt-10 flex flex-col">
+                <span class="ghost-num">01</span>
+                <div class="relative z-10 flex flex-col flex-1">
+                    <p class="font-mono text-xs uppercase tracking-widest text-gray-400 mb-2">Published mobile app</p>
+                    <h2 class="font-hand font-bold text-3xl mb-2">KuralVerse</h2>
+                    <p class="font-mono text-sm text-gray-600 leading-relaxed mb-4">
+                        A Flutter Tirukkural companion with an animated number selector, Tamil &amp; English Kural details,
+                        local history, profile settings, sharing, dark mode, and offline-first storage.
+                    </p>
+                    <div class="mt-auto pt-2">
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="tag">Flutter</span><span class="tag">Riverpod</span><span class="tag">Hive</span><span class="tag">Clean Architecture</span>
+                        </div>
+                        <a href="https://play.google.com/store/apps/details?id=com.kuralverse.kuralverse" target="_blank" rel="noopener"
+                            class="font-mono text-sm underline underline-offset-4 hover:text-violet-600 transition-colors cursor-pointer">View on Play Store →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- My Thailapuram -->
+            <article class="soft-card relative overflow-hidden p-6 pt-10 flex flex-col">
+                <span class="ghost-num">02</span>
+                <div class="relative z-10 flex flex-col flex-1">
+                    <p class="font-mono text-xs uppercase tracking-widest text-gray-400 mb-2">Published mobile app</p>
+                    <h2 class="font-hand font-bold text-3xl mb-2">My Thailapuram</h2>
+                    <p class="font-mono text-sm text-gray-600 leading-relaxed mb-4">
+                        A community-focused Expo mobile app for Thailapuram, built as a modern cross-platform experience
+                        and published on Google Play.
+                    </p>
+                    <div class="mt-auto pt-2">
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="tag">Expo</span><span class="tag">React Native</span><span class="tag">Mobile</span>
+                        </div>
+                        <a href="https://play.google.com/store/apps/details?id=com.thailapuram" target="_blank" rel="noopener"
+                            class="font-mono text-sm underline underline-offset-4 hover:text-violet-600 transition-colors cursor-pointer">View on Play Store →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Win Your Week -->
+            <article class="soft-card relative overflow-hidden p-6 pt-10 flex flex-col">
+                <span class="ghost-num">03</span>
+                <div class="relative z-10 flex flex-col flex-1">
+                    <p class="font-mono text-xs uppercase tracking-widest text-gray-400 mb-2">Published mobile app</p>
+                    <h2 class="font-hand font-bold text-3xl mb-2">Win Your Week</h2>
+                    <p class="font-mono text-sm text-gray-600 leading-relaxed mb-4">
+                        A Flutter app built around weekly planning and personal execution, helping users focus on the
+                        week ahead through a lightweight mobile experience.
+                    </p>
+                    <div class="mt-auto pt-2">
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Productivity</span>
+                        </div>
+                        <a href="https://play.google.com/store/apps/details?id=com.balashri.winyourweek" target="_blank" rel="noopener"
+                            class="font-mono text-sm underline underline-offset-4 hover:text-violet-600 transition-colors cursor-pointer">View on Play Store →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Gold Price Tracker -->
+            <article class="soft-card relative overflow-hidden p-6 pt-10 flex flex-col">
+                <span class="ghost-num">04</span>
+                <div class="relative z-10 flex flex-col flex-1">
+                    <p class="font-mono text-xs uppercase tracking-widest text-gray-400 mb-2">Automation system</p>
+                    <h2 class="font-hand font-bold text-3xl mb-2">Gold Price Tracker</h2>
+                    <p class="font-mono text-sm text-gray-600 leading-relaxed mb-4">
+                        A WhatsApp-first automation system that scrapes daily 22K and 24K gold prices, stores historical
+                        data in SQLite, analyzes trends, and sends scheduled subscriber updates.
+                    </p>
+                    <div class="mt-auto pt-2">
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="tag">Python</span><span class="tag">Node.js</span><span class="tag">SQLite</span><span class="tag">WhatsApp Web</span><span class="tag">Oracle Cloud</span>
+                        </div>
+                        <a href="https://wa.me/918870054654?text=Start" target="_blank" rel="noopener"
+                            class="font-mono text-sm underline underline-offset-4 hover:text-violet-600 transition-colors cursor-pointer">Get daily gold prices on WhatsApp →</a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
     </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-5">
+            <a href="/" class="flex items-center gap-2 cursor-pointer">
+                <img src="logo-light.svg" alt="Balaji logo" class="h-8 w-8 object-contain">
+                <span class="font-hand font-bold text-2xl leading-none">Balaji</span>
+            </a>
+            <p class="font-mono text-xs text-gray-400">© <span data-year>2026</span> Balaji · Built with care.</p>
+            <div class="flex gap-4 font-mono text-xs text-gray-500">
+                <a href="https://linkedin.com/in/balaji16s" target="_blank" rel="noopener" class="hover:text-black transition-colors cursor-pointer">LinkedIn</a>
+                <a href="https://github.com/balaji16s" target="_blank" rel="noopener" class="hover:text-black transition-colors cursor-pointer">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/site.js"></script>
 </body>
 
 </html>
