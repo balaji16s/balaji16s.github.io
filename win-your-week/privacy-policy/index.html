@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; form-action 'self'">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Win Your Week</title>
+    <meta name="description" content="Privacy Policy for Win Your Week — a habit and weekly goal tracker app by Balaji.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/tailwind.css">
+    <link rel="stylesheet" href="/assets/site.css">
+    <style>
+        .policy-section { border-top: 1px solid var(--line); padding-top: 2rem; margin-top: 2rem; }
+        .policy-h2 {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #6d28d9;
+            margin-bottom: 1rem;
+        }
+        .policy-body {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.875rem;
+            line-height: 1.75;
+            color: #374151;
+        }
+        .policy-body li { display: flex; gap: 0.5rem; margin-bottom: 0.25rem; }
+        .policy-body li::before { content: '▸'; color: #a78bfa; flex: none; }
+        .no-collect li::before { content: '✗'; color: #f87171; flex: none; }
+        .data-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        .data-table th {
+            font-family: ui-monospace, monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #9ca3af;
+            padding: 0.5rem 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--line);
+        }
+        .data-table td {
+            font-family: ui-monospace, monospace;
+            font-size: 0.8rem;
+            color: #374151;
+            padding: 0.6rem 0.75rem;
+            border-bottom: 1px solid #f3f4f6;
+            vertical-align: top;
+        }
+    </style>
+</head>
+
+<body class="bg-dot-pattern text-gray-900 antialiased min-h-screen selection:bg-violet-100">
+
+    <!-- ===== Floating Navbar ===== -->
+    <div class="fixed left-1/2 -translate-x-1/2 w-[90%] max-w-[800px] z-50 top-[1.2em] md:top-[2em]" data-nav>
+        <nav class="nav-card">
+            <div class="h-[60px] flex items-center justify-between px-3">
+                <button type="button" class="hamburger p-2 -ml-1 cursor-pointer" data-nav-toggle aria-label="Open menu"
+                    aria-expanded="false" aria-controls="nav-links">
+                    <span></span><span></span><span></span>
+                </button>
+                <a href="/" class="font-hand text-3xl font-bold tracking-tight absolute left-1/2 -translate-x-1/2">Balaji</a>
+                <a href="/resume.pdf" target="_blank"
+                    class="bg-[#111] text-white text-sm font-medium px-4 h-[40px] inline-flex items-center rounded-[0.55rem] hover:bg-gray-800 transition-colors cursor-pointer">
+                    Resume
+                </a>
+            </div>
+            <div class="nav-panel px-3" id="nav-links">
+                <ul class="font-hand text-2xl py-2 flex flex-col md:flex-row md:justify-center gap-1 md:gap-6">
+                    <li><a data-nav-link href="/" class="block px-2 py-1 hover:text-violet-600 transition-colors">Home</a></li>
+                    <li><a data-nav-link href="/about" class="block px-2 py-1 hover:text-violet-600 transition-colors">About</a></li>
+                    <li><a data-nav-link href="/experience" class="block px-2 py-1 hover:text-violet-600 transition-colors">Experience</a></li>
+                    <li><a data-nav-link href="/projects" class="block px-2 py-1 hover:text-violet-600 transition-colors">Projects</a></li>
+                    <li><a data-nav-link href="/contact" class="block px-2 py-1 hover:text-violet-600 transition-colors">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <main class="max-w-2xl mx-auto px-6 pt-36 md:pt-44 pb-24">
+
+        <!-- Header -->
+        <div class="mb-12">
+            <div class="inline-flex items-center gap-2 mb-4">
+                <span class="tag">App</span>
+                <span class="tag">Win Your Week</span>
+            </div>
+            <h1 class="font-mono text-2xl font-bold text-gray-900 mb-2">Privacy Policy</h1>
+            <p class="font-mono text-xs text-gray-400">Last updated: June 2, 2026</p>
+            <div class="mt-6 p-4 rounded-xl border border-violet-100 bg-violet-50">
+                <p class="font-mono text-sm text-violet-700 font-medium">
+                    TL;DR — All your habit data stays on your device. Backups are plain files you create and control. The one-time "Plus" purchase is handled by Google Play. We run no servers and collect nothing about you.
+                </p>
+            </div>
+        </div>
+
+        <!-- 1. Overview -->
+        <div class="policy-section">
+            <p class="policy-h2">1. Overview</p>
+            <p class="policy-body">
+                Win Your Week ("the App") is a habit and weekly goal tracker designed to help you build consistency. Your data is private by design — there is no account and no backend. All habit records, completions, and progress are stored locally on your device and are never sent to any server we operate.
+            </p>
+        </div>
+
+        <!-- 2. What we collect -->
+        <div class="policy-section">
+            <p class="policy-h2">2. Information We Collect</p>
+
+            <p class="policy-body font-semibold mb-2 text-gray-700">A. On-Device Data (never leaves your device)</p>
+            <ul class="policy-body mb-4">
+                <li>Habits you create — names, frequencies, schedules, and icons</li>
+                <li>Daily and weekly completion records, streaks, and progress-ring history</li>
+                <li>An optional profile — a display name and a profile photo you choose (saved locally; never uploaded)</li>
+                <li>App preferences and settings</li>
+                <li>Your "Plus" unlock status (see Section 3)</li>
+                <li>Data shown on the optional home-screen widget, drawn from your on-device data</li>
+            </ul>
+
+            <p class="policy-body font-semibold mb-2 text-gray-700">B. Backup &amp; Restore (you control)</p>
+            <p class="policy-body mb-2">
+                You can export your data to a backup file and save or share it anywhere using your device's standard share sheet, and you can restore by selecting a backup file you previously saved. These files are created and controlled entirely by you — we do not receive, store, or have access to them.
+            </p>
+
+            <p class="policy-body font-semibold mb-2 text-gray-700">C. What We Do NOT Collect</p>
+            <ul class="policy-body no-collect">
+                <li>No name, email, or personal contact information sent to us</li>
+                <li>No account or sign-in</li>
+                <li>No location data</li>
+                <li>No analytics or usage tracking</li>
+                <li>No crash reporting</li>
+                <li>No advertising identifiers</li>
+                <li>No biometric data</li>
+            </ul>
+        </div>
+
+        <!-- 3. Purchases (Plus) -->
+        <div class="policy-section">
+            <p class="policy-h2">3. Purchases — "Plus"</p>
+            <p class="policy-body">
+                Win Your Week offers a one-time "Plus" unlock. Payment is processed entirely by <strong>Google Play Billing</strong>; we never see or store your payment card details. Google shares with the App only the purchase/entitlement status needed to unlock features. Purchase records are retained by Google Play under its own policies. See the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="text-violet-600 hover:underline">Google Privacy Policy</a>.
+            </p>
+        </div>
+
+        <!-- 4. Third-Party Services -->
+        <div class="policy-section">
+            <p class="policy-h2">4. Third-Party Services</p>
+            <p class="policy-body mb-3">The App has no backend of its own. It interacts only with the following Google services:</p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Google Play Billing</td><td>Process the one-time "Plus" purchase</td></tr>
+                    <tr><td>Google Play In-App Review</td><td>Show the optional in-store rating prompt</td></tr>
+                    <tr><td>Google Fonts</td><td>Fetch font files at runtime (involves your device's IP address)</td></tr>
+                    <tr><td>Google Play Store</td><td>App distribution and updates</td></tr>
+                </tbody>
+            </table>
+            <p class="policy-body mt-3">
+                The App does not use any analytics, advertising, crash-reporting, or server backend.
+            </p>
+        </div>
+
+        <!-- 5. Permissions -->
+        <div class="policy-section">
+            <p class="policy-h2">5. App Permissions</p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Permission</th>
+                        <th>Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Internet</td><td>Process the in-app purchase and in-store review, and load fonts</td></tr>
+                    <tr><td>Notifications</td><td>Show habit and weekly-recap reminders you enable</td></tr>
+                    <tr><td>Run after reboot</td><td>Re-schedule your local reminders after the device restarts</td></tr>
+                    <tr><td>Billing</td><td>Required by Google Play for the one-time "Plus" purchase</td></tr>
+                    <tr><td>Photos (via system picker)</td><td>Only when you choose a profile photo — saved locally</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 6. Data Security -->
+        <div class="policy-section">
+            <p class="policy-h2">6. Data Security</p>
+            <ul class="policy-body">
+                <li>Your habit data is stored locally on your device and protected by standard app sandboxing</li>
+                <li>Billing and review traffic with Google Play is encrypted by the store</li>
+                <li>We operate no servers that store your data</li>
+                <li>Deleting the App removes all local data from your device</li>
+            </ul>
+        </div>
+
+        <!-- 7. Data Sharing -->
+        <div class="policy-section">
+            <p class="policy-h2">7. Data Sharing</p>
+            <p class="policy-body">
+                We do not sell, share, or transmit your data to any third party. Your habit data never leaves your device except in a backup file you explicitly create and control. The only external interactions are with Google Play (purchase and review) and Google Fonts, as described above.
+            </p>
+        </div>
+
+        <!-- 8. Your Rights -->
+        <div class="policy-section">
+            <p class="policy-h2">8. Your Rights &amp; Controls</p>
+            <ul class="policy-body mb-3">
+                <li><strong>Delete your data</strong> — Use "Reset All Data" in App Settings, or uninstall the App</li>
+                <li><strong>Export your data</strong> — Create a backup file at any time from App Settings</li>
+                <li><strong>Purchase queries</strong> — Manage or query purchases through your Google Play account</li>
+            </ul>
+            <p class="policy-body">
+                Because we hold no personal data on any server, there is nothing for us to access or delete on our side. Where laws such as the GDPR or CPRA apply, these rights are satisfied through this on-device control. Questions? Contact <a href="mailto:madebybala@gmail.com" class="text-violet-600 hover:underline font-medium">madebybala@gmail.com</a>.
+            </p>
+        </div>
+
+        <!-- 9. Children -->
+        <div class="policy-section">
+            <p class="policy-h2">9. Children's Privacy</p>
+            <p class="policy-body">
+                Win Your Week is suitable for a general audience and is not directed to children under 13 (or the equivalent minimum age in your jurisdiction). Since no personal data is collected or transmitted by us, the App does not pose data-collection privacy risks to younger users.
+            </p>
+        </div>
+
+        <!-- 10. Policy Updates -->
+        <div class="policy-section">
+            <p class="policy-h2">10. Policy Updates</p>
+            <p class="policy-body">
+                If this Privacy Policy changes, the updated version will be posted at this URL with a revised "Last Updated" date. Continued use of the App after any changes constitutes acceptance of the updated policy.
+            </p>
+        </div>
+
+        <!-- 11. Contact -->
+        <div class="policy-section">
+            <p class="policy-h2">11. Contact</p>
+            <p class="policy-body">
+                Questions about this Privacy Policy?<br>
+                <a href="mailto:madebybala@gmail.com" class="text-violet-600 hover:underline font-medium">madebybala@gmail.com</a>
+            </p>
+        </div>
+
+        <!-- Back link -->
+        <div class="mt-16 pt-8 border-t border-gray-100">
+            <a href="/projects" class="font-mono text-xs text-gray-400 hover:text-violet-600 transition-colors inline-flex items-center gap-2">
+                ← Back to Projects
+            </a>
+        </div>
+
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-5">
+            <a href="/" class="flex items-center gap-2 cursor-pointer">
+                <img src="/assets/img/logo-light.svg" alt="Balaji logo" class="h-8 w-8 object-contain">
+                <span class="font-hand font-bold text-2xl leading-none">Balaji</span>
+            </a>
+            <p class="font-mono text-xs text-gray-400">© <span data-year>2026</span> Balaji · Built with care.</p>
+            <div class="flex gap-4 font-mono text-xs text-gray-500">
+                <a href="https://linkedin.com/in/balaji16s" target="_blank" rel="noopener" class="inline-block py-2 hover:text-black transition-colors cursor-pointer">LinkedIn</a>
+                <a href="https://github.com/balaji16s" target="_blank" rel="noopener" class="inline-block py-2 hover:text-black transition-colors cursor-pointer">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/site.js"></script>
+</body>
+
+</html>
