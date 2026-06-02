@@ -3,28 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; form-action 'self'">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects — Balaji</title>
     <meta name="description" content="Selected works by Balaji — published mobile apps and automation systems built with Flutter, React Native, and Python.">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="theme-color" content="#ffffff">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Gaegu:wght@300;400;700&display=swap"
-        rel="stylesheet">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: { extend: { fontFamily: {
-                hand: ['Caveat', 'cursive'],
-                sans: ['ui-sans-serif', 'system-ui', 'sans-serif'],
-                mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
-            } } }
-        }
-    </script>
-    <link rel="stylesheet" href="assets/site.css">
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/tailwind.css">
+    <link rel="stylesheet" href="/assets/site.css">
 </head>
 
 <body class="bg-dot-pattern text-gray-900 antialiased min-h-screen selection:bg-violet-100">
@@ -38,7 +25,7 @@
                     <span></span><span></span><span></span>
                 </button>
                 <a href="/" class="font-hand text-3xl font-bold tracking-tight absolute left-1/2 -translate-x-1/2">Balaji</a>
-                <a href="resume.pdf" target="_blank"
+                <a href="/resume.pdf" target="_blank"
                     class="bg-[#111] text-white text-sm font-medium px-4 h-[40px] inline-flex items-center rounded-[0.55rem] hover:bg-gray-800 transition-colors cursor-pointer">
                     Resume
                 </a>
@@ -152,7 +139,7 @@
     <footer class="border-t border-gray-200">
         <div class="max-w-4xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-5">
             <a href="/" class="flex items-center gap-2 cursor-pointer">
-                <img src="logo-light.svg" alt="Balaji logo" class="h-8 w-8 object-contain">
+                <img src="/assets/img/logo-light.svg" alt="Balaji logo" class="h-8 w-8 object-contain">
                 <span class="font-hand font-bold text-2xl leading-none">Balaji</span>
             </a>
             <p class="font-mono text-xs text-gray-400">© <span data-year>2026</span> Balaji · Built with care.</p>
@@ -163,7 +150,7 @@
         </div>
     </footer>
 
-    <script src="assets/site.js"></script>
+    <script src="/assets/site.js"></script>
 </body>
 
 </html>
