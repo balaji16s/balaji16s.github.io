@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; form-action 'self'">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — My Thailapuram</title>
+    <meta name="description" content="Privacy Policy for My Thailapuram — a village community portal app by Balaji.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/tailwind.css">
+    <link rel="stylesheet" href="/assets/site.css">
+    <style>
+        .policy-section { border-top: 1px solid var(--line); padding-top: 2rem; margin-top: 2rem; }
+        .policy-h2 {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #6d28d9;
+            margin-bottom: 1rem;
+        }
+        .policy-body {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.875rem;
+            line-height: 1.75;
+            color: #374151;
+        }
+        .policy-body li { display: flex; gap: 0.5rem; margin-bottom: 0.25rem; }
+        .policy-body li::before { content: '▸'; color: #a78bfa; flex: none; }
+        .no-collect li::before { content: '✗'; color: #f87171; flex: none; }
+        .data-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        .data-table th {
+            font-family: ui-monospace, monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #9ca3af;
+            padding: 0.5rem 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--line);
+        }
+        .data-table td {
+            font-family: ui-monospace, monospace;
+            font-size: 0.8rem;
+            color: #374151;
+            padding: 0.6rem 0.75rem;
+            border-bottom: 1px solid #f3f4f6;
+            vertical-align: top;
+        }
+    </style>
+</head>
+
+<body class="bg-dot-pattern text-gray-900 antialiased min-h-screen selection:bg-violet-100">
+
+    <!-- ===== Floating Navbar ===== -->
+    <div class="fixed left-1/2 -translate-x-1/2 w-[90%] max-w-[800px] z-50 top-[1.2em] md:top-[2em]" data-nav>
+        <nav class="nav-card">
+            <div class="h-[60px] flex items-center justify-between px-3">
+                <button type="button" class="hamburger p-2 -ml-1 cursor-pointer" data-nav-toggle aria-label="Open menu"
+                    aria-expanded="false" aria-controls="nav-links">
+                    <span></span><span></span><span></span>
+                </button>
+                <a href="/" class="font-hand text-3xl font-bold tracking-tight absolute left-1/2 -translate-x-1/2">Balaji</a>
+                <a href="/resume.pdf" target="_blank"
+                    class="bg-[#111] text-white text-sm font-medium px-4 h-[40px] inline-flex items-center rounded-[0.55rem] hover:bg-gray-800 transition-colors cursor-pointer">
+                    Resume
+                </a>
+            </div>
+            <div class="nav-panel px-3" id="nav-links">
+                <ul class="font-hand text-2xl py-2 flex flex-col md:flex-row md:justify-center gap-1 md:gap-6">
+                    <li><a data-nav-link href="/" class="block px-2 py-1 hover:text-violet-600 transition-colors">Home</a></li>
+                    <li><a data-nav-link href="/about" class="block px-2 py-1 hover:text-violet-600 transition-colors">About</a></li>
+                    <li><a data-nav-link href="/experience" class="block px-2 py-1 hover:text-violet-600 transition-colors">Experience</a></li>
+                    <li><a data-nav-link href="/projects" class="block px-2 py-1 hover:text-violet-600 transition-colors">Projects</a></li>
+                    <li><a data-nav-link href="/contact" class="block px-2 py-1 hover:text-violet-600 transition-colors">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <main class="max-w-2xl mx-auto px-6 pt-36 md:pt-44 pb-24">
+
+        <!-- Header -->
+        <div class="mb-12">
+            <div class="inline-flex items-center gap-2 mb-4">
+                <span class="tag">App</span>
+                <span class="tag">My Thailapuram</span>
+            </div>
+            <h1 class="font-mono text-2xl font-bold text-gray-900 mb-2">Privacy Policy</h1>
+            <p class="font-mono text-xs text-gray-400">Last updated: June 2, 2026</p>
+            <div class="mt-6 p-4 rounded-xl border border-violet-100 bg-violet-50">
+                <p class="font-mono text-sm text-violet-700 font-medium">
+                    TL;DR — My Thailapuram collects only what's needed to run the village community portal. Your account info and any content you post are stored securely on Firebase and never sold.
+                </p>
+            </div>
+        </div>
+
+        <!-- 1. Overview -->
+        <div class="policy-section">
+            <p class="policy-h2">1. Overview</p>
+            <p class="policy-body">
+                My Thailapuram (also known as "Namma Thailapuram") is a village community portal app that provides announcements, festival updates, and local information for the Thailapuram village community. The App uses Firebase to deliver real-time content and, where applicable, user accounts to enable community participation.
+            </p>
+        </div>
+
+        <!-- 2. What we collect -->
+        <div class="policy-section">
+            <p class="policy-h2">2. Information We Collect</p>
+
+            <p class="policy-body font-semibold mb-2 text-gray-700">A. Account Information (if you sign in)</p>
+            <ul class="policy-body mb-4">
+                <li>Name (display name provided during sign-up)</li>
+                <li>Email address (used for authentication via Firebase Auth)</li>
+                <li>Phone number (optional — only if you choose to provide it)</li>
+                <li>Profile photo (optional — if you choose to upload one)</li>
+            </ul>
+
+            <p class="policy-body font-semibold mb-2 text-gray-700">B. Content You Submit</p>
+            <ul class="policy-body mb-4">
+                <li>Announcements, comments, or posts you create as an authorized community administrator</li>
+                <li>Images uploaded as part of announcements or festival updates (stored in Firebase Storage)</li>
+                <li>Timestamps of your submissions</li>
+            </ul>
+
+            <p class="policy-body font-semibold mb-2 text-gray-700">C. Usage &amp; Technical Data</p>
+            <ul class="policy-body mb-4">
+                <li>Crash reports via Firebase Crashlytics (device model, OS version, app version, crash stack traces)</li>
+                <li>Firebase App Check tokens to protect against abuse</li>
+            </ul>
+
+            <p class="policy-body font-semibold mb-2 text-gray-700">D. What We Do NOT Collect</p>
+            <ul class="policy-body no-collect">
+                <li>Precise or background location data</li>
+                <li>Contacts, call logs, or SMS data</li>
+                <li>Financial or payment information</li>
+                <li>Biometric data</li>
+                <li>Data from other apps on your device</li>
+            </ul>
+        </div>
+
+        <!-- 3. How we use -->
+        <div class="policy-section">
+            <p class="policy-h2">3. How We Use Your Information</p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Email &amp; name</td><td>Authenticate your account and personalize your experience</td></tr>
+                    <tr><td>Phone number (optional)</td><td>Help community administrators identify and contact members</td></tr>
+                    <tr><td>Profile photo</td><td>Display your identity within the community portal</td></tr>
+                    <tr><td>Submitted content</td><td>Publish announcements and festival updates to the community</td></tr>
+                    <tr><td>Uploaded images</td><td>Display media alongside announcements and temple/festival entries</td></tr>
+                    <tr><td>Crash reports</td><td>Identify and fix bugs to improve app stability</td></tr>
+                    <tr><td>App Check tokens</td><td>Verify requests come from legitimate app instances (abuse prevention)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 4. Firebase & Third-Party Services -->
+        <div class="policy-section">
+            <p class="policy-h2">4. Firebase &amp; Third-Party Services</p>
+            <p class="policy-body mb-3">
+                My Thailapuram is built on Google Firebase. The following Firebase services are used:
+            </p>
+            <ul class="policy-body mb-4">
+                <li><strong>Firebase Authentication</strong> — Secure email-based sign-in</li>
+                <li><strong>Cloud Firestore</strong> — Stores announcements, festival data, and community content</li>
+                <li><strong>Firebase Storage</strong> — Stores images uploaded as part of community posts</li>
+                <li><strong>Firebase Crashlytics</strong> — Collects crash and error reports to improve stability</li>
+                <li><strong>Firebase App Check</strong> — Prevents unauthorized API access</li>
+                <li><strong>Cloud Functions</strong> — Runs server-side logic for the App</li>
+                <li><strong>Google Fonts</strong> — Fonts are fetched from Google's servers at runtime, which involves your device's IP address</li>
+            </ul>
+            <p class="policy-body">
+                The App does not use Firebase Analytics, Firebase Performance Monitoring, push notifications, or any advertising SDK. Data processed by Firebase is subject to Google's Privacy Policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="text-violet-600 hover:underline">policies.google.com/privacy</a>
+            </p>
+        </div>
+
+        <!-- 5. Data Retention -->
+        <div class="policy-section">
+            <p class="policy-h2">5. Data Retention</p>
+            <ul class="policy-body">
+                <li>Account data — retained while your account is active</li>
+                <li>Community content you post — retained as part of the community record</li>
+                <li>Crash reports — retained for up to 90 days by Firebase Crashlytics</li>
+                <li>Deleted accounts — personal data is removed within 30 days of account deletion</li>
+            </ul>
+        </div>
+
+        <!-- 6. Data Sharing -->
+        <div class="policy-section">
+            <p class="policy-h2">6. Data Sharing</p>
+            <p class="policy-body mb-3">We do not sell your data. Your information is shared only in the following cases:</p>
+            <ul class="policy-body">
+                <li><strong>Within the App</strong> — Your display name and profile photo may be visible to other community members; community administrators can additionally view your email and phone number (where provided) to manage the community</li>
+                <li><strong>Firebase / Google</strong> — As described in Section 4, data is processed by Google Firebase</li>
+                <li><strong>Legal obligations</strong> — If required by law or valid legal process</li>
+            </ul>
+        </div>
+
+        <!-- 7. Data Security -->
+        <div class="policy-section">
+            <p class="policy-h2">7. Data Security</p>
+            <ul class="policy-body">
+                <li>All data in transit is encrypted via HTTPS/TLS</li>
+                <li>Firestore security rules restrict read/write access to authenticated users and role-based permissions</li>
+                <li>Firebase Storage rules prevent unauthorized access to uploaded files</li>
+                <li>Firebase App Check verifies all API calls come from legitimate app instances</li>
+            </ul>
+        </div>
+
+        <!-- 8. Your Rights -->
+        <div class="policy-section">
+            <p class="policy-h2">8. Your Rights</p>
+            <ul class="policy-body mb-3">
+                <li><strong>Access</strong> — Request a copy of data we hold about you</li>
+                <li><strong>Correction</strong> — Update your name or profile photo within the App settings</li>
+                <li><strong>Deletion</strong> — Request deletion of your account and associated data</li>
+                <li><strong>Opt-out</strong> — Stop using the App at any time; uninstalling removes local data</li>
+            </ul>
+            <p class="policy-body">To exercise any of these rights, contact: <a href="mailto:madebybala@gmail.com" class="text-violet-600 hover:underline font-medium">madebybala@gmail.com</a></p>
+        </div>
+
+        <!-- 9. Children -->
+        <div class="policy-section">
+            <p class="policy-h2">9. Children's Privacy</p>
+            <p class="policy-body">
+                My Thailapuram is intended for general community use and is not directed to children under 13. We do not knowingly collect personal information from children. If you believe a child has provided us with personal data, please contact us and we will delete it promptly.
+            </p>
+        </div>
+
+        <!-- 10. Policy Updates -->
+        <div class="policy-section">
+            <p class="policy-h2">10. Policy Updates</p>
+            <p class="policy-body">
+                We may update this Privacy Policy as the App evolves. Changes will be posted at this URL with a revised "Last Updated" date. Continued use of the App after changes constitutes acceptance of the updated policy.
+            </p>
+        </div>
+
+        <!-- 11. Contact -->
+        <div class="policy-section">
+            <p class="policy-h2">11. Contact</p>
+            <p class="policy-body">
+                Questions or concerns about this Privacy Policy?<br>
+                <a href="mailto:madebybala@gmail.com" class="text-violet-600 hover:underline font-medium">madebybala@gmail.com</a>
+            </p>
+        </div>
+
+        <!-- Back link -->
+        <div class="mt-16 pt-8 border-t border-gray-100">
+            <a href="/projects" class="font-mono text-xs text-gray-400 hover:text-violet-600 transition-colors inline-flex items-center gap-2">
+                ← Back to Projects
+            </a>
+        </div>
+
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-5">
+            <a href="/" class="flex items-center gap-2 cursor-pointer">
+                <img src="/assets/img/logo-light.svg" alt="Balaji logo" class="h-8 w-8 object-contain">
+                <span class="font-hand font-bold text-2xl leading-none">Balaji</span>
+            </a>
+            <p class="font-mono text-xs text-gray-400">© <span data-year>2026</span> Balaji · Built with care.</p>
+            <div class="flex gap-4 font-mono text-xs text-gray-500">
+                <a href="https://linkedin.com/in/balaji16s" target="_blank" rel="noopener" class="inline-block py-2 hover:text-black transition-colors cursor-pointer">LinkedIn</a>
+                <a href="https://github.com/balaji16s" target="_blank" rel="noopener" class="inline-block py-2 hover:text-black transition-colors cursor-pointer">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/site.js"></script>
+</body>
+
+</html>

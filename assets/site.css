@@ -1,0 +1,201 @@
+/* ===== Balaji portfolio — shared styles (sketchy-minimalism) ===== */
+
+:root {
+  --dot: #8a8a8a40;        /* dot-grid color (~46% gray) */
+  --ink: #000000;          /* primary heading */
+  --fill: #111111;         /* button fill */
+  --muted: #475569;        /* slate-600 body */
+  --line: #e5e7eb;         /* gray-200 borders */
+  --accent: #ede9fe;       /* violet-100 tag bg */
+  --accent-ink: #6d28d9;   /* violet-700 tag text */
+}
+
+/* Dot-grid background on every page */
+.bg-dot-pattern {
+  background-color: #ffffff;
+  background-image: radial-gradient(circle, var(--dot) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Handwritten display font */
+.font-hand { font-family: 'Caveat', ui-sans-serif, cursive; }
+.font-mono-meta { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+/* Small kicker label above titles */
+.kicker {
+  font-family: 'Gaegu', ui-sans-serif, cursive;
+  color: #94a3b8;
+  letter-spacing: 0.02em;
+}
+
+/* ===== Lavender tag / pill ===== */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: ui-monospace, monospace;
+  font-size: 0.72rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+/* ===== Soft card ===== */
+.soft-card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  transition: box-shadow .25s ease, border-color .25s ease, transform .25s ease;
+}
+.soft-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 10px 30px -12px rgba(0,0,0,.18);
+}
+
+/* Ghost watermark number behind project cards */
+.ghost-num {
+  position: absolute;
+  top: 0.4rem;
+  left: 1rem;
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+  font-size: 5.5rem;
+  line-height: 1;
+  color: #f1f5f9;          /* slate-100 */
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Rotated sticker note */
+.sticker {
+  font-family: ui-monospace, monospace;
+  background: #fff;
+  border: 1px dashed #cbd5e1;
+  box-shadow: 0 6px 18px -8px rgba(0,0,0,.25);
+  transform: rotate(-4deg);
+}
+
+/* Tilted scattered photo frame */
+.photo-frame {
+  background: #fff;
+  padding: 0.5rem;
+  border: 1px solid var(--line);
+  box-shadow: 0 12px 30px -14px rgba(0,0,0,.35);
+}
+
+/* ===== Floating navbar ===== */
+.nav-card {
+  background: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 24px -12px rgba(0,0,0,.22);
+}
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: #000;
+  transition: transform .3s cubic-bezier(.23,1,.32,1), opacity .3s ease;
+}
+.hamburger span + span { margin-top: 7px; }
+.nav-open .hamburger span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.nav-open .hamburger span:nth-child(2) { opacity: 0; }
+.nav-open .hamburger span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+.nav-panel {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height .35s cubic-bezier(.23,1,.32,1), opacity .25s ease;
+}
+.nav-open .nav-panel {
+  max-height: 320px;
+  opacity: 1;
+}
+
+/* ===== Experience timeline ===== */
+.role-badge {
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 0.9rem;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+.role-badge--now {
+  background: #111;
+  color: #fff;
+  box-shadow: 0 8px 20px -8px rgba(0,0,0,.45);
+}
+.role-badge--past {
+  background: #fff;
+  color: #111;
+  border: 1px solid var(--line);
+}
+.now-dot {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--accent-ink);
+}
+.now-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: var(--accent-ink);
+  animation: ping 1.6s cubic-bezier(0,0,.2,1) infinite;
+}
+@keyframes ping {
+  75%, 100% { transform: scale(2.6); opacity: 0; }
+}
+/* lavender bullet marker */
+.exp-list li::before {
+  content: '▸';
+  color: #a78bfa;            /* violet-400 */
+  margin-right: 0.5rem;
+  flex: none;
+}
+.exp-list li { display: flex; }
+
+/* ===== Marquee ===== */
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-track {
+  display: inline-block;
+  will-change: transform;
+  animation: marquee 18s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Typewriter caret */
+.caret::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: #000;
+  margin-left: 2px;
+  vertical-align: -2px;
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .caret::after { animation: none; }
+  .now-dot::after { animation: none; }
+  * { scroll-behavior: auto !important; }
+}
