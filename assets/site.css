@@ -1,6 +1,6 @@
 /* ===== Balaji portfolio — professional minimal system ===== */
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
   --rail: 56rem;
   --page: #faf9f6;
   --ink: #242021;
@@ -573,13 +573,17 @@ body {
   padding: 1rem;
 }
 
-.home-page footer > div {
-  width: min(calc(100% - 3rem), var(--rail)) !important;
-  max-width: none !important;
-  margin-inline: auto !important;
-  padding-inline: 0 !important;
-  padding-block: 1.125rem !important;
-  justify-content: center !important;
+.site-footer { border-top: 0; }
+
+.footer-inner {
+  display: flex;
+  width: min(calc(100% - 3rem), var(--rail));
+  max-width: none;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+  padding-block: 1.125rem;
+  border-top: 1px solid var(--line);
 }
 
 .footer-center {
@@ -639,6 +643,31 @@ body {
   #experience .exp-list { font-size: 0.9375rem; line-height: 1.65; }
 }
 
+@media (max-width: 480px) {
+  .nav-actions { gap: 0.25rem; }
+  .theme-toggle { width: 2.25rem; height: 2.25rem; }
+  .view-toggle { padding: 0.15rem; }
+  .view-toggle button { width: 1.75rem; min-height: 1.75rem; }
+  .hero-title { font-size: clamp(2.6rem, 14vw, 3.5rem); }
+  .hero-summary { font-size: 0.95rem; }
+  .section-shell,
+  .hero-section { width: min(calc(100% - 1.5rem), var(--rail)); }
+}
+
+@media (max-width: 420px) {
+  .home-nav { width: min(calc(100% - 1rem), var(--rail)); }
+  .nav-row { height: 52px; }
+  .nav-card { border-radius: 0.8rem; }
+  .theme-toggle { width: 2.1rem; height: 2.1rem; }
+  .view-toggle button { width: 1.55rem; min-height: 1.55rem; }
+  .hero-section { padding-top: 5.75rem; }
+  .hero-title { font-size: clamp(2.25rem, 16vw, 3rem); }
+  .hero-summary { line-height: 1.6; }
+  .hero-contact-list { gap: 0.2rem 0.75rem; }
+  .hero-contact-link { min-height: 2rem; font-size: 0.76rem; }
+  .profile-photo { width: 7rem; }
+}
+
 /* Enlarge utility-sized copy without scaling the layout or controls. */
 .home-page .text-sm { font-size: 0.9375rem; }
 .home-page .text-xs { font-size: 0.8125rem; }
@@ -665,28 +694,9 @@ body {
   --accent-wash: rgba(146, 30, 48, .15);
 }
 
+:root[data-theme="dark"] { color-scheme: dark; }
+
 :root[data-theme="dark"] footer img { filter: invert(1); }
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --page: #151214;
-    --ink: #f4eeeb;
-    --muted: #d6ccce;
-    --faint: #bfb2b6;
-    --line: #393033;
-    --surface: #1e191c;
-    --soft: #2b2327;
-    --accent: #f08b96;
-    --accent-soft: #40252d;
-    --accent-wash: rgba(146, 30, 48, .15);
-  }
-
-  :root:not([data-theme]) .theme-icon--moon { display: none; }
-  :root:not([data-theme]) .theme-icon--sun { display: block; }
-  :root:not([data-theme]) footer img { filter: invert(1); }
-  :root:not([data-theme]) .header-logo__light { display: none; }
-  :root:not([data-theme]) .header-logo__dark { display: block; }
-}
 
 /* Restrained interaction details; all content stays visible without animation. */
 ::selection { background: var(--accent); color: var(--page); }
@@ -731,10 +741,12 @@ button:focus-visible {
   .theme-toggle:hover svg { transform: rotate(-12deg); }
 }
 @media (max-width: 359px) {
-  .nav-actions { gap: 0.25rem; }
-  .view-toggle button { width: 1.75rem; }
-  .theme-toggle { width: 2.25rem; }
-  .header-logo, .header-logo img { width: 1.75rem; height: 1.75rem; }
+  .nav-actions { gap: 0.2rem; }
+  .view-toggle button { width: 1.6rem; }
+  .theme-toggle { width: 2.1rem; height: 2.1rem; }
+  .header-logo, .header-logo img { width: 1.7rem; height: 1.7rem; }
+  .hero-contact-link { min-height: 2rem; }
+  .hero-title { font-size: clamp(2.25rem, 17vw, 3rem); }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

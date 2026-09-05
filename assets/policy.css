@@ -1,0 +1,134 @@
+.policy-page .policy-nav { left: 50%; width: min(calc(100% - 3rem), var(--rail)); max-width: none; transform: translateX(-50%); }
+.policy-page .policy-nav .nav-card { box-shadow: 0 8px 24px -16px rgba(36, 20, 24, .25); }
+.policy-page .policy-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--ink);
+    font-size: 1.875rem;
+    line-height: 1;
+    text-decoration: none;
+}
+.policy-page .policy-nav .hamburger:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+}
+.policy-page main.max-w-2xl {
+    width: min(calc(100% - 3rem), var(--rail));
+    max-width: none;
+    margin-inline: auto;
+    padding: 8rem 0 4rem !important;
+}
+.policy-page main > .mb-12 { margin-bottom: 3rem; }
+.policy-page main > .mb-12 > .inline-flex {
+    display: block;
+    margin-bottom: 0.55rem;
+}
+.policy-page main > .mb-12 > .inline-flex .tag:first-child {
+    padding: 0;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+.policy-page main > .mb-12 > .inline-flex .tag:last-child {
+    display: block;
+    width: fit-content;
+    margin-top: 0.4rem;
+    padding: 0;
+    background: transparent;
+    color: var(--ink);
+    font-size: clamp(2.75rem, 7vw, 4.75rem);
+    font-weight: 750;
+    letter-spacing: -0.055em;
+    line-height: 1.05;
+}
+.policy-page main h1 {
+    margin: 0 0 0.65rem;
+    color: var(--accent) !important;
+    font-size: 0.75rem !important;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+.policy-page main > .mb-12 > p.text-gray-400 {
+    color: var(--faint) !important;
+    font-size: 0.75rem;
+}
+.policy-page main > .mb-12 > .mt-6 {
+    margin-top: 1.5rem;
+    max-width: 44rem;
+    border: 1px solid var(--line) !important;
+    border-radius: 0.875rem !important;
+    background: var(--surface) !important;
+    box-shadow: 0 8px 24px -20px rgba(36, 20, 24, .3);
+}
+.policy-page main > .mb-12 > .mt-6 p {
+    color: var(--accent) !important;
+    font-size: 0.875rem;
+    line-height: 1.65;
+}
+.policy-section {
+    border-top: 1px solid var(--line);
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+}
+.policy-section > * { max-width: 48rem; }
+.policy-h2 {
+    margin-bottom: 0.85rem;
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+.policy-body {
+    color: var(--muted);
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    text-align: left;
+}
+ul.policy-body { margin-left: 0; padding-left: 0; list-style: none; }
+.policy-body li { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.35rem; }
+.policy-body li::before { content: '–'; width: 0.7rem; margin-top: 0.05rem; color: var(--accent); flex: none; font-weight: 700; }
+.no-collect li::before { content: '×'; color: var(--accent); flex: none; }
+.policy-body strong { color: var(--ink); font-weight: 700; }
+.policy-body a,
+.policy-page main a.text-violet-600 { color: var(--accent) !important; }
+.policy-body a:hover,
+.policy-page main a.text-violet-600:hover { text-decoration-color: var(--accent); }
+.data-table {
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--surface);
+    font-size: 0.8125rem;
+}
+.data-table th {
+    background: var(--soft);
+    color: var(--faint);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.7rem 0.8rem;
+    text-align: left;
+    text-transform: uppercase;
+}
+.data-table td {
+    color: var(--muted);
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    padding: 0.75rem 0.8rem;
+    vertical-align: top;
+}
+.data-table tr + tr td { border-top: 1px solid var(--line); }
+@media (max-width: 639px) {
+    .policy-page main.max-w-2xl { padding-top: 7.25rem !important; }
+    .data-table { display: block; overflow-x: auto; }
+}

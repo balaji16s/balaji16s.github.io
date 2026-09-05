@@ -31,6 +31,17 @@
     });
   }
 
+  /* ---------- Highlight the current portfolio page ---------- */
+  function initPageNav() {
+    var currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+    document.querySelectorAll('[data-nav-path]').forEach(function (link) {
+      var active = link.getAttribute('data-nav-path') === currentPath;
+      link.classList.toggle('is-active', active);
+      if (active) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    });
+  }
+
   /* ---------- Keep the one-page navigation in sync with scroll ---------- */
   function initSectionNav() {
     var sections = document.querySelectorAll('[data-page-section]');
@@ -66,12 +77,13 @@
     try { storedTheme = window.localStorage.getItem('portfolio-theme'); } catch (err) {}
     if (storedTheme === 'light' || storedTheme === 'dark') {
       root.setAttribute('data-theme', storedTheme);
+    } else {
+      root.setAttribute('data-theme', 'light');
     }
 
     function currentTheme() {
       var explicitTheme = root.getAttribute('data-theme');
-      if (explicitTheme) return explicitTheme;
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      return explicitTheme || 'light';
     }
 
     function updateLabel() {
@@ -136,6 +148,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     initNav();
+    initPageNav();
     initTheme();
     initPortfolioView();
     initSectionNav();

@@ -4,7 +4,10 @@
   "version": "1.0.0",
   "description": "Build tooling for balajisri.com (self-hosted Tailwind CSS).",
   "scripts": {
-    "build:css": "tailwindcss -i ./src/tailwind.css -o ./assets/tailwind.css --minify"
+    "build:css": "tailwindcss -i ./src/tailwind.css -o ./assets/tailwind.css --minify",
+    "build:site": "node ./scripts/build-site.js",
+    "build": "npm run build:site && npm run build:css",
+    "validate:site": "node ./scripts/validate-site.js"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.17"

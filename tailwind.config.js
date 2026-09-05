@@ -6,6 +6,7 @@ module.exports = {
     './kuralverse/**/*.html',
     './my-thailapuram/**/*.html',
     './prompt-lib/**/*.html',
+    './step-yatra/**/*.html',
     './win-your-week/**/*.html',
   ],
   theme: {

@@ -18,19 +18,20 @@
 
 <body class="home-page bg-dot-pattern text-gray-900 antialiased min-h-screen selection:bg-violet-100">
 
-    <!-- ===== Floating Navbar ===== -->
-    <div class="home-nav fixed left-1/2 -translate-x-1/2 w-[90%] max-w-[800px] z-50 top-[1.2em] md:top-[2em]" data-nav>
-        <nav class="nav-card">
-            <div class="nav-row h-[60px] flex items-center justify-between px-3">
-                <button type="button" class="hamburger p-2 -ml-1 cursor-pointer" data-nav-toggle aria-label="Open menu"
-                    aria-expanded="false" aria-controls="nav-links">
-                    <span></span><span></span><span></span>
-                </button>
-                <a href="#home" class="header-logo" aria-label="Back to top">
-                    <img class="header-logo__light" src="/assets/img/logo-light.svg" alt="Bala logo" width="32" height="32">
-                    <img class="header-logo__dark" src="/assets/img/logo-dark.svg" alt="" width="32" height="32" aria-hidden="true">
-                </a>
-                <div class="nav-actions">
+    <!-- shared:site-header -->
+<div class="home-nav fixed left-1/2 -translate-x-1/2 w-[90%] max-w-[800px] z-50 top-[1.2em] md:top-[2em]" data-nav>
+    <nav class="nav-card">
+        <div class="nav-row h-[60px] flex items-center justify-between px-3">
+            <button type="button" class="hamburger p-2 -ml-1 cursor-pointer" data-nav-toggle aria-label="Open menu"
+                aria-expanded="false" aria-controls="nav-links">
+                <span></span><span></span><span></span>
+            </button>
+            <a href="#home" class="header-logo" aria-label="Back to portfolio">
+                <img class="header-logo__light" src="/assets/img/logo-light.svg" alt="Bala logo" width="32" height="32">
+                <img class="header-logo__dark" src="/assets/img/logo-dark.svg" alt="" width="32" height="32" aria-hidden="true">
+            </a>
+            <div class="nav-actions">
+
                     <div class="view-toggle" role="group" aria-label="Portfolio view">
                         <button type="button" data-view-toggle="professional" aria-label="Professional view" title="Professional" aria-pressed="true">
                             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"/></svg>
@@ -39,14 +40,16 @@
                             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m3 11 9-8 9 8M5 10v10h14V10M9 20v-6h6v6"/></svg>
                         </button>
                     </div>
-                    <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode" title="Switch to dark mode">
-                        <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
-                        <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
-                    </button>
-                </div>
+
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode" title="Switch to dark mode">
+                    <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+                    <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+                </button>
             </div>
-            <div class="nav-panel px-3" id="nav-links">
-                <ul class="font-hand text-2xl py-2 flex flex-col md:flex-row md:justify-center gap-1 md:gap-6">
+        </div>
+        <div class="nav-panel px-3" id="nav-links">
+            <ul class="font-hand text-2xl py-2 flex flex-col md:flex-row md:justify-center gap-1 md:gap-6">
+
                     <li><a data-nav-link href="#home" class="block px-2 py-1 hover:text-violet-600 transition-colors">Home</a></li>
                     <li data-view-nav="professional"><a data-nav-link href="#about" class="block px-2 py-1 hover:text-violet-600 transition-colors">About</a></li>
                     <li data-view-nav="professional"><a data-nav-link href="#skills" class="block px-2 py-1 hover:text-violet-600 transition-colors">Skills</a></li>
@@ -54,10 +57,11 @@
                     <li data-view-nav="professional"><a data-nav-link href="#experience" class="block px-2 py-1 hover:text-violet-600 transition-colors">Experience</a></li>
                     <li data-view-nav="professional"><a data-nav-link href="#side-projects" class="block px-2 py-1 hover:text-violet-600 transition-colors">Side Projects</a></li>
                     <li data-view-nav="personal" hidden><a data-nav-link href="#personal-projects" class="block px-2 py-1 hover:text-violet-600 transition-colors">Projects</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
+            </ul>
+        </div>
+    </nav>
+</div>
+<!-- /shared:site-header -->
 
     <main>
     <!-- ===== Hero ===== -->
@@ -85,7 +89,7 @@
                         <svg class="outline-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.69A2 2 0 0 1 22 16.92Z"/></svg>
                         <span>+91 88706 14654</span>
                     </a>
-                    <a href="/resume.pdf" target="_blank" rel="noopener" class="hero-contact-link">
+                    <a href="/Balaji_SDET_Resume.pdf" download="Balaji_SDET_Resume.pdf" class="hero-contact-link">
                         <svg class="outline-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg>
                         <span>Resume</span>
                     </a>
@@ -291,7 +295,7 @@
                     <p class="font-mono text-sm text-gray-600 leading-relaxed mb-4">Placeholder copy for evaluating assistant responses with repeatable prompts, quality signals, and a lightweight review workflow.</p>
                     <div class="mt-auto pt-2">
                         <div class="flex flex-wrap gap-2 mb-5"><span class="tag">LLM Testing</span><span class="tag">Python</span><span class="tag">Evaluation</span></div>
-                        <a href="/contact" class="font-mono text-sm underline underline-offset-4 hover:text-violet-600 transition-colors cursor-pointer">Read project notes →</a>
+                        <a href="#home" class="font-mono text-sm underline underline-offset-4 hover:text-violet-600 transition-colors cursor-pointer">Read project notes →</a>
                     </div>
                 </div>
             </article>
@@ -302,7 +306,7 @@
                     <p class="font-mono text-sm text-gray-600 leading-relaxed mb-4">Placeholder copy for parallel cloud execution, pipeline quality gates, and dependable feedback on every change.</p>
                     <div class="mt-auto pt-2">
                         <div class="flex flex-wrap gap-2 mb-5"><span class="tag">AWS</span><span class="tag">CI/CD</span><span class="tag">Docker</span></div>
-                        <a href="/contact" class="font-mono text-sm underline underline-offset-4 hover:text-violet-600 transition-colors cursor-pointer">Read project notes →</a>
+                        <a href="#home" class="font-mono text-sm underline underline-offset-4 hover:text-violet-600 transition-colors cursor-pointer">Read project notes →</a>
                     </div>
                 </div>
             </article>
@@ -397,17 +401,18 @@
 
     </main>
 
-    <!-- ===== Footer ===== -->
-    <footer class="border-t border-gray-200">
-        <div class="max-w-4xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-5">
-            <div class="footer-center">
-                <a href="#home" class="inline-flex cursor-pointer" aria-label="Back to top">
-                    <img src="/assets/img/logo-light.svg" alt="Balaji logo" class="h-8 w-8 object-contain">
-                </a>
-                <p class="footer-signoff">Tested with care <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"/></svg></p>
-            </div>
+    <!-- shared:site-footer -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-center">
+            <a href="/" class="inline-flex cursor-pointer" aria-label="Back to home">
+                <img src="/assets/img/logo-light.svg" alt="Balaji logo" class="h-8 w-8 object-contain">
+            </a>
+            <p class="footer-signoff">Tested with care <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"/></svg></p>
         </div>
-    </footer>
+    </div>
+</footer>
+<!-- /shared:site-footer -->
 
     <script src="/assets/site.js"></script>
 </body>

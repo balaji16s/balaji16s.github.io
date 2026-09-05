@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skinny-Fat Transformation Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&amp;family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBF9F4;
+    --ink: #1F1D1A;
+    --muted: #6B6660;
+    --line: #E5E0D6;
+    --card: #FFFFFF;
+    --rust: #C2562A;
+    --rust-soft: #F4E3D8;
+    --olive: #5C6B3E;
+    --olive-soft: #E6EAD9;
+    --teal: #2C6E6B;
+    --teal-soft: #DCEAE9;
+    --gold: #B8893A;
+    --gold-soft: #F2E6CE;
+    --plum: #7A4E6B;
+    --plum-soft: #EEE0EA;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Public Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 15px;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+  /* HEADER */
+  header {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 48px 0 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: "";
+    position: absolute; bottom: -60px; right: -40px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(194,86,42,0.25), transparent 70%);
+    border-radius: 50%;
+  }
+  .eyebrow { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: #998; margin-bottom: 14px; }
+  header h1 { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 600; line-height: 1.05; margin-bottom: 14px; }
+  header h1 em { font-style: italic; color: var(--rust); }
+  .subhead { font-size: 15px; color: #B5AFA6; max-width: 560px; }
+  .profile-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; position: relative; z-index: 2; }
+  .chip { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); padding: 5px 12px; border-radius: 30px; font-size: 12px; color: #D8D3CA; }
+  .chip b { color: var(--bg); font-weight: 600; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(251,249,244,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  nav .wrap { display: flex; gap: 2px; padding-top: 4px; padding-bottom: 4px; }
+  nav a {
+    color: var(--muted); text-decoration: none;
+    font-size: 12.5px; font-weight: 500;
+    padding: 11px 12px; border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+  }
+  nav a:hover { color: var(--ink); border-color: var(--rust); }
+
+  /* SECTIONS */
+  section { padding: 44px 0 8px; border-bottom: 1px solid var(--line); }
+  .sec-num { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; color: var(--rust); display: block; margin-bottom: 4px; }
+  section > .wrap > h2 { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 600; line-height: 1.1; margin-bottom: 8px; }
+  .lead { font-size: 15px; color: var(--muted); margin-bottom: 24px; max-width: 640px; }
+  h3 { font-family: 'Fraunces', serif; font-size: 21px; font-weight: 600; margin: 28px 0 12px; }
+  h4 { font-size: 15px; font-weight: 700; margin: 18px 0 8px; letter-spacing: 0.2px; }
+  p { margin-bottom: 12px; }
+  ul, ol { margin: 0 0 14px 20px; }
+  li { margin-bottom: 6px; }
+  strong { font-weight: 700; }
+  em { font-style: italic; }
+
+  /* TABLES */
+  .table-scroll { overflow-x: auto; margin: 14px 0 22px; -webkit-overflow-scrolling: touch; border-radius: 12px; border: 1px solid var(--line); }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; background: var(--card); min-width: 520px; }
+  th { background: var(--ink); color: var(--bg); text-align: left; padding: 11px 14px; font-weight: 600; font-size: 12px; letter-spacing: 0.3px; text-transform: uppercase; }
+  td { padding: 11px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+  tr:nth-child(even) td { background: #FCFAF6; }
+  td b { color: var(--ink); }
+
+  /* CARDS */
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; margin: 16px 0; }
+  .card.accent-rust { border-left: 4px solid var(--rust); }
+  .card.accent-olive { border-left: 4px solid var(--olive); }
+  .card.accent-teal { border-left: 4px solid var(--teal); }
+  .card.accent-gold { border-left: 4px solid var(--gold); }
+  .card.accent-plum { border-left: 4px solid var(--plum); }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } header h1 { font-size: 32px; } section > .wrap > h2 { font-size: 24px; } }
+
+  /* PHASE CARDS */
+  .phase { border-radius: 14px; padding: 20px 22px; margin: 14px 0; color: var(--ink); position: relative; overflow: hidden; }
+  .phase .tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+  .phase h3 { margin: 0 0 4px; }
+  .phase .dur { font-size: 13px; color: var(--muted); margin-bottom: 14px; font-weight: 600; }
+  .p1 { background: var(--olive-soft); } .p1 .tag { background: var(--olive); color: #fff; }
+  .p2 { background: var(--teal-soft); } .p2 .tag { background: var(--teal); color: #fff; }
+  .p3 { background: var(--gold-soft); } .p3 .tag { background: var(--gold); color: #fff; }
+  .p4 { background: var(--plum-soft); } .p4 .tag { background: var(--plum); color: #fff; }
+  .phase ul { margin-left: 18px; }
+  .phase .mini-label { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); margin-top: 12px; margin-bottom: 4px; }
+
+  /* CALLOUT */
+  .callout { background: var(--rust-soft); border-radius: 12px; padding: 16px 18px; margin: 16px 0; font-size: 14px; }
+  .callout.tip { background: var(--olive-soft); }
+  .callout.warn { background: #F8E3DC; }
+  .callout .ci { font-weight: 700; display: block; margin-bottom: 4px; font-size: 13px; letter-spacing: 0.3px; }
+
+  /* DO/DONT */
+  .dd { background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin-bottom: 10px; }
+  .dd .bad { background: #FBEAE5; padding: 10px 16px; font-size: 13.5px; color: #A23A1C; }
+  .dd .good { padding: 10px 16px; font-size: 13.5px; color: #3B5E2E; }
+
+  /* WORKOUT DAY */
+  .day-head { display: flex; align-items: baseline; gap: 12px; margin: 30px 0 4px; }
+  .day-head .dn { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 600; }
+  .day-head .df { font-size: 13px; color: var(--rust); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* SNAPSHOT */
+  .snap-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--rust); margin: 4px 0 10px; }
+  .snapshot { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 0 0 26px; }
+  .snap-item { background: var(--card); border: 1px solid var(--line); border-top: 3px solid var(--rust); border-radius: 12px; padding: 15px 12px; text-align: center; }
+  .snap-item .si-ico { font-size: 21px; margin-bottom: 7px; }
+  .snap-item .si-h { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600; margin-bottom: 5px; }
+  .snap-item .si-b { font-size: 11.5px; color: var(--muted); line-height: 1.45; }
+  @media (max-width: 600px) { .snapshot { grid-template-columns: 1fr 1fr; } }
+
+  footer { background: var(--ink); color: #B5AFA6; padding: 30px 0; font-size: 13px; text-align: center; }
+  footer b { color: var(--bg); }
+  .disclaimer { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 20px; padding: 14px; background: #F3F0E8; border-radius: 10px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="eyebrow">Skinny-Fat Recomposition Blueprint</span>
+    <h1>From soft &amp; skinny to<br><em>lean &amp; strong.</em></h1>
+    <p class="subhead">A 12-month, evidence-based recomposition plan built for a sedentary IT professional in Chennai — training 4 days a week, eating South Indian food, and building a body that lasts.</p>
+    <div class="profile-chips">
+      <span class="chip"><b>30</b> yrs</span>
+      <span class="chip"><b>164</b> cm</span>
+      <span class="chip"><b>61</b> kg</span>
+      <span class="chip">Skinny-fat</span>
+      <span class="chip"><b>4</b> days/week</span>
+      <span class="chip">Mon · Wed · Fri · Sat</span>
+      <span class="chip">Complete beginner</span>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <a href="#strategy">Strategy</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#workouts">Workouts</a>
+    <a href="#progression">Progression</a>
+    <a href="#cardio">Cardio</a>
+    <a href="#nutrition">Nutrition</a>
+    <a href="#foods">Chennai Foods</a>
+    <a href="#meals">Meal Plans</a>
+    <a href="#lifestyle">Lifestyle</a>
+    <a href="#tracking">Tracking</a>
+    <a href="#mistakes">Mistakes</a>
+  </div>
+</nav>
+
+<!-- STRATEGY -->
+<section id="strategy">
+  <div class="wrap">
+    <span class="sec-num">The big picture</span>
+    <h2>Why "recomposition" is your game</h2>
+    <p class="lead">You're not skinny, and you're not fat — you're <em>skinny-fat</em>. This is the easiest starting point to mess up and one of the most rewarding to fix.</p>
+
+    <div class="snap-label">The whole plan in 60 seconds</div>
+    <div class="snapshot">
+      <div class="snap-item"><div class="si-ico">🍽️</div><div class="si-h">Eat</div><div class="si-b">~2,000–2,150 kcal at maintenance · 120–135g protein daily</div></div>
+      <div class="snap-item"><div class="si-ico">🏋️</div><div class="si-h">Train</div><div class="si-b">4 days/week · Upper/Lower split · add weight over time</div></div>
+      <div class="snap-item"><div class="si-ico">🚶</div><div class="si-h">Move</div><div class="si-b">8–10k steps · short walks after meals · break up sitting</div></div>
+      <div class="snap-item"><div class="si-ico">😴</div><div class="si-h">Recover</div><div class="si-b">7–9 hrs sleep · manage stress · one full rest day</div></div>
+      <div class="snap-item"><div class="si-ico">📅</div><div class="si-h">Repeat</div><div class="si-b">Stay consistent ~12 months · track waist &amp; strength, not just scale</div></div>
+    </div>
+
+    <p>Skinny-fat means you carry relatively low muscle mass with a higher-than-ideal body fat percentage, often concentrated around the belly and chest. The classic mistake is to either crash-diet (which burns your already-low muscle) or "dirty bulk" (which just adds more fat). Neither works for you.</p>
+
+    <p>Your strategy is <strong>body recomposition</strong>: build muscle and lose fat at the same time. Beginners with your profile are in the rare position where this is genuinely achievable, because untrained muscles respond dramatically to training ("newbie gains"), and excess body fat provides energy for muscle building even at maintenance calories.</p>
+
+    <div class="callout tip">
+      <span class="ci">🎯 THE CORE FORMULA</span>
+      Eat at <strong>roughly maintenance calories</strong> (not a big surplus, not a big deficit) + <strong>high protein</strong> + <strong>progressive strength training</strong> + <strong>daily walking</strong> + <strong>good sleep</strong>. Be patient. Recomposition is slower on the scale but transforms how you look.
+    </div>
+
+    <h4>What to expect on the scale (and why not to trust it)</h4>
+    <p>Your weight may barely move for months, yet your waist shrinks and your arms and shoulders fill out. This is success. The mirror, tape measure, and your strength numbers tell the real story — not the scale.</p>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="wrap">
+    <span class="sec-num">Requirement 1</span>
+    <h2>Progressive training roadmap</h2>
+    <p class="lead">Four phases across roughly 12 months. Don't rush — move to the next phase only when you meet the progression criteria, not just when the calendar says so.</p>
+    <p style="font-size:13.5px;color:var(--muted);margin-bottom:24px;">A note on the strength benchmarks below: they're realistic targets for an average beginner who trains consistently — treat them as a compass, not a pass/fail test. Genetics, recovery, sleep, and how busy work gets all affect your pace, and being faster or slower than these numbers is completely normal.</p>
+
+    <div class="phase p1">
+      <span class="tag">Phase 1</span>
+      <h3>Beginner Foundation</h3>
+      <div class="dur">⏱ Months 1–2 (Weeks 1–8)</div>
+      <div class="mini-label">Primary objectives</div>
+      <ul>
+        <li>Learn correct form on fundamental movement patterns (squat, hinge, push, pull)</li>
+        <li>Build the non-negotiable habit of showing up 4×/week</li>
+        <li>Wake up dormant muscles and connect mind-to-muscle</li>
+        <li>Establish protein-focused eating without dieting</li>
+      </ul>
+      <div class="mini-label">Expected outcomes</div>
+      <ul>
+        <li>Noticeably better energy and mood within 3–4 weeks</li>
+        <li>Slightly firmer body, better posture, less afternoon slump</li>
+        <li>Comfortable and confident using gym equipment</li>
+      </ul>
+      <div class="mini-label">Strength benchmarks (end of phase)</div>
+      <ul>
+        <li>Goblet squat: 16–20 kg × 10 clean reps</li>
+        <li>Dumbbell bench: 12–14 kg per hand × 10</li>
+        <li>Lat pulldown: ~bodyweight load for 10</li>
+        <li>Plank: 45–60 seconds solid</li>
+      </ul>
+      <div class="mini-label">Progress to Phase 2 when…</div>
+      <ul>
+        <li>You can complete all sets with good form, never feeling lost on technique</li>
+        <li>You've trained 4×/week consistently for at least 6 of 8 weeks</li>
+      </ul>
+    </div>
+
+    <div class="phase p2">
+      <span class="tag">Phase 2</span>
+      <h3>Early Intermediate</h3>
+      <div class="dur">⏱ Months 3–5 (Weeks 9–20)</div>
+      <div class="mini-label">Primary objectives</div>
+      <ul>
+        <li>Transition to barbell compound lifts (squat, deadlift, bench, overhead press)</li>
+        <li>Apply structured progressive overload every week</li>
+        <li>Increase training volume gradually (more sets)</li>
+        <li>Visible fat loss around the waist begins</li>
+      </ul>
+      <div class="mini-label">Expected outcomes</div>
+      <ul>
+        <li>Clothes fit better; waist tightens; shoulders/arms more defined</li>
+        <li>Strength climbs steadily week to week</li>
+        <li>First visible muscle definition appears</li>
+      </ul>
+      <div class="mini-label">Strength benchmarks (end of phase)</div>
+      <ul>
+        <li>Barbell squat: 40–50 kg × 5</li>
+        <li>Deadlift: 60–70 kg × 5</li>
+        <li>Bench press: 40–45 kg × 5</li>
+        <li>Overhead press: 25–30 kg × 5</li>
+      </ul>
+      <div class="mini-label">Progress to Phase 3 when…</div>
+      <ul>
+        <li>Compound lifts feel stable and you hit the benchmark loads with control</li>
+        <li>You understand how to add weight/reps on your own</li>
+      </ul>
+    </div>
+
+    <div class="phase p3">
+      <span class="tag">Phase 3</span>
+      <h3>Intermediate</h3>
+      <div class="dur">⏱ Months 6–9 (Weeks 21–36)</div>
+      <div class="mini-label">Primary objectives</div>
+      <ul>
+        <li>Drive real muscle growth (hypertrophy) with higher volume</li>
+        <li>Refine weak points (often chest, rear delts, glutes for desk workers)</li>
+        <li>Dial in nutrition more precisely as progress slows</li>
+        <li>Introduce periodized deloads every 6–8 weeks</li>
+      </ul>
+      <div class="mini-label">Expected outcomes</div>
+      <ul>
+        <li>A clearly athletic, lean physique — the "transformation" is now obvious</li>
+        <li>Body fat noticeably down; muscle visibly up</li>
+        <li>Strong, stable, confident lifter</li>
+      </ul>
+      <div class="mini-label">Strength benchmarks (end of phase)</div>
+      <ul>
+        <li>Squat: ~1× bodyweight (60+ kg) × 5</li>
+        <li>Deadlift: ~1.5× bodyweight (90 kg) × 3–5</li>
+        <li>Bench: ~0.8× bodyweight (50 kg) × 5</li>
+        <li>5+ strict pull-ups</li>
+      </ul>
+      <div class="mini-label">Progress to Phase 4 when…</div>
+      <ul>
+        <li>Progress naturally slows and you've built a solid base of muscle</li>
+        <li>You want to maintain and refine rather than chase new maxes</li>
+      </ul>
+    </div>
+
+    <div class="phase p4">
+      <span class="tag">Phase 4</span>
+      <h3>Advanced Lifestyle Fitness</h3>
+      <div class="dur">⏱ Month 10 onward (lifelong)</div>
+      <div class="mini-label">Primary objectives</div>
+      <ul>
+        <li>Maintain your hard-won physique with sustainable effort</li>
+        <li>Train for performance, longevity, and enjoyment — not just looks</li>
+        <li>Auto-regulate: push hard some weeks, coast others, based on life/work</li>
+        <li>Make fitness a permanent identity, not a project</li>
+      </ul>
+      <div class="mini-label">Expected outcomes</div>
+      <ul>
+        <li>A lean, strong, healthy body you maintain for decades</li>
+        <li>Resilience against the health risks of a sedentary career</li>
+        <li>Training feels like a normal part of life, not a chore</li>
+      </ul>
+      <div class="mini-label">This phase has no end</div>
+      <p style="margin:0;">This is the goal: fitness woven into your life permanently. You can run focused 8–12 week blocks (build muscle, get leaner, get stronger) whenever you want a specific result.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WORKOUTS -->
+<section id="workouts">
+  <div class="wrap">
+    <span class="sec-num">Requirement 2</span>
+    <h2>Your 4-day weekly workout plan</h2>
+    <p class="lead">Below is the <strong>Phase 1–2 template</strong> on your chosen days. It's an Upper/Lower split repeated twice — ideal for beginners because each muscle gets worked twice a week with plenty of recovery. Weights shown are starting suggestions; let form dictate the load.</p>
+
+    <div class="callout">
+      <span class="ci">📅 YOUR WEEK AT A GLANCE</span>
+      <strong>Mon</strong> — Lower Body A &nbsp;·&nbsp; <strong>Tue</strong> — Rest/Walk &nbsp;·&nbsp; <strong>Wed</strong> — Upper Body A &nbsp;·&nbsp; <strong>Thu</strong> — Rest/Walk &nbsp;·&nbsp; <strong>Fri</strong> — Lower Body B &nbsp;·&nbsp; <strong>Sat</strong> — Upper Body B &nbsp;·&nbsp; <strong>Sun</strong> — Full Rest
+    </div>
+
+    <div class="callout tip">
+      <span class="ci">🟢 START HERE — YOUR FIRST TWO WEEKS (THE ON-RAMP)</span>
+      Don't walk in and do everything below at full volume on day one. For <strong>Weeks 1–2</strong>, run this exact template but do only the <strong>first 2 sets</strong> of each exercise with deliberately light weights — your only job is to learn the movements and let your body adjust. From <strong>Week 3</strong> onward, step up to the full sets shown in the tables. Easing in like this is how you avoid the crippling soreness and burnout that makes most beginners quit in the first fortnight.
+    </div>
+
+    <h3>Universal warm-up (every session — 8 min)</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Step</th><th>What to do</th><th>Duration</th></tr></thead>
+        <tbody>
+          <tr><td><b>1. Raise temp</b></td><td>Treadmill brisk walk or cycle, easy pace</td><td>5 min</td></tr>
+          <tr><td><b>2. Mobility</b></td><td>Leg swings, arm circles, hip circles, cat-cow, world's greatest stretch</td><td>2 min</td></tr>
+          <tr><td><b>3. Activation</b></td><td>2 light "feel-out" sets of your first main exercise (50% weight)</td><td>1 min</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- MONDAY -->
+    <div class="day-head"><span class="dn">Monday</span><span class="df">Lower Body A</span></div>
+    <p style="font-size:13.5px;color:var(--muted);">Focus: quads, glutes, hamstrings, core. Counteracts all that sitting.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>Intensity</th></tr></thead>
+        <tbody>
+          <tr><td><b>Goblet Squat</b><br><span style="font-size:12px;color:var(--muted)">Hold a dumbbell at your chest, squat down keeping chest up. Teaches the squat safely.</span></td><td>3</td><td>10–12</td><td>90s</td><td>Moderate</td></tr>
+          <tr><td><b>Romanian Deadlift (DB)</b><br><span style="font-size:12px;color:var(--muted)">Push hips back, slight knee bend, feel hamstring stretch. <em>Mistake: rounding the back.</em></span></td><td>3</td><td>10–12</td><td>90s</td><td>Moderate</td></tr>
+          <tr><td><b>Leg Press</b><br><span style="font-size:12px;color:var(--muted)">Feet shoulder-width. <em>Mistake: locking knees at top.</em></span></td><td>3</td><td>12–15</td><td>75s</td><td>Moderate</td></tr>
+          <tr><td><b>Seated Leg Curl</b><br><span style="font-size:12px;color:var(--muted)">Targets hamstrings. Slow on the way back.</span></td><td>3</td><td>12–15</td><td>60s</td><td>Moderate</td></tr>
+          <tr><td><b>Standing Calf Raise</b><br><span style="font-size:12px;color:var(--muted)">Full stretch at bottom, pause at top.</span></td><td>3</td><td>15–20</td><td>45s</td><td>Light-Mod</td></tr>
+          <tr><td><b>Plank</b><br><span style="font-size:12px;color:var(--muted)">Brace abs, straight line. <em>Mistake: sagging hips.</em></span></td><td>3</td><td>30–45s</td><td>45s</td><td>Bodyweight</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- WEDNESDAY -->
+    <div class="day-head"><span class="dn">Wednesday</span><span class="df">Upper Body A</span></div>
+    <p style="font-size:13.5px;color:var(--muted);">Focus: chest, back, shoulders, arms — pushing emphasis.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>Intensity</th></tr></thead>
+        <tbody>
+          <tr><td><b>Dumbbell Bench Press</b><br><span style="font-size:12px;color:var(--muted)">Lower to chest, press up. <em>Mistake: flaring elbows to 90°; keep ~45°.</em></span></td><td>3</td><td>8–12</td><td>90s</td><td>Moderate</td></tr>
+          <tr><td><b>Lat Pulldown</b><br><span style="font-size:12px;color:var(--muted)">Pull bar to upper chest, squeeze back. <em>Mistake: yanking with momentum.</em></span></td><td>3</td><td>10–12</td><td>90s</td><td>Moderate</td></tr>
+          <tr><td><b>Seated DB Shoulder Press</b><br><span style="font-size:12px;color:var(--muted)">Press overhead, don't arch lower back.</span></td><td>3</td><td>10–12</td><td>75s</td><td>Moderate</td></tr>
+          <tr><td><b>Seated Cable Row</b><br><span style="font-size:12px;color:var(--muted)">Drive elbows back, chest tall. Great for desk-worker posture.</span></td><td>3</td><td>10–12</td><td>75s</td><td>Moderate</td></tr>
+          <tr><td><b>DB Bicep Curl</b><br><span style="font-size:12px;color:var(--muted)">No swinging. Full range.</span></td><td>2</td><td>12–15</td><td>60s</td><td>Light-Mod</td></tr>
+          <tr><td><b>Tricep Pushdown</b><br><span style="font-size:12px;color:var(--muted)">Elbows pinned at sides.</span></td><td>2</td><td>12–15</td><td>60s</td><td>Light-Mod</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FRIDAY -->
+    <div class="day-head"><span class="dn">Friday</span><span class="df">Lower Body B</span></div>
+    <p style="font-size:13.5px;color:var(--muted);">Focus: lower body again, different emphasis and exercises.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>Intensity</th></tr></thead>
+        <tbody>
+          <tr><td><b>Leg Press (heavier)</b><br><span style="font-size:12px;color:var(--muted)">Primary strength movement today.</span></td><td>4</td><td>8–10</td><td>120s</td><td>Mod-Hard</td></tr>
+          <tr><td><b>Dumbbell Walking Lunge</b><br><span style="font-size:12px;color:var(--muted)">Step forward, knee tracks over toes. Builds balance + glutes.</span></td><td>3</td><td>10 / leg</td><td>90s</td><td>Moderate</td></tr>
+          <tr><td><b>Hip Thrust (machine or DB)</b><br><span style="font-size:12px;color:var(--muted)">Squeeze glutes hard at top. Crucial for desk-flattened glutes.</span></td><td>3</td><td>12–15</td><td>75s</td><td>Moderate</td></tr>
+          <tr><td><b>Leg Extension</b><br><span style="font-size:12px;color:var(--muted)">Quad isolation. Controlled, no swinging.</span></td><td>3</td><td>12–15</td><td>60s</td><td>Moderate</td></tr>
+          <tr><td><b>Seated Calf Raise</b></td><td>3</td><td>15–20</td><td>45s</td><td>Light-Mod</td></tr>
+          <tr><td><b>Cable Crunch / Hanging Knee Raise</b></td><td>3</td><td>12–15</td><td>45s</td><td>Moderate</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SATURDAY -->
+    <div class="day-head"><span class="dn">Saturday</span><span class="df">Upper Body B</span></div>
+    <p style="font-size:13.5px;color:var(--muted);">Focus: upper body again — pulling emphasis + posture work.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>Intensity</th></tr></thead>
+        <tbody>
+          <tr><td><b>Incline DB Press</b><br><span style="font-size:12px;color:var(--muted)">Targets upper chest — fills out the "skinny-fat" chest sag.</span></td><td>3</td><td>10–12</td><td>90s</td><td>Moderate</td></tr>
+          <tr><td><b>Assisted Pull-up / Lat Pulldown</b><br><span style="font-size:12px;color:var(--muted)">Use the assist machine. Builds toward your first real pull-up.</span></td><td>3</td><td>6–10</td><td>90s</td><td>Moderate</td></tr>
+          <tr><td><b>Single-Arm DB Row</b><br><span style="font-size:12px;color:var(--muted)">Knee on bench, pull dumbbell to hip. Full stretch.</span></td><td>3</td><td>10–12</td><td>75s</td><td>Moderate</td></tr>
+          <tr><td><b>Lateral Raise</b><br><span style="font-size:12px;color:var(--muted)">Light weight, strict. Builds shoulder width. <em>Mistake: going too heavy and swinging.</em></span></td><td>3</td><td>12–15</td><td>60s</td><td>Light</td></tr>
+          <tr><td><b>Face Pull (Cable)</b><br><span style="font-size:12px;color:var(--muted)">Pull rope to face, elbows high. <em>Best exercise for fixing rounded "desk shoulders."</em></span></td><td>3</td><td>15–20</td><td>60s</td><td>Light</td></tr>
+          <tr><td><b>Hammer Curl</b></td><td>2</td><td>12–15</td><td>60s</td><td>Light-Mod</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Cool-down (every session — 5 min)</h3>
+    <p>5 minutes of static stretching on the muscles you trained: hold each stretch 20–30 seconds, breathe slowly. For lower days: quad stretch, hamstring stretch, hip flexor stretch (huge for desk workers), calf stretch. For upper days: chest doorway stretch, lat stretch, shoulder cross-body stretch, tricep overhead stretch. This aids recovery and counteracts sitting tightness.</p>
+
+    <h3>How your training evolves by phase</h3>
+    <p>A common beginner question: <em>does the workout itself change each phase, or do I just add sets and weight?</em> Both — but at different points:</p>
+    <ul>
+      <li><strong>Phases 1 → 2 (months 1–5): same workout, just heavier.</strong> You run this exact Upper/Lower template the whole time. What changes is the <em>load and volume</em>, not the exercises — you start at 2 light sets, ramp to full 3 sets, then add weight week to week. The one swap along the way: in Phase 2 you upgrade a few movements to their barbell versions (goblet squat → barbell squat, DB Romanian deadlift → barbell deadlift, DB bench → barbell bench). Same movement <em>pattern</em>, just the grown-up tool.</li>
+      <li><strong>Phase 3 onward (month 6+): the workout itself changes.</strong> Here the structure changes, not just the numbers — you move to a Push/Pull/Legs/Upper split with more exercises and more sets, because by then your body adapts faster than a twice-weekly template can keep up with.</li>
+    </ul>
+    <p>As you get stronger, the structure grows with you:</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Phase</th><th>Split</th><th>Weekly volume</th><th>Main focus</th></tr></thead>
+        <tbody>
+          <tr><td><b>1 — Foundation</b></td><td>Upper/Lower (this plan) — 2 sets ramping to 3</td><td>Low, start very light</td><td>Form &amp; habit</td></tr>
+          <tr><td><b>2 — Early Intermediate</b></td><td>Upper/Lower (this plan) — full 3 sets, add barbells</td><td>Moderate</td><td>Strength on compounds</td></tr>
+          <tr><td><b>3 — Intermediate</b></td><td>Push / Pull / Legs / Upper (4-day)</td><td>Higher — 3–4 sets, more exercises</td><td>Muscle growth &amp; weak points</td></tr>
+          <tr><td><b>4 — Lifestyle</b></td><td>Any 4-day split you enjoy</td><td>Auto-regulated to life</td><td>Maintain &amp; perform</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13.5px;color:var(--muted);">When you reach Phase 3 (around month 6), that's the moment to build out a detailed Push/Pull/Legs routine. For now, don't think about it — master this one template first. The template you stick with always beats the perfect one you keep swapping.</p>
+
+    <div class="callout warn">
+      <span class="ci">⚠️ FORM > EGO, ALWAYS</span>
+      For your entire first month, deliberately use weights that feel <em>too easy</em>. Master the movement pattern first. Injuries from rushing weight are the #1 reason beginners quit. Nobody at the gym is judging your weights — they're worried about their own.
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESSION -->
+<section id="progression">
+  <div class="wrap">
+    <span class="sec-num">Requirement 3</span>
+    <h2>Exercise progression &amp; recovery</h2>
+    <p class="lead">Progressive overload is the single principle behind all results. If you do nothing else right, do this: gradually demand more of your body over time.</p>
+
+    <h3>When &amp; how to add weight</h3>
+    <p>Use the <strong>"double progression"</strong> method — the simplest system for beginners:</p>
+    <ol>
+      <li>Pick a rep range (e.g. 10–12).</li>
+      <li>Start at a weight where you can hit the <em>bottom</em> of the range (10) with good form.</li>
+      <li>Each session, try to add a rep. When you can do the <em>top</em> of the range (12) for <strong>all sets</strong> with good form…</li>
+      <li>…increase the weight by the smallest increment (usually 1–2.5 kg), which drops you back to ~10 reps. Repeat.</li>
+    </ol>
+
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Lift type</th><th>Weight jump</th><th>How often (beginner)</th></tr></thead>
+        <tbody>
+          <tr><td><b>Big compounds</b> (squat, deadlift, leg press)</td><td>2.5–5 kg</td><td>Often weekly early on</td></tr>
+          <tr><td><b>Upper compounds</b> (bench, row, press)</td><td>1.25–2.5 kg</td><td>Every 1–2 weeks</td></tr>
+          <tr><td><b>Isolation</b> (curls, raises, pushdowns)</td><td>1–2 kg</td><td>Every 2–3 weeks</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Deload recommendations</h3>
+    <p>A deload is a planned easy week to let your body fully recover and rebuild. It prevents burnout and injury.</p>
+    <ul>
+      <li><strong>When:</strong> Every 6–8 weeks, or whenever you feel run-down, sleep-deprived, or your lifts stall for 2+ weeks.</li>
+      <li><strong>How:</strong> Keep the same exercises but cut to ~60% of your usual weight, or halve your number of sets. You should leave the gym feeling refreshed, not tired.</li>
+      <li>In Phase 1 you likely won't need formal deloads — just take an extra rest day if very sore. They matter more from Phase 2 onward.</li>
+    </ul>
+
+    <h3>Recovery recommendations</h3>
+    <div class="grid2">
+      <div class="card accent-olive">
+        <h4>Sleep</h4>
+        <p style="margin:0;font-size:13.5px;">7–9 hours. This is when muscle actually grows. Under-sleeping sabotages fat loss and muscle gain simultaneously.</p>
+      </div>
+      <div class="card accent-olive">
+        <h4>Protein timing</h4>
+        <p style="margin:0;font-size:13.5px;">Spread protein across 4 meals. Have a protein source within ~2 hours of training.</p>
+      </div>
+      <div class="card accent-olive">
+        <h4>Rest days</h4>
+        <p style="margin:0;font-size:13.5px;">Tue, Thu, Sun aren't lazy days — they're growth days. Walk and stretch, but let muscles repair.</p>
+      </div>
+      <div class="card accent-olive">
+        <h4>Active recovery</h4>
+        <p style="margin:0;font-size:13.5px;">Light walking, stretching, and mobility on rest days reduces soreness and improves blood flow.</p>
+      </div>
+    </div>
+
+    <h3>Injury prevention</h3>
+    <ul>
+      <li>Never skip the warm-up. Cold muscles and joints injure easily.</li>
+      <li><strong>Sharp pain = stop immediately.</strong> Muscle burn and fatigue are fine; joint or sharp pain is not.</li>
+      <li>Control the lowering (eccentric) phase of every rep — most injuries happen from dropping weights fast.</li>
+      <li>Leave 1–2 reps "in the tank" on most sets (don't grind to total failure as a beginner).</li>
+      <li>Prioritize the face pulls and rows — they protect shoulders and fix the rounded posture from desk work.</li>
+      <li>If unsure about a movement, ask a gym trainer to watch one set. Most gyms in Chennai include free form checks.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CARDIO -->
+<section id="cardio">
+  <div class="wrap">
+    <span class="sec-num">Requirement 4</span>
+    <h2>Cardio &amp; heart health</h2>
+    <p class="lead">For a skinny-fat recomp, cardio is a <em>support tool</em> for fat loss and heart health — not the main event. Don't overdo it, or you'll burn the muscle you're trying to build.</p>
+
+    <h3>The walking foundation (your most powerful tool)</h3>
+    <p>For a sedentary software engineer, daily walking is the highest-impact, lowest-risk fat-loss and health habit you can build. It burns fat without taxing recovery.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Metric</th><th>Starting target</th><th>Build toward</th></tr></thead>
+        <tbody>
+          <tr><td><b>Daily steps</b></td><td>6,000–7,000</td><td>8,000–10,000</td></tr>
+          <tr><td><b>Post-meal walks</b></td><td>10 min after lunch</td><td>10–15 min after each main meal (huge for blood sugar)</td></tr>
+          <tr><td><b>Desk breaks</b></td><td>Stand/walk 2 min every hour</td><td>Habit on autopilot</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Structured cardio (on rest or post-lifting days)</h3>
+    <ul>
+      <li><strong>Beginner approach:</strong> 2–3 sessions/week of 20–30 min steady, easy cardio (incline treadmill walk, cycling, elliptical) where you can still hold a conversation. This is your "Zone 2."</li>
+      <li><strong>Fat-loss strategy:</strong> Keep cardio low-intensity and consistent rather than exhausting. Do it <em>after</em> weights or on rest days, never right before a lifting session.</li>
+      <li><strong>Optional later (Phase 2+):</strong> 1× per week of light intervals (e.g. 30s faster / 90s easy × 6–8) once your base fitness improves. Don't add this early.</li>
+    </ul>
+
+    <div class="callout tip">
+      <span class="ci">❤️ HEART HEALTH</span>
+      Aim for the WHO guideline of ~150 minutes of moderate activity per week — your walking easily covers this. Combined with strength training, this dramatically lowers your long-term risk of the heart disease and diabetes that disproportionately affect sedentary South Asian men. Get a basic health check (lipids, fasting glucose, HbA1c, Vitamin D, B12) done — these deficiencies are very common in Indian IT professionals.
+    </div>
+  </div>
+</section>
+
+<!-- NUTRITION -->
+<section id="nutrition">
+  <div class="wrap">
+    <span class="sec-num">Requirement 5</span>
+    <h2>Nutrition plan</h2>
+    <p class="lead">No extreme dieting. For recomposition you eat at roughly <strong>maintenance calories</strong> with high protein. The magic is in protein and consistency, not starvation.</p>
+
+    <p>Your estimated maintenance is around <strong>2,000–2,150 kcal/day</strong> (based on 61 kg, 164 cm, age 30, lightly active with training + walking). For recomp, eat right around there. If you find fat is dropping but you feel weak, nudge up 100–150 kcal. These are starting estimates — adjust based on 3–4 weeks of real-world results.</p>
+
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Macro</th><th>Daily target</th><th>Why it matters</th><th>Roughly</th></tr></thead>
+        <tbody>
+          <tr><td><b>Calories</b></td><td>~2,000–2,150 kcal</td><td>Maintenance for recomposition — not a crash deficit</td><td>—</td></tr>
+          <tr><td><b>Protein</b> 🥇</td><td>120–135 g</td><td>The #1 lever. Builds muscle, preserves it in fat loss, keeps you full</td><td>~2 g/kg</td></tr>
+          <tr><td><b>Carbohydrates</b></td><td>200–240 g</td><td>Fuels training &amp; brain (you need this for coding focus too)</td><td>~40–45% cals</td></tr>
+          <tr><td><b>Fats</b></td><td>50–60 g</td><td>Hormones, joint health, satiety</td><td>~25% cals</td></tr>
+          <tr><td><b>Water</b></td><td>3–3.5 L</td><td>Performance, recovery, appetite control (Chennai heat = more)</td><td>—</td></tr>
+          <tr><td><b>Fibre</b></td><td>30–35 g</td><td>Digestion, fullness, blood sugar — easy with Indian veg/dal</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout warn">
+      <span class="ci">🍚 THE SKINNY-FAT NUTRITION TRAP</span>
+      The typical South Indian diet is heavy on rice, idli, dosa, and refined carbs with relatively little protein — which is exactly what creates a skinny-fat body. Your single biggest change is simply: <strong>add a protein source to every meal</strong> and slightly reduce the mountain of rice. Don't eliminate rice — just portion it and balance the plate.</div>
+
+    <h3>Supplements — only what's evidence-based</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Supplement</th><th>Worth it?</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><b>Whey protein</b></td><td>Optional, useful</td><td>Only if you struggle to hit 120g+ from food. A convenient tool, not magic. (MuscleBlaze, AS-IT-IS are good-value Indian brands.)</td></tr>
+          <tr><td><b>Creatine monohydrate</b></td><td>Yes — proven</td><td>The most researched, safe supplement. 5 g/day, any time. Helps strength &amp; muscle. Cheap.</td></tr>
+          <tr><td><b>Vitamin D3</b></td><td>Likely yes</td><td>Deficiency is very common in Indian IT workers (indoors all day). Test first, then supplement if low.</td></tr>
+          <tr><td><b>Vitamin B12</b></td><td>If vegetarian</td><td>Often low in vegetarian diets. Test and supplement if needed.</td></tr>
+          <tr><td><b>Everything else</b></td><td>Skip</td><td>Fat burners, BCAAs, test boosters, mass gainers — waste of money for you.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FOODS -->
+<section id="foods">
+  <div class="wrap">
+    <span class="sec-num">Requirement 6</span>
+    <h2>Chennai / South Indian food guide</h2>
+    <p class="lead">You don't need to abandon your food culture — you need to rebalance it. Here's how everyday Chennai foods fit into your plan.</p>
+
+    <h3>🟢 Eat regularly (build meals around these)</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Food</th><th>Why it's great</th></tr></thead>
+        <tbody>
+          <tr><td><b>Eggs</b></td><td>Cheapest, best protein. 3–4 whole eggs/day is fine. Egg whites to add protein cheaply.</td></tr>
+          <tr><td><b>Chicken (non-veg)</b></td><td>Lean protein staple. Grilled, curry (less oil), or pepper chicken.</td></tr>
+          <tr><td><b>Fish (non-veg)</b></td><td>Excellent — protein + omega-3s. Chennai has great fresh fish. Grill or curry, go easy on oil.</td></tr>
+          <tr><td><b>Paneer (veg)</b></td><td>Top vegetarian protein. ~18g protein per 100g.</td></tr>
+          <tr><td><b>Curd &amp; buttermilk</b></td><td>Protein, probiotics, cooling for the heat. Daily yes. Prefer unsweetened curd.</td></tr>
+          <tr><td><b>Dal, sambar, rasam</b></td><td>Plant protein + fibre. Make sambar with extra dal for more protein.</td></tr>
+          <tr><td><b>Sundal, sprouts, legumes</b></td><td>Brilliant high-protein, high-fibre snacks. Channa/rajma/moong sundal — eat these often.</td></tr>
+          <tr><td><b>Vegetables</b></td><td>Fill half your plate. Poriyal, kootu, avial, greens (keerai).</td></tr>
+          <tr><td><b>Millets</b></td><td>Swap some rice for ragi, kambu, thinai — more fibre, steadier energy.</td></tr>
+          <tr><td><b>Groundnuts</b></td><td>Good fats + some protein. A small handful, not a bowl (calorie-dense).</td></tr>
+          <tr><td><b>Fruits</b></td><td>Banana, guava, papaya, apple. Whole fruit, not juice.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>🟡 Moderate (enjoy, but portion-control)</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Food</th><th>How to moderate</th></tr></thead>
+        <tbody>
+          <tr><td><b>White rice</b></td><td>Eat it, but ~1–1.5 cups cooked per meal, not 3. Pair with protein + veg. Consider hand-pounded/brown rice or millets sometimes.</td></tr>
+          <tr><td><b>Idli / Dosa</b></td><td>Fine for breakfast, but they're mostly carbs. Pair with extra sambar, chutney, and add egg/paneer on the side for protein. 2–3 idlis, not 6.</td></tr>
+          <tr><td><b>Appam, Pongal, Upma</b></td><td>Carb-heavy. Smaller portions + a protein side. Ven pongal made with less ghee.</td></tr>
+          <tr><td><b>Chapati</b></td><td>Better than rice for fibre, but still portion it: 2–3 per meal.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>🔴 Minimize</h3>
+    <p>Fried snacks (vada, bonda, bajji), sugary coffee/tea (the daily filter coffee with lots of sugar adds up — reduce sugar), bakery items, sweets, sodas, packaged "namkeen," and deep-fried restaurant gravies swimming in oil. You don't have to ban these — just make them occasional, not daily.</p>
+
+    <h3>Portion control made simple (the hand method)</h3>
+    <ul>
+      <li><strong>Protein:</strong> 1–2 palm-sized portions per meal</li>
+      <li><strong>Carbs (rice/idli/chapati):</strong> 1 cupped-hand portion per meal</li>
+      <li><strong>Vegetables:</strong> 1–2 fist-sized portions — fill half the plate</li>
+      <li><strong>Fats (oil/nuts/ghee):</strong> 1 thumb-sized portion</li>
+    </ul>
+
+    <div class="callout tip">
+      <span class="ci">🍽️ OFFICE LUNCH &amp; RESTAURANT STRATEGY</span>
+      <strong>Office/canteen:</strong> Take a smaller scoop of rice, double the sambar/dal, add curd, and bring boiled eggs or a paneer/chicken side from home. <strong>Restaurants:</strong> Choose grilled/tandoori over fried, ask for less oil, prefer dal/sambar-based dishes, share the rice/biryani portion, and start with a soup or salad. <strong>Tiffin culture tip:</strong> Idli/dosa breakfasts are easy to over-eat — just add a protein side and you're set.
+    </div>
+  </div>
+</section>
+
+<!-- MEAL PLANS -->
+<section id="meals">
+  <div class="wrap">
+    <span class="sec-num">Requirement 7</span>
+    <h2>Sample meal plans</h2>
+    <p class="lead">Three versions to match your budget and goals. All built around Chennai-available foods. Each lands near your ~2,000–2,150 kcal / 120g+ protein target.</p>
+
+    <h3>💰 Budget-Friendly Plan</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Meal</th><th>Veg option</th><th>Non-veg option</th></tr></thead>
+        <tbody>
+          <tr><td><b>Breakfast</b></td><td>3 idli + extra sambar + 1 boiled egg/100g paneer bhurji</td><td>3 idli + sambar + 2 boiled eggs</td></tr>
+          <tr><td><b>Mid-morning</b></td><td>Buttermilk + handful groundnuts</td><td>Buttermilk + handful groundnuts</td></tr>
+          <tr><td><b>Lunch</b></td><td>1 cup rice + dal + sundal (channa) + poriyal + curd</td><td>1 cup rice + dal + 2 eggs curry + poriyal + curd</td></tr>
+          <tr><td><b>Evening</b></td><td>Sprouts sundal + black coffee (less sugar)</td><td>Sprouts sundal + tea (less sugar)</td></tr>
+          <tr><td><b>Dinner</b></td><td>2 chapati + paneer/soya curry + veg</td><td>2 chapati + chicken curry (less oil) + veg</td></tr>
+          <tr><td><b>Post-workout</b></td><td>Glass of milk + banana</td><td>Glass of milk + banana / 2 boiled eggs</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>🍽️ Standard Plan</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Meal</th><th>Veg option</th><th>Non-veg option</th></tr></thead>
+        <tbody>
+          <tr><td><b>Breakfast</b></td><td>2 dosa + sambar/chutney + 150g paneer scramble</td><td>2 dosa + sambar + 3-egg omelette</td></tr>
+          <tr><td><b>Mid-morning</b></td><td>Bowl of curd + fruit (guava/apple)</td><td>Bowl of curd + fruit</td></tr>
+          <tr><td><b>Lunch</b></td><td>1–1.5 cup rice/millet + dal + paneer curry + veg + curd</td><td>1–1.5 cup rice + 150g chicken curry + veg + curd</td></tr>
+          <tr><td><b>Evening</b></td><td>Sundal/sprouts + handful nuts + coffee</td><td>Boiled eggs / chicken sandwich (brown bread)</td></tr>
+          <tr><td><b>Dinner</b></td><td>3 chapati + soya/paneer + dal + salad</td><td>3 chapati + fish curry + dal + salad</td></tr>
+          <tr><td><b>Post-workout</b></td><td>Milk + banana (or whey if needed)</td><td>Milk + banana (or whey if needed)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>💪 High-Protein Plan (Phase 2+ muscle focus)</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Meal</th><th>Veg option</th><th>Non-veg option</th></tr></thead>
+        <tbody>
+          <tr><td><b>Breakfast</b></td><td>Paneer (150g) + veg stuffed dosa/2 chapati + 200g curd</td><td>4-egg omelette + 2 chapati + 1 glass milk</td></tr>
+          <tr><td><b>Mid-morning</b></td><td>Whey scoop in milk + handful almonds</td><td>Whey scoop in milk / 3 boiled egg whites</td></tr>
+          <tr><td><b>Lunch</b></td><td>1 cup rice + rajma/chana + paneer (100g) + veg + curd</td><td>1 cup rice + 200g chicken + dal + veg + curd</td></tr>
+          <tr><td><b>Evening</b></td><td>Roasted channa/sundal (large) + buttermilk</td><td>150g grilled chicken / tuna + buttermilk</td></tr>
+          <tr><td><b>Dinner</b></td><td>Paneer (150g) tikka + 2 chapati + salad + dal</td><td>200g fish/chicken + 2 chapati + salad</td></tr>
+          <tr><td><b>Post-workout</b></td><td>Whey + banana, or milk + soya chunks dish</td><td>Whey + banana, or 3 eggs + toast</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <span class="ci">📌 HOW TO USE THESE</span>
+      Don't follow them rigidly — use them as templates. The pattern that matters: <strong>protein at every meal, moderate carbs, half a plate of veg, water all day.</strong> Repeat what works, swap freely within the food guide above.
+    </div>
+  </div>
+</section>
+
+<!-- LIFESTYLE -->
+<section id="lifestyle">
+  <div class="wrap">
+    <span class="sec-num">Requirement 8</span>
+    <h2>Lifestyle for a desk-bound engineer</h2>
+    <p class="lead">Your 8+ hours of sitting is working against you. These habits matter as much as the gym.</p>
+
+    <div class="grid2">
+      <div class="card accent-teal">
+        <h4>😴 Sleep</h4>
+        <p style="margin:0;font-size:13.5px;">7–9 hours, consistent times. No screens 30–60 min before bed (blue light wrecks sleep). Sleep is when recovery and fat loss happen. Non-negotiable for results.</p>
+      </div>
+      <div class="card accent-teal">
+        <h4>🧘 Stress</h4>
+        <p style="margin:0;font-size:13.5px;">Chronic work stress raises cortisol, which promotes belly fat (your problem area). Use 5–10 min daily breathing/meditation, get sunlight, and take real breaks from screens.</p>
+      </div>
+      <div class="card accent-teal">
+        <h4>📱 Screen time</h4>
+        <p style="margin:0;font-size:13.5px;">Follow 20-20-20 for eyes (every 20 min, look 20 ft away for 20 sec). Set a "phone down" time each night. Replace some scrolling with a short walk.</p>
+      </div>
+      <div class="card accent-teal">
+        <h4>🪑 Posture</h4>
+        <p style="margin:0;font-size:13.5px;">Screen at eye level, feet flat, back supported. Your Wed/Sat rows and face pulls actively fix the rounded-shoulder "tech neck" you're building all day.</p>
+      </div>
+    </div>
+
+    <h3>Desk stretches (do 2–3 every couple of hours)</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Stretch</th><th>How</th><th>Fixes</th></tr></thead>
+        <tbody>
+          <tr><td><b>Chin tucks</b></td><td>Pull head straight back (double chin), hold 5s × 5</td><td>Forward head / tech neck</td></tr>
+          <tr><td><b>Doorway chest stretch</b></td><td>Forearms on door frame, lean forward, 20–30s</td><td>Tight chest, rounded shoulders</td></tr>
+          <tr><td><b>Seated hip flexor / stand &amp; hinge</b></td><td>Stand, gently arch back, push hips forward</td><td>Tight hips from sitting</td></tr>
+          <tr><td><b>Neck side stretch</b></td><td>Ear toward shoulder, hold 20s each side</td><td>Neck/trap tension</td></tr>
+          <tr><td><b>Wrist/forearm stretch</b></td><td>Extend arm, pull fingers back gently</td><td>Typing strain, RSI prevention</td></tr>
+          <tr><td><b>Stand &amp; walk</b></td><td>Every hour, 2 min — set a timer</td><td>Everything — circulation, energy</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Recovery practices</h3>
+    <ul>
+      <li>Foam roll tight areas (quads, calves, upper back) 5 min on rest days.</li>
+      <li>Hydrate well — Chennai heat means you lose more; dehydration kills performance.</li>
+      <li>One full rest day (Sunday) — genuinely rest. The body grows during recovery, not training.</li>
+      <li>Light walks on Tue/Thu keep you loose without taxing recovery.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- TRACKING -->
+<section id="tracking">
+  <div class="wrap">
+    <span class="sec-num">Requirement 9</span>
+    <h2>Progress tracking</h2>
+    <p class="lead">For recomposition the scale lies. You need multiple measures to see the real story — and they'll keep you motivated when the scale doesn't move.</p>
+
+    <h3>What to track</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Metric</th><th>How often</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td><b>Body weight</b></td><td>2–3×/week, morning, fasted — track the weekly average</td><td>Daily fluctuates; the trend matters, not one reading</td></tr>
+          <tr><td><b>Waist measurement</b></td><td>Weekly, at navel</td><td>Best single indicator of fat loss for you</td></tr>
+          <tr><td><b>Progress photos</b></td><td>Every 2 weeks, same light/pose/time</td><td>The most honest view of recomposition</td></tr>
+          <tr><td><b>Strength log</b></td><td>Every session</td><td>Lifts going up = muscle being built. Most motivating metric.</td></tr>
+          <tr><td><b>Other measurements</b></td><td>Monthly (arms, chest, thighs)</td><td>See muscle growing even when weight is flat</td></tr>
+          <tr><td><b>Energy/sleep/mood</b></td><td>Casually, weekly</td><td>Early wins show up here first</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Weekly method</h3>
+    <p>Pick one day (e.g. Sunday). Log your weekly average weight, take your waist measurement, glance at your strength log to confirm lifts are progressing. Adjust food only if needed (see below). Takes 5 minutes.</p>
+
+    <h3>Monthly review</h3>
+    <p>Compare photos and measurements to last month. Ask: Is my waist down or stable? Are my lifts up? If <em>yes</em>, you're winning — change nothing. If fat isn't moving after a solid month, reduce daily calories by ~150 (smaller rice portions). If you feel weak and lifts are stalling, add ~150 calories. Small adjustments, then wait another month.</p>
+
+    <div class="callout tip">
+      <span class="ci">📈 REALISTIC EXPECTATIONS</span>
+      Recomposition is slow but permanent. Expect: <strong>Month 1–2</strong> — energy, posture, habit, beginner strength jumps. <strong>Month 3–5</strong> — visible waist reduction, first muscle definition, clothes fit better. <strong>Month 6–9</strong> — clear, obvious transformation; lean and athletic. <strong>Month 12</strong> — a genuinely different physique. As a recomp, you may stay around 60–63 kg the whole time while looking dramatically leaner and more muscular. <em>That's the win.</em> Anyone promising a transformation in 4–6 weeks is selling something.
+    </div>
+  </div>
+</section>
+
+<!-- MISTAKES -->
+<section id="mistakes">
+  <div class="wrap">
+    <span class="sec-num">Requirement 10</span>
+    <h2>Top skinny-fat beginner mistakes</h2>
+    <p class="lead">Avoid these and you'll be ahead of 90% of people who start.</p>
+
+    <div class="dd"><div class="bad">✗ Crash dieting to "lose the belly first"</div><div class="good">✓ Eat at maintenance with high protein and lift. Cutting hard burns your already-low muscle and makes you skinnier-fat.</div></div>
+    <div class="dd"><div class="bad">✗ Doing endless cardio and ab workouts</div><div class="good">✓ Lift weights as the priority. You can't spot-reduce belly fat with crunches. Strength training builds the muscle that reshapes you.</div></div>
+    <div class="dd"><div class="bad">✗ Not eating enough protein</div><div class="good">✓ Hit 120g+ daily. This is the #1 fix for the typical carb-heavy South Indian skinny-fat diet.</div></div>
+    <div class="dd"><div class="bad">✗ Ego-lifting / chasing heavy weights early</div><div class="good">✓ Master form with light weights for the first month. Injuries end progress entirely.</div></div>
+    <div class="dd"><div class="bad">✗ Program-hopping every two weeks</div><div class="good">✓ Stick to one plan for months. Progress comes from progressive overload over time, not novelty.</div></div>
+    <div class="dd"><div class="bad">✗ Obsessing over the scale</div><div class="good">✓ Track waist, photos, and strength. Recomp keeps your weight stable while you transform.</div></div>
+    <div class="dd"><div class="bad">✗ Ignoring sleep and stress</div><div class="good">✓ Treat 7–9 hrs sleep as part of the program. Under-sleeping sabotages both fat loss and muscle gain.</div></div>
+    <div class="dd"><div class="bad">✗ Wasting money on fat burners &amp; mass gainers</div><div class="good">✓ Only creatine, possibly whey, and Vitamin D/B12 if tested low. Save your money for good food.</div></div>
+    <div class="dd"><div class="bad">✗ Quitting because results feel slow</div><div class="good">✓ The first month is invisible, the third is noticeable, the sixth is undeniable. Consistency is the entire game.</div></div>
+    <div class="dd"><div class="bad">✗ "All or nothing" thinking — one missed day ruins the week</div><div class="good">✓ Missed Monday? Train Tuesday. Bad meal? Next meal is normal. Sustainable beats perfect, every time.</div></div>
+
+    <div class="callout tip" style="margin-top:24px;">
+      <span class="ci">🏁 IF YOU REMEMBER ONLY ONE THING</span>
+      Lift weights 4×/week with progressive overload, eat protein at every meal, walk daily, sleep well, and stay consistent for 6 months. Everything else is a detail. You have a complete beginner's biggest advantage right now — your body will respond fast. Start this week.
+    </div>
+
+    <p class="disclaimer">This plan is general fitness and nutrition guidance, not medical advice. Given your sedentary background, consider a basic health check-up (including lipids, fasting glucose/HbA1c, Vitamin D, B12, and blood pressure) before starting, and consult a doctor before beginning a new exercise or nutrition program — especially if you have any existing health conditions or pain. Stop and seek advice if you experience chest pain, dizziness, or sharp joint pain during exercise.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b>Your 12-month skinny-fat transformation blueprint.</b><br>
+    Built for Mon · Wed · Fri · Sat &nbsp;|&nbsp; Chennai &nbsp;|&nbsp; Recomposition focus<br><br>
+    Consistency &gt; intensity. Start this week.
+  </div>
+</footer>
+
+</body>
+</html>
