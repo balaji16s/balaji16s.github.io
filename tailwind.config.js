@@ -11,9 +11,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        hand: ['Caveat', 'cursive'],
-        sans: ['ui-sans-serif', 'system-ui', 'sans-serif'],
-        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+        hand: ['Montserrat', 'sans-serif'],
+        sans: ['Montserrat', 'sans-serif'],
+        mono: ['Montserrat', 'sans-serif'],
       },
     },
   },

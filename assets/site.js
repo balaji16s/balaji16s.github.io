@@ -2,8 +2,6 @@
 (function () {
   'use strict';
 
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   /* ---------- Floating nav hamburger ---------- */
   function initNav() {
     var nav = document.querySelector('[data-nav]');
@@ -33,57 +31,114 @@
     });
   }
 
-  /* ---------- Hero typewriter ---------- */
-  function initTypewriter() {
-    var el = document.querySelector('[data-typewriter]');
-    if (!el) return;
+  /* ---------- Keep the one-page navigation in sync with scroll ---------- */
+  function initSectionNav() {
+    var sections = document.querySelectorAll('[data-page-section]');
+    var links = document.querySelectorAll('[data-nav-link]');
+    if (!sections.length || !links.length || !('IntersectionObserver' in window)) return;
 
-    var roles;
-    try {
-      roles = JSON.parse(el.getAttribute('data-typewriter'));
-    } catch (err) {
-      roles = [el.textContent.trim()];
-    }
-    if (!roles || !roles.length) return;
-
-    // Reduced motion: show first role statically, no caret animation.
-    if (reduceMotion) {
-      el.textContent = roles[0];
-      el.classList.remove('caret');
-      return;
+    function markActive(id) {
+      links.forEach(function (link) {
+        var active = link.getAttribute('href') === '#' + id;
+        link.classList.toggle('is-active', active);
+        if (active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
     }
 
-    var roleIndex = 0;
-    var charIndex = 0;
-    var deleting = false;
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) markActive(entry.target.id);
+      });
+    }, { rootMargin: '-28% 0px -62% 0px', threshold: 0 });
 
-    function tick() {
-      var word = roles[roleIndex];
-      if (!deleting) {
-        charIndex++;
-        el.textContent = word.slice(0, charIndex);
-        if (charIndex === word.length) {
-          deleting = true;
-          return setTimeout(tick, 1400); // hold full word
-        }
-        return setTimeout(tick, 90);
-      } else {
-        charIndex--;
-        el.textContent = word.slice(0, charIndex);
-        if (charIndex === 0) {
-          deleting = false;
-          roleIndex = (roleIndex + 1) % roles.length;
-          return setTimeout(tick, 250);
-        }
-        return setTimeout(tick, 45);
+    sections.forEach(function (section) { observer.observe(section); });
+    markActive((window.location.hash || '#home').slice(1));
+  }
+
+  /* ---------- Persistent light / dark theme toggle ---------- */
+  function initTheme() {
+    var root = document.documentElement;
+    var button = document.querySelector('[data-theme-toggle]');
+    if (!button) return;
+
+    var storedTheme = null;
+    try { storedTheme = window.localStorage.getItem('portfolio-theme'); } catch (err) {}
+    if (storedTheme === 'light' || storedTheme === 'dark') {
+      root.setAttribute('data-theme', storedTheme);
+    }
+
+    function currentTheme() {
+      var explicitTheme = root.getAttribute('data-theme');
+      if (explicitTheme) return explicitTheme;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function updateLabel() {
+      var activeTheme = currentTheme();
+      var nextTheme = activeTheme === 'dark' ? 'light' : 'dark';
+      var label = 'Switch to ' + nextTheme + ' mode';
+      button.setAttribute('aria-label', label);
+      button.setAttribute('title', label);
+      document.querySelectorAll('meta[name="theme-color"]').forEach(function (meta) {
+        meta.setAttribute('content', activeTheme === 'dark' ? '#151214' : '#faf9f6');
+      });
+    }
+
+    button.addEventListener('click', function () {
+      var nextTheme = currentTheme() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', nextTheme);
+      try { window.localStorage.setItem('portfolio-theme', nextTheme); } catch (err) {}
+      updateLabel();
+    });
+
+    updateLabel();
+  }
+
+  /* ---------- Professional / personal portfolio views ---------- */
+  function initPortfolioView() {
+    var buttons = document.querySelectorAll('[data-view-toggle]');
+    var panels = document.querySelectorAll('[data-view-panel]');
+    var navItems = document.querySelectorAll('[data-view-nav]');
+    if (!buttons.length || !panels.length) return;
+
+    function setView(view, moveToTop) {
+      panels.forEach(function (panel) {
+        panel.hidden = panel.getAttribute('data-view-panel') !== view;
+      });
+      navItems.forEach(function (item) {
+        item.hidden = item.getAttribute('data-view-nav') !== view;
+      });
+      buttons.forEach(function (button) {
+        button.setAttribute('aria-pressed', button.getAttribute('data-view-toggle') === view ? 'true' : 'false');
+      });
+
+      try { window.localStorage.setItem('portfolio-view', view); } catch (err) {}
+
+      if (moveToTop) {
+        window.history.replaceState(null, '', '#home');
+        document.getElementById('home').scrollIntoView({
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+        });
       }
     }
-    tick();
+
+    var storedView = null;
+    try { storedView = window.localStorage.getItem('portfolio-view'); } catch (err) {}
+    setView(storedView === 'personal' ? 'personal' : 'professional', false);
+
+    buttons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        setView(button.getAttribute('data-view-toggle'), true);
+      });
+    });
   }
 
   document.addEventListener('DOMContentLoaded', function () {
     initNav();
-    initTypewriter();
+    initTheme();
+    initPortfolioView();
+    initSectionNav();
     var year = new Date().getFullYear();
     document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = year; });
   });

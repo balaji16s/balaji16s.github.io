@@ -9,89 +9,402 @@
     <meta name="description"
         content="Balaji — SDET with 8+ years building reliable automation frameworks across Playwright, Selenium, API testing, AWS and AI-assisted testing.">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#151214" media="(prefers-color-scheme: dark)">
     <link rel="stylesheet" href="/assets/fonts.css">
     <link rel="stylesheet" href="/assets/tailwind.css">
     <link rel="stylesheet" href="/assets/site.css">
 </head>
 
-<body class="bg-dot-pattern text-gray-900 antialiased min-h-screen selection:bg-violet-100">
+<body class="home-page bg-dot-pattern text-gray-900 antialiased min-h-screen selection:bg-violet-100">
 
     <!-- ===== Floating Navbar ===== -->
-    <div class="fixed left-1/2 -translate-x-1/2 w-[90%] max-w-[800px] z-50 top-[1.2em] md:top-[2em]" data-nav>
+    <div class="home-nav fixed left-1/2 -translate-x-1/2 w-[90%] max-w-[800px] z-50 top-[1.2em] md:top-[2em]" data-nav>
         <nav class="nav-card">
-            <div class="h-[60px] flex items-center justify-between px-3">
+            <div class="nav-row h-[60px] flex items-center justify-between px-3">
                 <button type="button" class="hamburger p-2 -ml-1 cursor-pointer" data-nav-toggle aria-label="Open menu"
                     aria-expanded="false" aria-controls="nav-links">
                     <span></span><span></span><span></span>
                 </button>
-                <a href="/" class="font-hand text-3xl font-bold tracking-tight absolute left-1/2 -translate-x-1/2">Balaji</a>
-                <a href="/resume.pdf" target="_blank"
-                    class="bg-[#111] text-white text-sm font-medium px-4 h-[40px] inline-flex items-center rounded-[0.55rem] hover:bg-gray-800 transition-colors cursor-pointer">
-                    Resume
+                <a href="#home" class="header-logo" aria-label="Back to top">
+                    <img class="header-logo__light" src="/assets/img/logo-light.svg" alt="Bala logo" width="32" height="32">
+                    <img class="header-logo__dark" src="/assets/img/logo-dark.svg" alt="" width="32" height="32" aria-hidden="true">
                 </a>
+                <div class="nav-actions">
+                    <div class="view-toggle" role="group" aria-label="Portfolio view">
+                        <button type="button" data-view-toggle="professional" aria-label="Professional view" title="Professional" aria-pressed="true">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"/></svg>
+                        </button>
+                        <button type="button" data-view-toggle="personal" aria-label="Personal view" title="Personal" aria-pressed="false">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m3 11 9-8 9 8M5 10v10h14V10M9 20v-6h6v6"/></svg>
+                        </button>
+                    </div>
+                    <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode" title="Switch to dark mode">
+                        <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+                        <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+                    </button>
+                </div>
             </div>
             <div class="nav-panel px-3" id="nav-links">
                 <ul class="font-hand text-2xl py-2 flex flex-col md:flex-row md:justify-center gap-1 md:gap-6">
-                    <li><a data-nav-link href="/" class="block px-2 py-1 hover:text-violet-600 transition-colors">Home</a></li>
-                    <li><a data-nav-link href="/about" class="block px-2 py-1 hover:text-violet-600 transition-colors">About</a></li>
-                    <li><a data-nav-link href="/experience" class="block px-2 py-1 hover:text-violet-600 transition-colors">Experience</a></li>
-                    <li><a data-nav-link href="/projects" class="block px-2 py-1 hover:text-violet-600 transition-colors">Projects</a></li>
-                    <li><a data-nav-link href="/contact" class="block px-2 py-1 hover:text-violet-600 transition-colors">Contact</a></li>
+                    <li><a data-nav-link href="#home" class="block px-2 py-1 hover:text-violet-600 transition-colors">Home</a></li>
+                    <li data-view-nav="professional"><a data-nav-link href="#about" class="block px-2 py-1 hover:text-violet-600 transition-colors">About</a></li>
+                    <li data-view-nav="professional"><a data-nav-link href="#skills" class="block px-2 py-1 hover:text-violet-600 transition-colors">Skills</a></li>
+                    <li data-view-nav="professional"><a data-nav-link href="#certifications" class="block px-2 py-1 hover:text-violet-600 transition-colors">Certifications</a></li>
+                    <li data-view-nav="professional"><a data-nav-link href="#experience" class="block px-2 py-1 hover:text-violet-600 transition-colors">Experience</a></li>
+                    <li data-view-nav="professional"><a data-nav-link href="#side-projects" class="block px-2 py-1 hover:text-violet-600 transition-colors">Side Projects</a></li>
+                    <li data-view-nav="personal" hidden><a data-nav-link href="#personal-projects" class="block px-2 py-1 hover:text-violet-600 transition-colors">Projects</a></li>
                 </ul>
             </div>
         </nav>
     </div>
 
+    <main>
     <!-- ===== Hero ===== -->
-    <main class="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
-
-        <!-- Scattered photos -->
-        <div class="photo-frame hidden sm:block absolute left-[6%] top-[22%] w-36 rotate-[-8deg]">
-            <img src="/assets/img/portrait.jpg" alt="Balaji portrait" class="w-full h-40 object-cover grayscale">
-        </div>
-        <div class="photo-frame hidden md:block absolute right-[8%] top-[20%] w-32 rotate-[7deg]">
-            <img src="/assets/img/istqb-ctfl.jpg" alt="ISTQB Certified Tester Foundation Level certificate" class="w-full h-40 object-contain">
-        </div>
-        <div class="photo-frame hidden lg:block absolute left-[12%] bottom-[14%] w-28 rotate-[6deg]">
-            <img src="/assets/img/aws-certified-cloud-practitioner.png" alt="AWS Certified Cloud Practitioner certificate" class="w-full h-32 object-contain">
-        </div>
-        <div class="photo-frame hidden lg:block absolute right-[10%] bottom-[16%] w-32 rotate-[-8deg]">
-            <img src="/assets/img/google-ai-essentials-v1.png" alt="Google AI Essentials certificate" class="w-full h-32 object-contain">
-        </div>
-
-        <!-- Text block -->
-        <div class="relative z-10 text-center max-w-2xl">
-            <p class="kicker text-xl mb-1">Hi, I'm</p>
-            <h1 class="font-hand font-bold leading-none text-[clamp(5rem,18vw,9rem)] mb-2">Balaji</h1>
-            <p class="font-mono text-lg sm:text-xl text-gray-600 mb-6">
-                a <span class="caret text-gray-900 font-semibold" data-typewriter='["SDET","Automation Engineer","AI/API Tester","App Developer"]'>SDET</span>
-            </p>
-            <p class="font-mono text-sm sm:text-base text-gray-500 max-w-md mx-auto mb-9">
-                Building reliable systems through quality. Explore who I am and what I do, in one place.
-            </p>
-            <div class="flex items-center justify-center gap-5">
-                <a href="/about"
-                    class="font-hand text-2xl border-[1.5px] border-[#111] rounded-full px-7 py-1.5 hover:bg-[#111] hover:text-white transition-colors cursor-pointer">
-                    About Me
-                </a>
-                <a href="/contact" class="font-mono text-sm text-gray-600 hover:text-black transition-colors underline underline-offset-4 cursor-pointer inline-block py-2">Contact</a>
+    <section id="home" data-page-section class="hero-section">
+        <div class="hero-layout">
+            <div class="hero-copy">
+                <h1 class="hero-title">Balaji</h1>
+                <p class="hero-eyebrow">Software Development Engineer in Test</p>
+                <p class="hero-summary">Building reliable software through test automation, API validation, cloud execution, and practical quality engineering.</p>
+            </div>
+            <div class="hero-contact-list" aria-label="Contact links">
+                    <a href="https://github.com/balaji16s" target="_blank" rel="noopener" class="hero-contact-link">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .7a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.04 1.77 2.72 1.26 3.38.96.1-.75.4-1.26.74-1.55-2.57-.29-5.27-1.28-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.16 1.18A11 11 0 0 1 12 6.13c.98 0 1.95.13 2.87.39 2.2-1.49 3.16-1.18 3.16-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.83 1.19 3.09 0 4.41-2.71 5.38-5.29 5.67.42.36.79 1.06.79 2.14v3.26c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
+                        <span>github.com/balaji16s</span>
+                    </a>
+                    <a href="https://linkedin.com/in/balaji16s" target="_blank" rel="noopener" class="hero-contact-link">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V8.98h3.42v1.57h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.29ZM5.32 7.41a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13Zm1.78 13.04H3.54V8.98H7.1v11.47Z"/></svg>
+                        <span>linkedin.com/in/balaji16s</span>
+                    </a>
+                    <a href="mailto:balaah16@gmail.com" class="hero-contact-link">
+                        <svg class="outline-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/><path d="m22 7-10 6L2 7"/></svg>
+                        <span>balaah16@gmail.com</span>
+                    </a>
+                    <a href="tel:+918870614654" class="hero-contact-link">
+                        <svg class="outline-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.69A2 2 0 0 1 22 16.92Z"/></svg>
+                        <span>+91 88706 14654</span>
+                    </a>
+                    <a href="/resume.pdf" target="_blank" rel="noopener" class="hero-contact-link">
+                        <svg class="outline-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg>
+                        <span>Resume</span>
+                    </a>
+            </div>
+            <div class="profile-photo">
+                <img src="/assets/img/portrait.jpg" alt="Portrait of Balaji" width="320" height="360">
             </div>
         </div>
+    </section>
+
+    <section id="about" data-page-section data-view-panel="professional" class="section-shell border-t border-gray-200">
+
+        <div class="about-layout">
+          <div class="measure about-copy">
+            <h2 class="section-title">About</h2>
+            <p class="text-base leading-relaxed text-gray-600">
+                I'm a Software Development Engineer in Test with 8 years of experience designing scalable automation
+                frameworks and validating complex systems. I work across Playwright, Selenium, API testing, SQL, AWS,
+                and CI/CD to improve coverage, shorten regression cycles, and reduce production risk. I also enjoy
+                applying AI-assisted testing, LLM evaluation, and practical automation to make quality engineering
+                faster and sharper — and I ship mobile apps on the side.
+            </p>
+          </div>
+          <aside class="specialization-panel" aria-labelledby="specializations-title">
+            <h3 id="specializations-title" class="skills-subtitle">Specializations</h3>
+            <ul class="specialization-list">
+              <li>SDET &amp; Automation</li>
+              <li>Quality Engineering</li>
+              <li>API &amp; System Validation</li>
+              <li>AI-assisted Testing</li>
+            </ul>
+          </aside>
+        </div>
+
+    </section>
+
+    <section id="skills" data-page-section data-view-panel="professional" class="section-shell border-t border-gray-200">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-stack">
+            <div class="skills-group">
+                <h3 class="skills-subtitle">Core Stack</h3>
+                <div class="flex flex-wrap gap-2" aria-label="Core technologies">
+                    <span class="tag"><span class="skill-logo skill-logo--python" aria-hidden="true"></span>Python</span>
+                    <span class="tag"><span class="skill-logo skill-logo--java" aria-hidden="true"></span>Java</span>
+                    <span class="tag"><span class="skill-logo skill-logo--sql" aria-hidden="true"></span>SQL</span>
+                    <span class="tag"><span class="skill-logo skill-logo--playwright" aria-hidden="true"></span>Playwright</span>
+                    <span class="tag"><span class="skill-logo skill-logo--selenium" aria-hidden="true"></span>Selenium</span>
+                    <span class="tag"><span class="skill-logo skill-logo--api-testing" aria-hidden="true"></span>API Testing</span>
+                    <span class="tag"><span class="skill-logo skill-logo--cucumber" aria-hidden="true"></span>Cucumber BDD</span>
+                    <span class="tag"><span class="skill-logo skill-logo--tosca" aria-hidden="true"></span>Tricentis Tosca</span>
+                    <span class="tag"><span class="skill-logo skill-logo--aws" aria-hidden="true"></span>AWS</span>
+                    <span class="tag"><span class="skill-logo skill-logo--cicd" aria-hidden="true"></span>CI/CD</span>
+                    <span class="tag"><span class="skill-logo skill-logo--docker" aria-hidden="true"></span>Docker</span>
+                    <span class="tag"><span class="skill-logo skill-logo--git" aria-hidden="true"></span>Git</span>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="certifications" data-page-section data-view-panel="professional" class="section-shell border-t border-gray-200">
+        <h2 class="section-title">Certifications</h2>
+        <div class="certification-grid">
+            <div class="certification-card">
+                <div class="certification-mark"><img src="/assets/img/istqb-ctfl.jpg" alt="ISTQB Certified Tester Foundation Level badge" width="72" height="72" loading="lazy"></div>
+                <div><p class="certification-name">ISTQB</p><p class="certification-detail">Foundation Level Tester</p></div>
+            </div>
+            <div class="certification-card">
+                <div class="certification-mark"><img src="/assets/img/aws-certified-cloud-practitioner.png" alt="AWS Certified Cloud Practitioner badge" width="72" height="72" loading="lazy"></div>
+                <div><p class="certification-name">AWS</p><p class="certification-detail">Certified Cloud Practitioner</p></div>
+            </div>
+            <div class="certification-card">
+                <div class="certification-mark"><img src="/assets/img/google-ai-essentials-v1.png" alt="Google AI Essentials certificate badge" width="72" height="72" loading="lazy"></div>
+                <div><p class="certification-name">Google</p><p class="certification-detail">AI Essentials</p></div>
+            </div>
+            <div class="certification-card">
+                <div class="certification-mark"><img src="/assets/img/SAFe.jpg" alt="SAFe Agile certification badge" width="72" height="72" loading="lazy"></div>
+                <div><p class="certification-name">SAFe</p><p class="certification-detail">Agile Practitioner</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" data-page-section data-view-panel="professional" class="section-shell">
+
+        <div class="section-heading-row">
+            <h2 class="section-title section-title--flush">Experience</h2>
+            <div class="flex items-center gap-2 font-mono text-xs text-gray-500">
+                <span class="tag">8+ years</span>
+                <span class="tag">4 companies</span>
+            </div>
+        </div>
+
+        <div class="relative space-y-7">
+            <!-- timeline spine -->
+            <div class="timeline-line" aria-hidden="true"></div>
+
+            <!-- Sun Life (current) -->
+            <div class="experience-entry experience-entry--current relative pl-20">
+                <div class="role-badge role-badge--now absolute left-0 top-1" aria-hidden="true">S</div>
+                <article class="soft-card p-6">
+                    <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mb-1">
+                        <h3 class="role-title">Sun Life Global Solutions</h3>
+                        <span class="tag"><span class="now-dot mr-2"></span>Jan 2023 – Present</span>
+                    </div>
+                    <p class="font-mono text-xs text-gray-500 mb-4">SDET I · Bengaluru, India</p>
+                    <ul class="exp-list space-y-2 font-mono text-sm text-gray-600 leading-relaxed">
+                        <li>Built a Playwright + Python automation framework for UI and API testing across an enterprise AI chat assistant.</li>
+                        <li>Designed API validation workflows that improved response reliability and reduced critical defects by ~30%.</li>
+                        <li>Enabled AWS-based parallel test execution, cutting regression cycle time by ~40%.</li>
+                        <li>Automated 400+ test cases using Tosca Commander, improving regression coverage across systems.</li>
+                    </ul>
+                </article>
+            </div>
+
+            <!-- myclassroom -->
+            <div class="experience-entry relative pl-20">
+                <div class="role-badge role-badge--past absolute left-0 top-1" aria-hidden="true">m</div>
+                <article class="soft-card p-6">
+                    <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mb-1">
+                        <h3 class="role-title">myclassroom</h3>
+                        <span class="tag">Jun 2022 – Dec 2022</span>
+                    </div>
+                    <p class="font-mono text-xs text-gray-500 mb-4">SDE – Testing · Noida, India</p>
+                    <ul class="exp-list space-y-2 font-mono text-sm text-gray-600 leading-relaxed">
+                        <li>Tested web and mobile applications for an ed-tech platform supporting JEE and NEET preparation.</li>
+                        <li>Built Selenium WebDriver + Java automation scripts with Cucumber BDD for critical regression coverage.</li>
+                        <li>Performed end-to-end validation across student journeys — content access, assessments, and performance tracking.</li>
+                    </ul>
+                </article>
+            </div>
+
+            <!-- Anthem -->
+            <div class="experience-entry relative pl-20">
+                <div class="role-badge role-badge--past absolute left-0 top-1" aria-hidden="true">A</div>
+                <article class="soft-card p-6">
+                    <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mb-1">
+                        <h3 class="role-title">Anthem</h3>
+                        <span class="tag">Nov 2021 – Jun 2022</span>
+                    </div>
+                    <p class="font-mono text-xs text-gray-500 mb-4">Software Tester · Chennai, India</p>
+                    <ul class="exp-list space-y-2 font-mono text-sm text-gray-600 leading-relaxed">
+                        <li>Tested web and mobile applications in an Agile environment to support stable, high-quality releases.</li>
+                        <li>Worked with Business Analysts and UI/UX teams to translate requirements into effective test coverage.</li>
+                        <li>Built Selenium WebDriver + Java scripts for smoke testing and faster critical-path validation.</li>
+                    </ul>
+                </article>
+            </div>
+
+            <!-- Cognizant -->
+            <div class="experience-entry relative pl-20">
+                <div class="role-badge role-badge--past absolute left-0 top-1" aria-hidden="true">C</div>
+                <article class="soft-card p-6">
+                    <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mb-1">
+                        <h3 class="role-title">Cognizant Technology Solutions</h3>
+                        <span class="tag">May 2018 – Nov 2021</span>
+                    </div>
+                    <p class="font-mono text-xs text-gray-500 mb-4">Associate · Chennai, India</p>
+                    <ul class="exp-list space-y-2 font-mono text-sm text-gray-600 leading-relaxed">
+                        <li>Tested web and mobile applications across retail and e-commerce domains, ensuring stable releases.</li>
+                        <li>Executed functional and automated tests for end-to-end order placement and customer journeys.</li>
+                        <li>Built Selenium WebDriver + Java scripts for critical scenarios, improving regression efficiency.</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="side-projects" data-page-section data-view-panel="professional" class="section-shell border-t border-gray-200">
+
+        <h2 class="section-title">Side Projects</h2>
+
+        <div class="grid md:grid-cols-2 gap-5 items-stretch">
+            <article class="soft-card relative overflow-hidden p-6 pt-10 flex flex-col">
+                <div class="relative z-10 flex flex-col flex-1">
+                    <p class="font-mono text-xs uppercase tracking-widest text-gray-400 mb-2">Open-source test automation</p>
+                    <h3 class="project-title">Playwright Pytest E2E Framework</h3>
+                    <p class="font-mono text-sm text-gray-600 leading-relaxed mb-4">A scalable end-to-end test automation framework built with Playwright, Python, and pytest — covering UI and API testing together, with reusable Page Object Model fixtures, API-driven test data setup, and built-in reporting.</p>
+                    <div class="mt-auto pt-2">
+                        <div class="flex flex-wrap gap-2 mb-5"><span class="tag">Playwright</span><span class="tag">Python</span><span class="tag">Pytest</span></div>
+                        <a href="https://github.com/balaji16s/playwright-pytest-e2e-framework" target="_blank" rel="noopener"
+                            class="font-mono text-sm underline underline-offset-4 hover:text-violet-600 transition-colors cursor-pointer">View on GitHub →</a>
+                    </div>
+                </div>
+            </article>
+            <article class="soft-card relative overflow-hidden p-6 pt-10 flex flex-col">
+                <div class="relative z-10 flex flex-col flex-1">
+                    <p class="font-mono text-xs uppercase tracking-widest text-gray-400 mb-2">AI agent tooling</p>
+                    <h3 class="project-title">sdet-skills</h3>
+                    <p class="font-mono text-sm text-gray-600 leading-relaxed mb-4">A collection of AI agent skills built for QA engineers and SDETs, covering automation test creation, test review, Jira bug reporting, and requirements analysis — grounded in ISTQB testing standards and usable with any agent-compatible AI tool.</p>
+                    <div class="mt-auto pt-2">
+                        <div class="flex flex-wrap gap-2 mb-5"><span class="tag">AI Agent Skills</span><span class="tag">Python</span><span class="tag">ISTQB</span></div>
+                        <a href="https://github.com/balaji16s/sdet-skills" target="_blank" rel="noopener"
+                            class="font-mono text-sm underline underline-offset-4 hover:text-violet-600 transition-colors cursor-pointer">View on GitHub →</a>
+                    </div>
+                </div>
+            </article>
+            <!-- Additional professional project cards retained for future use.
+            <article class="soft-card relative overflow-hidden p-6 pt-10 flex flex-col">
+                <div class="relative z-10 flex flex-col flex-1">
+                    <p class="font-mono text-xs uppercase tracking-widest text-gray-400 mb-2">Dummy SDET project</p>
+                    <h3 class="project-title">AI Quality Evaluation</h3>
+                    <p class="font-mono text-sm text-gray-600 leading-relaxed mb-4">Placeholder copy for evaluating assistant responses with repeatable prompts, quality signals, and a lightweight review workflow.</p>
+                    <div class="mt-auto pt-2">
+                        <div class="flex flex-wrap gap-2 mb-5"><span class="tag">LLM Testing</span><span class="tag">Python</span><span class="tag">Evaluation</span></div>
+                        <a href="/contact" class="font-mono text-sm underline underline-offset-4 hover:text-violet-600 transition-colors cursor-pointer">Read project notes →</a>
+                    </div>
+                </div>
+            </article>
+            <article class="soft-card relative overflow-hidden p-6 pt-10 flex flex-col">
+                <div class="relative z-10 flex flex-col flex-1">
+                    <p class="font-mono text-xs uppercase tracking-widest text-gray-400 mb-2">Dummy SDET project</p>
+                    <h3 class="project-title">CI/CD Test Infrastructure</h3>
+                    <p class="font-mono text-sm text-gray-600 leading-relaxed mb-4">Placeholder copy for parallel cloud execution, pipeline quality gates, and dependable feedback on every change.</p>
+                    <div class="mt-auto pt-2">
+                        <div class="flex flex-wrap gap-2 mb-5"><span class="tag">AWS</span><span class="tag">CI/CD</span><span class="tag">Docker</span></div>
+                        <a href="/contact" class="font-mono text-sm underline underline-offset-4 hover:text-violet-600 transition-colors cursor-pointer">Read project notes →</a>
+                    </div>
+                </div>
+            </article>
+            -->
+        </div>
+    </section>
+
+    <section id="personal-projects" data-page-section data-view-panel="personal" class="section-shell border-t border-gray-200" hidden>
+
+        <h2 class="section-title">Side Projects</h2>
+
+        <div class="grid md:grid-cols-2 gap-5 items-stretch">
+
+            <!-- KuralVerse -->
+            <article class="soft-card relative overflow-hidden p-6 pt-10 flex flex-col">
+                <div class="relative z-10 flex flex-col flex-1">
+                    <p class="font-mono text-xs uppercase tracking-widest text-gray-400 mb-2">Published mobile app</p>
+                    <h3 class="project-title">KuralVerse</h3>
+                    <p class="font-mono text-sm text-gray-600 leading-relaxed mb-4">
+                        A Flutter Tirukkural companion with an animated number selector, Tamil &amp; English Kural details,
+                        local history, profile settings, sharing, dark mode, and offline-first storage.
+                    </p>
+                    <div class="mt-auto pt-2">
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="tag">Flutter</span><span class="tag">Riverpod</span><span class="tag">Hive</span><span class="tag">Clean Architecture</span>
+                        </div>
+                        <a href="https://play.google.com/store/apps/details?id=com.kuralverse.kuralverse" target="_blank" rel="noopener"
+                            class="font-mono text-sm underline underline-offset-4 hover:text-violet-600 transition-colors cursor-pointer">View on Play Store →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- My Thailapuram -->
+            <article class="soft-card relative overflow-hidden p-6 pt-10 flex flex-col">
+                <div class="relative z-10 flex flex-col flex-1">
+                    <p class="font-mono text-xs uppercase tracking-widest text-gray-400 mb-2">Published mobile app</p>
+                    <h3 class="project-title">My Thailapuram</h3>
+                    <p class="font-mono text-sm text-gray-600 leading-relaxed mb-4">
+                        A community-focused Expo mobile app for Thailapuram, built as a modern cross-platform experience
+                        and published on Google Play.
+                    </p>
+                    <div class="mt-auto pt-2">
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="tag">Expo</span><span class="tag">React Native</span><span class="tag">Mobile</span>
+                        </div>
+                        <a href="https://play.google.com/store/apps/details?id=com.thailapuram" target="_blank" rel="noopener"
+                            class="font-mono text-sm underline underline-offset-4 hover:text-violet-600 transition-colors cursor-pointer">View on Play Store →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Win Your Week -->
+            <article class="soft-card relative overflow-hidden p-6 pt-10 flex flex-col">
+                <div class="relative z-10 flex flex-col flex-1">
+                    <p class="font-mono text-xs uppercase tracking-widest text-gray-400 mb-2">Published mobile app</p>
+                    <h3 class="project-title">Win Your Week</h3>
+                    <p class="font-mono text-sm text-gray-600 leading-relaxed mb-4">
+                        A Flutter app built around weekly planning and personal execution, helping users focus on the
+                        week ahead through a lightweight mobile experience.
+                    </p>
+                    <div class="mt-auto pt-2">
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Productivity</span>
+                        </div>
+                        <a href="https://play.google.com/store/apps/details?id=com.balashri.winyourweek" target="_blank" rel="noopener"
+                            class="font-mono text-sm underline underline-offset-4 hover:text-violet-600 transition-colors cursor-pointer">View on Play Store →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Gold Price Tracker -->
+            <article class="soft-card relative overflow-hidden p-6 pt-10 flex flex-col">
+                <div class="relative z-10 flex flex-col flex-1">
+                    <p class="font-mono text-xs uppercase tracking-widest text-gray-400 mb-2">Automation system</p>
+                    <h3 class="project-title">Gold Price Tracker</h3>
+                    <p class="font-mono text-sm text-gray-600 leading-relaxed mb-4">
+                        A WhatsApp-first automation system that scrapes daily 22K and 24K gold prices, stores historical
+                        data in SQLite, analyzes trends, and sends scheduled subscriber updates.
+                    </p>
+                    <div class="mt-auto pt-2">
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="tag">Python</span><span class="tag">Node.js</span><span class="tag">SQLite</span><span class="tag">WhatsApp Web</span><span class="tag">Oracle Cloud</span>
+                        </div>
+                        <a href="https://wa.me/918870054654?text=Start" target="_blank" rel="noopener"
+                            class="font-mono text-sm underline underline-offset-4 hover:text-violet-600 transition-colors cursor-pointer">Get daily gold prices on WhatsApp →</a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
 
     </main>
 
     <!-- ===== Footer ===== -->
     <footer class="border-t border-gray-200">
         <div class="max-w-4xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-5">
-            <a href="/" class="flex items-center gap-2 cursor-pointer">
-                <img src="/assets/img/logo-light.svg" alt="Balaji logo" class="h-8 w-8 object-contain">
-                <span class="font-hand font-bold text-2xl leading-none">Balaji</span>
-            </a>
-            <p class="font-mono text-xs text-gray-400">© <span data-year>2026</span> Balaji · Built with care.</p>
-            <div class="flex gap-4 font-mono text-xs text-gray-500">
-                <a href="https://linkedin.com/in/balaji16s" target="_blank" rel="noopener" class="inline-block py-2 hover:text-black transition-colors cursor-pointer">LinkedIn</a>
-                <a href="https://github.com/balaji16s" target="_blank" rel="noopener" class="inline-block py-2 hover:text-black transition-colors cursor-pointer">GitHub</a>
+            <div class="footer-center">
+                <a href="#home" class="inline-flex cursor-pointer" aria-label="Back to top">
+                    <img src="/assets/img/logo-light.svg" alt="Balaji logo" class="h-8 w-8 object-contain">
+                </a>
+                <p class="footer-signoff">Tested with care <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"/></svg></p>
             </div>
         </div>
     </footer>
