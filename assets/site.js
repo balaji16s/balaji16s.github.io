@@ -8,25 +8,27 @@
     var btn = document.querySelector('[data-nav-toggle]');
     if (!nav || !btn) return;
 
-    function toggle() {
-      var open = nav.classList.toggle('nav-open');
+    function setOpen(open) {
+      nav.classList.toggle('nav-open', open);
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     }
-    btn.addEventListener('click', toggle);
+    btn.addEventListener('click', function () {
+      setOpen(!nav.classList.contains('nav-open'));
+    });
 
     // Close when a link is tapped (mobile)
     nav.querySelectorAll('[data-nav-link]').forEach(function (a) {
       a.addEventListener('click', function () {
-        nav.classList.remove('nav-open');
-        btn.setAttribute('aria-expanded', 'false');
+        setOpen(false);
       });
     });
 
     // Close on Escape
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && nav.classList.contains('nav-open')) {
-        nav.classList.remove('nav-open');
-        btn.setAttribute('aria-expanded', 'false');
+        setOpen(false);
+        btn.focus();
       }
     });
   }
@@ -137,7 +139,21 @@
 
     var storedView = null;
     try { storedView = window.localStorage.getItem('portfolio-view'); } catch (err) {}
-    setView(storedView === 'personal' ? 'personal' : 'professional', false);
+    function viewForHash() {
+      var target = document.getElementById(window.location.hash.slice(1));
+      return target && target.getAttribute('data-view-panel');
+    }
+
+    function revealHashTarget() {
+      var view = viewForHash();
+      if (view !== 'personal' && view !== 'professional') return;
+      setView(view, false);
+      document.getElementById(window.location.hash.slice(1)).scrollIntoView({ behavior: 'auto' });
+    }
+
+    setView(viewForHash() || (storedView === 'personal' ? 'personal' : 'professional'), false);
+    revealHashTarget();
+    window.addEventListener('hashchange', revealHashTarget);
 
     buttons.forEach(function (button) {
       button.addEventListener('click', function () {

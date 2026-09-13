@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/assets/fonts.css">
     <link rel="stylesheet" href="/assets/tailwind.css">
     <link rel="stylesheet" href="/assets/site.css">
+    <link rel="stylesheet" href="/assets/portfolio.css">
 </head>
 
 <body class="home-page bg-dot-pattern text-gray-900 antialiased min-h-screen selection:bg-violet-100">
@@ -63,7 +64,8 @@
 </div>
 <!-- /shared:site-header -->
 
-    <main>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <main id="main-content" tabindex="-1">
     <!-- ===== Hero ===== -->
     <section id="home" data-page-section class="hero-section">
         <div class="hero-layout">
@@ -89,7 +91,7 @@
                         <svg class="outline-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.69A2 2 0 0 1 22 16.92Z"/></svg>
                         <span>+91 88706 14654</span>
                     </a>
-                    <a href="/Balaji_SDET_Resume.pdf" download="Balaji_SDET_Resume.pdf" class="hero-contact-link">
+                    <a href="/Balaji_SDET_Resume.pdf" download="Balaji_SDET_Resume.pdf" class="hero-contact-link hero-contact-link--resume">
                         <svg class="outline-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg>
                         <span>Resume</span>
                     </a>
@@ -174,87 +176,68 @@
     </section>
 
     <section id="experience" data-page-section data-view-panel="professional" class="section-shell">
-
-        <div class="section-heading-row">
-            <h2 class="section-title section-title--flush">Experience</h2>
-            <div class="flex items-center gap-2 font-mono text-xs text-gray-500">
-                <span class="tag">8+ years</span>
-                <span class="tag">4 companies</span>
-            </div>
+        <div class="career-heading">
+            <h2 class="section-title">Experience</h2>
+            <p class="career-summary">8+ years <span aria-hidden="true">/</span> 4 companies</p>
         </div>
-
-        <div class="relative space-y-7">
-            <!-- timeline spine -->
-            <div class="timeline-line" aria-hidden="true"></div>
-
-            <!-- Sun Life (current) -->
-            <div class="experience-entry experience-entry--current relative pl-20">
-                <div class="role-badge role-badge--now absolute left-0 top-1" aria-hidden="true">S</div>
-                <article class="soft-card p-6">
-                    <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mb-1">
-                        <h3 class="role-title">Sun Life Global Solutions</h3>
-                        <span class="tag"><span class="now-dot mr-2"></span>Jan 2023 – Present</span>
-                    </div>
-                    <p class="font-mono text-xs text-gray-500 mb-4">SDET I · Bengaluru, India</p>
-                    <ul class="exp-list space-y-2 font-mono text-sm text-gray-600 leading-relaxed">
+        <div class="career-history">
+            <article class="career-role career-role--current" aria-labelledby="career-company-0">
+                <header class="career-meta">
+                    <p class="career-status">Current role</p>
+                    <h3 id="career-company-0" class="career-company">Sun Life Global Solutions</h3>
+                    <p class="career-position">SDET I · Bengaluru, India</p>
+                    <p class="career-dates">Jan 2023 – Present</p>
+                </header>
+                <ul class="career-achievements">
                         <li>Built a Playwright + Python automation framework for UI and API testing across an enterprise AI chat assistant.</li>
-                        <li>Designed API validation workflows that improved response reliability and reduced critical defects by ~30%.</li>
-                        <li>Enabled AWS-based parallel test execution, cutting regression cycle time by ~40%.</li>
-                        <li>Automated 400+ test cases using Tosca Commander, improving regression coverage across systems.</li>
-                    </ul>
-                </article>
-            </div>
+                        <li>Designed API validation workflows that improved response reliability and reduced critical defects by <strong>~30%</strong>.</li>
+                        <li>Enabled AWS-based parallel test execution, cutting regression cycle time by <strong>~40%</strong>.</li>
+                        <li>Automated <strong>400+ test cases</strong> using Tosca Commander, improving regression coverage across systems.</li>
 
-            <!-- myclassroom -->
-            <div class="experience-entry relative pl-20">
-                <div class="role-badge role-badge--past absolute left-0 top-1" aria-hidden="true">m</div>
-                <article class="soft-card p-6">
-                    <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mb-1">
-                        <h3 class="role-title">myclassroom</h3>
-                        <span class="tag">Jun 2022 – Dec 2022</span>
-                    </div>
-                    <p class="font-mono text-xs text-gray-500 mb-4">SDE – Testing · Noida, India</p>
-                    <ul class="exp-list space-y-2 font-mono text-sm text-gray-600 leading-relaxed">
+                </ul>
+            </article>
+            <article class="career-role" aria-labelledby="career-company-1">
+                <header class="career-meta">
+
+                    <h3 id="career-company-1" class="career-company">myclassroom</h3>
+                    <p class="career-position">SDE – Testing · Noida, India</p>
+                    <p class="career-dates">Jun 2022 – Dec 2022</p>
+                </header>
+                <ul class="career-achievements">
                         <li>Tested web and mobile applications for an ed-tech platform supporting JEE and NEET preparation.</li>
                         <li>Built Selenium WebDriver + Java automation scripts with Cucumber BDD for critical regression coverage.</li>
                         <li>Performed end-to-end validation across student journeys — content access, assessments, and performance tracking.</li>
-                    </ul>
-                </article>
-            </div>
 
-            <!-- Anthem -->
-            <div class="experience-entry relative pl-20">
-                <div class="role-badge role-badge--past absolute left-0 top-1" aria-hidden="true">A</div>
-                <article class="soft-card p-6">
-                    <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mb-1">
-                        <h3 class="role-title">Anthem</h3>
-                        <span class="tag">Nov 2021 – Jun 2022</span>
-                    </div>
-                    <p class="font-mono text-xs text-gray-500 mb-4">Software Tester · Chennai, India</p>
-                    <ul class="exp-list space-y-2 font-mono text-sm text-gray-600 leading-relaxed">
+                </ul>
+            </article>
+            <article class="career-role" aria-labelledby="career-company-2">
+                <header class="career-meta">
+
+                    <h3 id="career-company-2" class="career-company">Anthem</h3>
+                    <p class="career-position">Software Tester · Chennai, India</p>
+                    <p class="career-dates">Nov 2021 – Jun 2022</p>
+                </header>
+                <ul class="career-achievements">
                         <li>Tested web and mobile applications in an Agile environment to support stable, high-quality releases.</li>
                         <li>Worked with Business Analysts and UI/UX teams to translate requirements into effective test coverage.</li>
                         <li>Built Selenium WebDriver + Java scripts for smoke testing and faster critical-path validation.</li>
-                    </ul>
-                </article>
-            </div>
 
-            <!-- Cognizant -->
-            <div class="experience-entry relative pl-20">
-                <div class="role-badge role-badge--past absolute left-0 top-1" aria-hidden="true">C</div>
-                <article class="soft-card p-6">
-                    <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mb-1">
-                        <h3 class="role-title">Cognizant Technology Solutions</h3>
-                        <span class="tag">May 2018 – Nov 2021</span>
-                    </div>
-                    <p class="font-mono text-xs text-gray-500 mb-4">Associate · Chennai, India</p>
-                    <ul class="exp-list space-y-2 font-mono text-sm text-gray-600 leading-relaxed">
+                </ul>
+            </article>
+            <article class="career-role" aria-labelledby="career-company-3">
+                <header class="career-meta">
+
+                    <h3 id="career-company-3" class="career-company">Cognizant Technology Solutions</h3>
+                    <p class="career-position">Associate · Chennai, India</p>
+                    <p class="career-dates">May 2018 – Nov 2021</p>
+                </header>
+                <ul class="career-achievements">
                         <li>Tested web and mobile applications across retail and e-commerce domains, ensuring stable releases.</li>
                         <li>Executed functional and automated tests for end-to-end order placement and customer journeys.</li>
                         <li>Built Selenium WebDriver + Java scripts for critical scenarios, improving regression efficiency.</li>
-                    </ul>
-                </article>
-            </div>
+
+                </ul>
+            </article>
         </div>
     </section>
 
